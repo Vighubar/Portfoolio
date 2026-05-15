@@ -1,0 +1,81 @@
+---
+import { getCollection, render } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+
+export async function getStaticPaths() {
+  const projects = await getCollection("projects");
+  return projects.map((project) => ({
+    params: { slug: project.id },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+const { Content } = await render(project);
+const { data } = project;
+
+const formatDate = (date: Date) =>
+  date.toLocaleDateString("en-US", { month: "short", year: "numeric" });
+---
+
+<Layout title={data.title}>
+  <main class="max-w-4xl mx-auto px-6 py-16">
+    <a href="/" class="text-sm text-gray-500 hover:text-black transition-colors">← Back to portfolio</a>
+
+    <header class="mt-8 mb-12">
+      <div class="flex flex-wrap gap-2 mb-4">
+        {data.tags.map((tag) => (
+          <span class="text-xs font-medium uppercase tracking-wide text-gray-500">{tag}</span>
+        ))}
+      </div>
+      <h1 class="text-3xl font-bold leading-tight">{data.title}</h1>
+      <p class="text-lg text-gray-600 mt-4 leading-relaxed">{data.description}</p>
+    </header>
+
+    <section class="grid grid-cols-2 sm:grid-cols-4 gap-6 py-8 border-y border-gray-200 mb-12">
+      <div>
+        <p class="text-xs uppercase tracking-wide text-gray-400 mb-1">Role</p>
+        <p class="text-sm font-medium">{data.role}</p>
+      </div>
+      <div>
+        <p class="text-xs uppercase tracking-wide text-gray-400 mb-1">Timeline</p>
+        <p class="text-sm font-medium">
+          {formatDate(data.timeline.startDate)}{data.timeline.endDate ? ` – ${formatDate(data.timeline.endDate)}` : " – Present"}
+        </p>
+      </div>
+      <div>
+        <p class="text-xs uppercase tracking-wide text-gray-400 mb-1">Tools</p>
+        <p class="text-sm font-medium">{data.tools.join(", ")}</p>
+      </div>
+      {data.links && data.links.length > 0 && (
+        <div>
+          <p class="text-xs uppercase tracking-wide text-gray-400 mb-1">Links</p>
+          <div class="flex flex-col gap-1">
+            {data.links.map((link) => (
+              <a href={link.url} target="_blank" rel="noopener" class="text-sm font-medium text-blue-600 hover:underline">{link.label} ↗</a>
+            ))}
+          </div>
+        </div>
+      )}
+    </section>
+
+    <section class="grid gap-8 md:grid-cols-3 mb-12">
+      <div class="bg-gray-50 rounded-lg p-6">
+        <h2 class="text-sm font-semibold uppercase tracking-wide text-gray-400 mb-2">Problem</h2>
+        <p class="text-sm leading-relaxed">{data.problem}</p>
+      </div>
+      <div class="bg-gray-50 rounded-lg p-6">
+        <h2 class="text-sm font-semibold uppercase tracking-wide text-gray-400 mb-2">Solution</h2>
+        <p class="text-sm leading-relaxed">{data.solution}</p>
+      </div>
+      <div class="bg-gray-50 rounded-lg p-6">
+        <h2 class="text-sm font-semibold uppercase tracking-wide text-gray-400 mb-2">Outcome</h2>
+        <p class="text-sm leading-relaxed">{data.outcome}</p>
+      </div>
+    </section>
+
+    <article class="prose prose-gray max-w-none">
+      <Content />
+    </article>
+  </main>
+</Layout>

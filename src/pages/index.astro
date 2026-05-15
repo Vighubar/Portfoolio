@@ -1,0 +1,67 @@
+---
+import { getCollection, render } from "astro:content";
+import Layout from "../layouts/Layout.astro";
+
+const aboutEntries = await getCollection("about");
+const about = aboutEntries[0];
+const { Content: AboutContent } = await render(about);
+
+const projects = await getCollection("projects");
+const sortedProjects = projects.sort(
+  (a, b) => (a.data.sortOrder ?? 99) - (b.data.sortOrder ?? 99)
+);
+---
+
+<Layout title={`${about.data.name} — ${about.data.title}`}>
+  <main class="max-w-3xl mx-auto px-6 py-16">
+    <header class="mb-16">
+      <h1 class="text-3xl font-bold text-wrap-balance">{about.data.name}</h1>
+      <p class="text-lg text-gray-600 mt-1">{about.data.title}</p>
+
+      <div class="prose prose-gray mt-6">
+        <AboutContent />
+      </div>
+
+      <nav class="flex flex-wrap gap-4 mt-6" aria-label="Social links">
+        {about.data.socials.map((social) => (
+          <a
+            href={social.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-sm font-medium text-blue-600 hover:text-blue-800 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 rounded"
+          >
+            {social.platform} ↗
+          </a>
+        ))}
+      </nav>
+
+      <div class="flex flex-wrap gap-2 mt-6">
+        {about.data.skills.map((skill) => (
+          <span class="text-sm bg-gray-100 px-2 py-1 rounded">{skill}</span>
+        ))}
+      </div>
+    </header>
+
+    <section aria-labelledby="projects-heading">
+      <h2 id="projects-heading" class="text-2xl font-semibold mb-8">Projects</h2>
+      <div class="space-y-10">
+        {sortedProjects.map((project) => (
+          <article>
+            <a
+              href={`/projects/${project.id}`}
+              class="group block rounded-lg focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+            >
+              <h3 class="text-xl font-medium group-hover:text-blue-600 transition-colors">{project.data.title}</h3>
+              <p class="text-gray-600 mt-1">{project.data.description}</p>
+              <div class="flex flex-wrap gap-2 mt-3">
+                {project.data.tags.map((tag) => (
+                  <span class="text-xs bg-blue-50 text-blue-700 px-2 py-0.5 rounded">{tag}</span>
+                ))}
+              </div>
+            </a>
+          </article>
+        ))}
+      </div>
+    </section>
+  </main>
+</Layout>
