@@ -1,0 +1,88 @@
+---
+const currentPath = Astro.url.pathname;
+---
+
+<nav class="site-nav" id="site-nav" aria-label="Main navigation">
+  <a href="/" class="nav-logo" aria-label="KLM — Home">KLM</a>
+  <div class="nav-links">
+    <a
+      href="/projects"
+      class:list={["nav-link", { active: currentPath.startsWith("/projects") }]}
+    >Projects</a>
+    <a
+      href="/about"
+      class:list={["nav-link", { active: currentPath.startsWith("/about") }]}
+    >About</a>
+  </div>
+</nav>
+
+<style>
+  .site-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    height: 56px;
+    background-color: #483A74;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 48px;
+    transition:
+      background-color 0.35s ease,
+      box-shadow 0.35s ease;
+  }
+
+  .site-nav.scrolled {
+    background-color: rgba(72, 58, 116, 0.45);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    box-shadow: 0 2px 20px rgba(13, 6, 32, 0.3);
+  }
+
+  .nav-logo {
+    font-family: 'Shrikhand', serif;
+    font-style: italic;
+    font-size: 24px;
+    color: #EFEEF6;
+    text-decoration: none;
+    line-height: 1;
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+  }
+
+  .nav-link {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    color: #EFEEF6;
+    text-decoration: none;
+    line-height: 1;
+    opacity: 0.75;
+    transition: opacity 0.2s ease;
+  }
+
+  .nav-link:hover,
+  .nav-link.active {
+    opacity: 1;
+  }
+
+  .nav-link.active {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    text-decoration-thickness: 2px;
+    text-decoration-color: #c9b8ff;
+  }
+
+  @media (max-width: 600px) {
+    .site-nav { padding: 0 20px; }
+    .nav-logo  { font-size: 20px; }
+    .nav-link  { font-size: 15px; }
+    .nav-links { gap: 16px; }
+  }
+</style>

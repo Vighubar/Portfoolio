@@ -1,0 +1,15 @@
+{
+  "mcpServers": {
+    "Figma Desktop": {
+      "url": "http://127.0.0.1:3845/mcp",
+      "autoApprove": [
+        "get_metadata",
+        "get_design_context",
+        "get_screenshot"
+      ]
+    },
+    "retune": {
+      "url": "http://127.0.0.1:9223/mcp"
+    }
+  }
+}

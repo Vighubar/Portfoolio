@@ -1,0 +1,133 @@
+---
+---
+
+<footer class="site-footer">
+  <div class="footer-inner">
+
+    <!-- Left: name + role + email -->
+    <div class="footer-left">
+      <span class="footer-name">Kelly-Leontine Merilo</span>
+      <div class="footer-details">
+        <span class="footer-body">Product designer, game developer</span>
+        <a href="mailto:Kellyleontine.merilo@gmail.com" class="footer-body footer-email">
+          Kellyleontine.merilo@gmail.com
+        </a>
+      </div>
+    </div>
+
+    <!-- Right: socials -->
+    <div class="footer-right">
+      <span class="footer-socials-label">Socials:</span>
+      <div class="footer-socials-links">
+        <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="footer-body footer-link">
+          LinkedIn
+        </a>
+        <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="footer-body footer-link">
+          GitHub
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Copyright -->
+  <p class="footer-copy">© Kelly-Leontine Merilo 2026</p>
+</footer>
+
+<style>
+  .site-footer {
+    width: 100%;
+    background-color: #483A74;
+    min-height: 269px;
+    position: relative;
+  }
+
+  .footer-inner {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 64px 48px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  /* ── Left column ── */
+  .footer-left {
+    display: flex;
+    flex-direction: column;
+    gap: 42px;
+  }
+
+  .footer-name {
+    font-family: 'Shrikhand', serif;
+    font-style: italic;
+    font-size: 24px;
+    color: #EFEEF6;
+    line-height: 1;
+    white-space: nowrap;
+  }
+
+  .footer-details {
+    display: flex;
+    flex-direction: column;
+    gap: 19px;
+  }
+
+  .footer-body {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    font-size: 24px;
+    color: #EFEEF6;
+    line-height: 1;
+    white-space: nowrap;
+    text-decoration: none;
+  }
+
+  .footer-email:hover,
+  .footer-link:hover {
+    opacity: 0.75;
+    transition: opacity 0.2s ease;
+  }
+
+  /* ── Right column ── */
+  .footer-right {
+    display: flex;
+    flex-direction: column;
+    gap: 42px;
+    align-items: flex-start;
+  }
+
+  .footer-socials-label {
+    font-family: 'Carter One', sans-serif;
+    font-size: 24px;
+    color: #EFEEF6;
+    line-height: 1;
+  }
+
+  .footer-socials-links {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  /* ── Copyright ── */
+  .footer-copy {
+    position: absolute;
+    bottom: 16px;
+    right: 48px;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    color: rgba(239, 238, 246, 0.4);
+    line-height: 1;
+    margin: 0;
+  }
+
+  @media (max-width: 600px) {
+    .footer-inner  { flex-direction: column; gap: 40px; padding: 40px 24px 0; }
+    .footer-copy   { right: 24px; }
+    .footer-body,
+    .footer-name,
+    .footer-socials-label { font-size: 18px; white-space: normal; }
+  }
+</style>

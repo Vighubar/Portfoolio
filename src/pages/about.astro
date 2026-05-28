@@ -1,0 +1,470 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const imgAvatar = "/avatar.png";
+---
+
+<Layout title="About — Kelly-Leontine Merilo">
+  <div class="about-page">
+
+    <!-- Star background — covers full page from nav to footer -->
+    <svg
+      class="constellation-bg"
+      viewBox="0 0 1440 900"
+      preserveAspectRatio="xMidYMid slice"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+      focusable="false"
+    >
+      <defs>
+        <path id="s" d="M0,-1 L0.224,-0.309 L0.951,-0.309 L0.363,0.118 L0.588,0.809 L0,0.382 L-0.588,0.809 L-0.363,0.118 L-0.951,-0.309 L-0.224,-0.309 Z"/>
+      </defs>
+
+      <!-- LAYER A — small stars -->
+      <g class="star-layer-a">
+        <use href="#s" transform="translate(80,60)    scale(9)"  fill="#c9b8ff" opacity="0.35"/>
+        <use href="#s" transform="translate(230,20)   scale(10)" fill="#9b87d4" opacity="0.32"/>
+        <use href="#s" transform="translate(390,100)  scale(9)"  fill="#AD9ED4" opacity="0.38"/>
+        <use href="#s" transform="translate(530,35)   scale(11)" fill="#c9b8ff" opacity="0.30"/>
+        <use href="#s" transform="translate(680,85)   scale(9)"  fill="#7863BC" opacity="0.36"/>
+        <use href="#s" transform="translate(820,25)   scale(10)" fill="#c9b8ff" opacity="0.32"/>
+        <use href="#s" transform="translate(970,75)   scale(9)"  fill="#9b87d4" opacity="0.38"/>
+        <use href="#s" transform="translate(1110,30)  scale(11)" fill="#AD9ED4" opacity="0.30"/>
+        <use href="#s" transform="translate(1260,95)  scale(9)"  fill="#c9b8ff" opacity="0.35"/>
+        <use href="#s" transform="translate(1400,50)  scale(10)" fill="#9b87d4" opacity="0.32"/>
+
+        <use href="#s" transform="translate(50,220)   scale(10)" fill="#9b87d4" opacity="0.32"/>
+        <use href="#s" transform="translate(190,260)  scale(9)"  fill="#c9b8ff" opacity="0.38"/>
+        <use href="#s" transform="translate(350,205)  scale(11)" fill="#7863BC" opacity="0.30"/>
+        <use href="#s" transform="translate(490,255)  scale(9)"  fill="#AD9ED4" opacity="0.36"/>
+        <use href="#s" transform="translate(640,215)  scale(10)" fill="#c9b8ff" opacity="0.32"/>
+        <use href="#s" transform="translate(780,260)  scale(9)"  fill="#9b87d4" opacity="0.38"/>
+        <use href="#s" transform="translate(930,210)  scale(11)" fill="#c9b8ff" opacity="0.30"/>
+        <use href="#s" transform="translate(1080,255) scale(9)"  fill="#7863BC" opacity="0.35"/>
+        <use href="#s" transform="translate(1230,215) scale(10)" fill="#AD9ED4" opacity="0.32"/>
+        <use href="#s" transform="translate(1390,260) scale(9)"  fill="#c9b8ff" opacity="0.38"/>
+
+        <use href="#s" transform="translate(120,400)  scale(9)"  fill="#c9b8ff" opacity="0.38"/>
+        <use href="#s" transform="translate(270,440)  scale(11)" fill="#9b87d4" opacity="0.30"/>
+        <use href="#s" transform="translate(430,390)  scale(9)"  fill="#AD9ED4" opacity="0.36"/>
+        <use href="#s" transform="translate(580,440)  scale(10)" fill="#c9b8ff" opacity="0.32"/>
+        <use href="#s" transform="translate(720,395)  scale(9)"  fill="#7863BC" opacity="0.38"/>
+        <use href="#s" transform="translate(870,440)  scale(11)" fill="#c9b8ff" opacity="0.30"/>
+        <use href="#s" transform="translate(1010,395) scale(9)"  fill="#9b87d4" opacity="0.35"/>
+        <use href="#s" transform="translate(1160,440) scale(10)" fill="#AD9ED4" opacity="0.32"/>
+        <use href="#s" transform="translate(1300,400) scale(9)"  fill="#c9b8ff" opacity="0.38"/>
+        <use href="#s" transform="translate(1420,440) scale(11)" fill="#7863BC" opacity="0.30"/>
+
+        <use href="#s" transform="translate(70,580)   scale(10)" fill="#7863BC" opacity="0.32"/>
+        <use href="#s" transform="translate(210,620)  scale(9)"  fill="#c9b8ff" opacity="0.36"/>
+        <use href="#s" transform="translate(360,575)  scale(11)" fill="#9b87d4" opacity="0.30"/>
+        <use href="#s" transform="translate(510,620)  scale(9)"  fill="#AD9ED4" opacity="0.38"/>
+        <use href="#s" transform="translate(660,580)  scale(10)" fill="#c9b8ff" opacity="0.32"/>
+        <use href="#s" transform="translate(810,620)  scale(9)"  fill="#7863BC" opacity="0.36"/>
+        <use href="#s" transform="translate(960,580)  scale(11)" fill="#c9b8ff" opacity="0.30"/>
+        <use href="#s" transform="translate(1110,620) scale(9)"  fill="#9b87d4" opacity="0.38"/>
+        <use href="#s" transform="translate(1270,580) scale(10)" fill="#AD9ED4" opacity="0.32"/>
+        <use href="#s" transform="translate(1410,620) scale(9)"  fill="#c9b8ff" opacity="0.36"/>
+
+        <use href="#s" transform="translate(140,760)  scale(9)"  fill="#c9b8ff" opacity="0.36"/>
+        <use href="#s" transform="translate(290,800)  scale(11)" fill="#7863BC" opacity="0.30"/>
+        <use href="#s" transform="translate(450,755)  scale(9)"  fill="#AD9ED4" opacity="0.38"/>
+        <use href="#s" transform="translate(600,800)  scale(10)" fill="#c9b8ff" opacity="0.32"/>
+        <use href="#s" transform="translate(750,760)  scale(9)"  fill="#9b87d4" opacity="0.36"/>
+        <use href="#s" transform="translate(900,800)  scale(11)" fill="#c9b8ff" opacity="0.30"/>
+        <use href="#s" transform="translate(1050,760) scale(9)"  fill="#7863BC" opacity="0.38"/>
+        <use href="#s" transform="translate(1200,800) scale(10)" fill="#AD9ED4" opacity="0.32"/>
+        <use href="#s" transform="translate(1350,760) scale(9)"  fill="#c9b8ff" opacity="0.35"/>
+        <use href="#s" transform="translate(1430,800) scale(11)" fill="#9b87d4" opacity="0.30"/>
+      </g>
+
+      <!-- LAYER A copy -->
+      <g class="star-layer-a-copy">
+        <use href="#s" transform="translate(80,60)    scale(9)"  fill="#c9b8ff" opacity="0.35"/>
+        <use href="#s" transform="translate(230,20)   scale(10)" fill="#9b87d4" opacity="0.32"/>
+        <use href="#s" transform="translate(390,100)  scale(9)"  fill="#AD9ED4" opacity="0.38"/>
+        <use href="#s" transform="translate(530,35)   scale(11)" fill="#c9b8ff" opacity="0.30"/>
+        <use href="#s" transform="translate(680,85)   scale(9)"  fill="#7863BC" opacity="0.36"/>
+        <use href="#s" transform="translate(820,25)   scale(10)" fill="#c9b8ff" opacity="0.32"/>
+        <use href="#s" transform="translate(970,75)   scale(9)"  fill="#9b87d4" opacity="0.38"/>
+        <use href="#s" transform="translate(1110,30)  scale(11)" fill="#AD9ED4" opacity="0.30"/>
+        <use href="#s" transform="translate(1260,95)  scale(9)"  fill="#c9b8ff" opacity="0.35"/>
+        <use href="#s" transform="translate(1400,50)  scale(10)" fill="#9b87d4" opacity="0.32"/>
+        <use href="#s" transform="translate(50,220)   scale(10)" fill="#9b87d4" opacity="0.32"/>
+        <use href="#s" transform="translate(190,260)  scale(9)"  fill="#c9b8ff" opacity="0.38"/>
+        <use href="#s" transform="translate(350,205)  scale(11)" fill="#7863BC" opacity="0.30"/>
+        <use href="#s" transform="translate(490,255)  scale(9)"  fill="#AD9ED4" opacity="0.36"/>
+        <use href="#s" transform="translate(640,215)  scale(10)" fill="#c9b8ff" opacity="0.32"/>
+        <use href="#s" transform="translate(780,260)  scale(9)"  fill="#9b87d4" opacity="0.38"/>
+        <use href="#s" transform="translate(930,210)  scale(11)" fill="#c9b8ff" opacity="0.30"/>
+        <use href="#s" transform="translate(1080,255) scale(9)"  fill="#7863BC" opacity="0.35"/>
+        <use href="#s" transform="translate(1230,215) scale(10)" fill="#AD9ED4" opacity="0.32"/>
+        <use href="#s" transform="translate(1390,260) scale(9)"  fill="#c9b8ff" opacity="0.38"/>
+        <use href="#s" transform="translate(120,400)  scale(9)"  fill="#c9b8ff" opacity="0.38"/>
+        <use href="#s" transform="translate(270,440)  scale(11)" fill="#9b87d4" opacity="0.30"/>
+        <use href="#s" transform="translate(430,390)  scale(9)"  fill="#AD9ED4" opacity="0.36"/>
+        <use href="#s" transform="translate(580,440)  scale(10)" fill="#c9b8ff" opacity="0.32"/>
+        <use href="#s" transform="translate(720,395)  scale(9)"  fill="#7863BC" opacity="0.38"/>
+        <use href="#s" transform="translate(870,440)  scale(11)" fill="#c9b8ff" opacity="0.30"/>
+        <use href="#s" transform="translate(1010,395) scale(9)"  fill="#9b87d4" opacity="0.35"/>
+        <use href="#s" transform="translate(1160,440) scale(10)" fill="#AD9ED4" opacity="0.32"/>
+        <use href="#s" transform="translate(1300,400) scale(9)"  fill="#c9b8ff" opacity="0.38"/>
+        <use href="#s" transform="translate(1420,440) scale(11)" fill="#7863BC" opacity="0.30"/>
+        <use href="#s" transform="translate(70,580)   scale(10)" fill="#7863BC" opacity="0.32"/>
+        <use href="#s" transform="translate(210,620)  scale(9)"  fill="#c9b8ff" opacity="0.36"/>
+        <use href="#s" transform="translate(360,575)  scale(11)" fill="#9b87d4" opacity="0.30"/>
+        <use href="#s" transform="translate(510,620)  scale(9)"  fill="#AD9ED4" opacity="0.38"/>
+        <use href="#s" transform="translate(660,580)  scale(10)" fill="#c9b8ff" opacity="0.32"/>
+        <use href="#s" transform="translate(810,620)  scale(9)"  fill="#7863BC" opacity="0.36"/>
+        <use href="#s" transform="translate(960,580)  scale(11)" fill="#c9b8ff" opacity="0.30"/>
+        <use href="#s" transform="translate(1110,620) scale(9)"  fill="#9b87d4" opacity="0.38"/>
+        <use href="#s" transform="translate(1270,580) scale(10)" fill="#AD9ED4" opacity="0.32"/>
+        <use href="#s" transform="translate(1410,620) scale(9)"  fill="#c9b8ff" opacity="0.36"/>
+        <use href="#s" transform="translate(140,760)  scale(9)"  fill="#c9b8ff" opacity="0.36"/>
+        <use href="#s" transform="translate(290,800)  scale(11)" fill="#7863BC" opacity="0.30"/>
+        <use href="#s" transform="translate(450,755)  scale(9)"  fill="#AD9ED4" opacity="0.38"/>
+        <use href="#s" transform="translate(600,800)  scale(10)" fill="#c9b8ff" opacity="0.32"/>
+        <use href="#s" transform="translate(750,760)  scale(9)"  fill="#9b87d4" opacity="0.36"/>
+        <use href="#s" transform="translate(900,800)  scale(11)" fill="#c9b8ff" opacity="0.30"/>
+        <use href="#s" transform="translate(1050,760) scale(9)"  fill="#7863BC" opacity="0.38"/>
+        <use href="#s" transform="translate(1200,800) scale(10)" fill="#AD9ED4" opacity="0.32"/>
+        <use href="#s" transform="translate(1350,760) scale(9)"  fill="#c9b8ff" opacity="0.35"/>
+        <use href="#s" transform="translate(1430,800) scale(11)" fill="#9b87d4" opacity="0.30"/>
+      </g>
+
+      <!-- LAYER B — medium stars -->
+      <g class="star-layer-b">
+        <use href="#s" transform="translate(160,50)   scale(17)" fill="#9b87d4" opacity="0.40"/>
+        <use href="#s" transform="translate(470,80)   scale(20)" fill="#c9b8ff" opacity="0.38"/>
+        <use href="#s" transform="translate(780,40)   scale(16)" fill="#7863BC" opacity="0.44"/>
+        <use href="#s" transform="translate(1070,70)  scale(18)" fill="#AD9ED4" opacity="0.40"/>
+        <use href="#s" transform="translate(1350,55)  scale(17)" fill="#c9b8ff" opacity="0.38"/>
+        <use href="#s" transform="translate(310,280)  scale(18)" fill="#c9b8ff" opacity="0.38"/>
+        <use href="#s" transform="translate(630,310)  scale(16)" fill="#9b87d4" opacity="0.44"/>
+        <use href="#s" transform="translate(940,280)  scale(20)" fill="#7863BC" opacity="0.38"/>
+        <use href="#s" transform="translate(1220,310) scale(17)" fill="#AD9ED4" opacity="0.40"/>
+        <use href="#s" transform="translate(90,500)   scale(16)" fill="#AD9ED4" opacity="0.40"/>
+        <use href="#s" transform="translate(440,530)  scale(18)" fill="#c9b8ff" opacity="0.38"/>
+        <use href="#s" transform="translate(750,500)  scale(17)" fill="#9b87d4" opacity="0.44"/>
+        <use href="#s" transform="translate(1040,530) scale(20)" fill="#7863BC" opacity="0.38"/>
+        <use href="#s" transform="translate(1380,510) scale(16)" fill="#AD9ED4" opacity="0.40"/>
+        <use href="#s" transform="translate(240,730)  scale(18)" fill="#7863BC" opacity="0.40"/>
+        <use href="#s" transform="translate(580,760)  scale(17)" fill="#c9b8ff" opacity="0.44"/>
+        <use href="#s" transform="translate(880,730)  scale(16)" fill="#9b87d4" opacity="0.38"/>
+        <use href="#s" transform="translate(1170,760) scale(20)" fill="#AD9ED4" opacity="0.40"/>
+      </g>
+
+      <!-- LAYER B copy -->
+      <g class="star-layer-b-copy">
+        <use href="#s" transform="translate(160,50)   scale(17)" fill="#9b87d4" opacity="0.40"/>
+        <use href="#s" transform="translate(470,80)   scale(20)" fill="#c9b8ff" opacity="0.38"/>
+        <use href="#s" transform="translate(780,40)   scale(16)" fill="#7863BC" opacity="0.44"/>
+        <use href="#s" transform="translate(1070,70)  scale(18)" fill="#AD9ED4" opacity="0.40"/>
+        <use href="#s" transform="translate(1350,55)  scale(17)" fill="#c9b8ff" opacity="0.38"/>
+        <use href="#s" transform="translate(310,280)  scale(18)" fill="#c9b8ff" opacity="0.38"/>
+        <use href="#s" transform="translate(630,310)  scale(16)" fill="#9b87d4" opacity="0.44"/>
+        <use href="#s" transform="translate(940,280)  scale(20)" fill="#7863BC" opacity="0.38"/>
+        <use href="#s" transform="translate(1220,310) scale(17)" fill="#AD9ED4" opacity="0.40"/>
+        <use href="#s" transform="translate(90,500)   scale(16)" fill="#AD9ED4" opacity="0.40"/>
+        <use href="#s" transform="translate(440,530)  scale(18)" fill="#c9b8ff" opacity="0.38"/>
+        <use href="#s" transform="translate(750,500)  scale(17)" fill="#9b87d4" opacity="0.44"/>
+        <use href="#s" transform="translate(1040,530) scale(20)" fill="#7863BC" opacity="0.38"/>
+        <use href="#s" transform="translate(1380,510) scale(16)" fill="#AD9ED4" opacity="0.40"/>
+        <use href="#s" transform="translate(240,730)  scale(18)" fill="#7863BC" opacity="0.40"/>
+        <use href="#s" transform="translate(580,760)  scale(17)" fill="#c9b8ff" opacity="0.44"/>
+        <use href="#s" transform="translate(880,730)  scale(16)" fill="#9b87d4" opacity="0.38"/>
+        <use href="#s" transform="translate(1170,760) scale(20)" fill="#AD9ED4" opacity="0.40"/>
+      </g>
+
+      <!-- LAYER C — large accent stars -->
+      <g class="star-layer-c">
+        <use href="#s" transform="translate(210,80)   scale(30)" fill="#7863BC" opacity="0.32"/>
+        <use href="#s" transform="translate(670,30)   scale(34)" fill="#c9b8ff" opacity="0.30"/>
+        <use href="#s" transform="translate(1110,90)  scale(28)" fill="#9b87d4" opacity="0.34"/>
+        <use href="#s" transform="translate(410,380)  scale(32)" fill="#AD9ED4" opacity="0.30"/>
+        <use href="#s" transform="translate(860,340)  scale(36)" fill="#7863BC" opacity="0.28"/>
+        <use href="#s" transform="translate(1300,360) scale(30)" fill="#c9b8ff" opacity="0.32"/>
+        <use href="#s" transform="translate(130,640)  scale(28)" fill="#9b87d4" opacity="0.34"/>
+        <use href="#s" transform="translate(590,680)  scale(34)" fill="#AD9ED4" opacity="0.30"/>
+        <use href="#s" transform="translate(1010,640) scale(32)" fill="#7863BC" opacity="0.32"/>
+        <use href="#s" transform="translate(1380,700) scale(30)" fill="#c9b8ff" opacity="0.30"/>
+      </g>
+
+      <!-- LAYER C copy -->
+      <g class="star-layer-c-copy">
+        <use href="#s" transform="translate(210,80)   scale(30)" fill="#7863BC" opacity="0.32"/>
+        <use href="#s" transform="translate(670,30)   scale(34)" fill="#c9b8ff" opacity="0.30"/>
+        <use href="#s" transform="translate(1110,90)  scale(28)" fill="#9b87d4" opacity="0.34"/>
+        <use href="#s" transform="translate(410,380)  scale(32)" fill="#AD9ED4" opacity="0.30"/>
+        <use href="#s" transform="translate(860,340)  scale(36)" fill="#7863BC" opacity="0.28"/>
+        <use href="#s" transform="translate(1300,360) scale(30)" fill="#c9b8ff" opacity="0.32"/>
+        <use href="#s" transform="translate(130,640)  scale(28)" fill="#9b87d4" opacity="0.34"/>
+        <use href="#s" transform="translate(590,680)  scale(34)" fill="#AD9ED4" opacity="0.30"/>
+        <use href="#s" transform="translate(1010,640) scale(32)" fill="#7863BC" opacity="0.32"/>
+        <use href="#s" transform="translate(1380,700) scale(30)" fill="#c9b8ff" opacity="0.30"/>
+      </g>
+    </svg>
+
+    <main class="about-main" aria-labelledby="about-heading">
+
+      <h1 id="about-heading" class="about-title">About me</h1>
+
+      <div class="about-layout">
+
+        <!-- Q&A staggered column -->
+        <div class="qa-column">
+
+          <div class="qa-pair">
+            <div class="qa-question">
+              <p>My relation to product design?</p>
+            </div>
+            <div class="qa-answer" data-answer="I'm currently studying Product Design at the Estonian Academy of Arts.">
+              <p class="answer-text"></p>
+            </div>
+          </div>
+
+          <div class="qa-pair">
+            <div class="qa-question">
+              <p>What part of product design are you most drawn to?</p>
+            </div>
+            <div class="qa-answer" data-answer="Game design, 3D modeling, UI.">
+              <p class="answer-text"></p>
+            </div>
+          </div>
+
+          <div class="qa-pair">
+            <div class="qa-question">
+              <p>How do you feel about collaborations?</p>
+            </div>
+            <div class="qa-answer" data-answer="I'm collaborative by nature, comfortable taking initiative when a project needs direction, and genuinely enjoy the group process.">
+              <p class="answer-text"></p>
+            </div>
+          </div>
+
+          <div class="qa-pair">
+            <div class="qa-question">
+              <p>What does your creative process look like outside of school?</p>
+            </div>
+            <div class="qa-answer" data-answer="Outside of school I'm usually making something — crocheting, painting on clothes, sketching, or pushing a 3D model somewhere new. I also work on my own game and UI projects just for the fun of it. Sitting still isn't really my thing.">
+              <p class="answer-text"></p>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Portrait -->
+        <div class="about-portrait">
+          <div class="portrait-frame">
+            <img
+              src={imgAvatar}
+              alt="Kelly-Leontine Merilo"
+            />
+          </div>
+        </div>
+
+      </div>
+    </main>
+
+  </div>
+</Layout>
+
+<style>
+  .about-page {
+    min-height: 100vh;
+    background-color: #e4e3eb;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* SVG covers the full page — nav to footer */
+  .constellation-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+  }
+
+  /* Diagonal drift — tile is 1440×900 (matches viewBox).
+     Copy layers start at -1440,-900 so there's always coverage. */
+  @keyframes drift {
+    from { transform: translate(0px,   0px);   }
+    to   { transform: translate(1440px, 900px); }
+  }
+
+  .star-layer-a      { animation: drift 90s linear infinite; }
+  .star-layer-a-copy { animation: drift 90s linear infinite;
+                       transform: translate(-1440px, -900px); }
+
+  .star-layer-b      { animation: drift 65s linear infinite; }
+  .star-layer-b-copy { animation: drift 65s linear infinite;
+                       transform: translate(-1440px, -900px); }
+
+  .star-layer-c      { animation: drift 45s linear infinite; }
+  .star-layer-c-copy { animation: drift 45s linear infinite;
+                       transform: translate(-1440px, -900px); }
+
+  .about-main {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 156px 58px 80px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Push all direct children above the SVG */
+  .about-title,
+  .about-layout {
+    position: relative;
+    z-index: 1;
+  }
+
+  .about-title {
+    font-family: 'Carter One', sans-serif;
+    font-size: 36px;
+    color: #000;
+    line-height: 1;
+    margin-bottom: 80px;
+  }
+
+  .about-layout {
+    display: flex;
+    flex-direction: row;
+    gap: 60px;
+    align-items: flex-start;
+  }
+
+  /* Q&A column */
+  .qa-column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    position: relative;
+  }
+
+  .qa-pair {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .qa-question {
+    background-color: #7863BC;
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    min-height: 64px;
+  }
+
+  .qa-question p {
+    font-family: 'Carter One', sans-serif;
+    font-size: 20px;
+    color: #EFEEF6;
+    line-height: 1.4;
+    margin: 0;
+  }
+
+  .qa-answer {
+    background-color: #AD9ED4;
+    padding: 16px 20px;
+    display: flex;
+    align-items: flex-start;
+    min-height: 64px;
+    margin-left: 40px;
+  }
+
+  .qa-answer p {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    color: #000;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* Blinking cursor appended while typing */
+  .answer-text.typing::after {
+    content: '|';
+    display: inline-block;
+    animation: blink 0.7s step-end infinite;
+    color: #483A74;
+    font-weight: 400;
+    margin-left: 1px;
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0; }
+  }
+
+  /* Portrait */
+  .about-portrait {
+    flex-shrink: 0;
+    width: 587px;
+  }
+
+  .portrait-frame {
+    border: 20px solid #483A74;
+    overflow: hidden;
+    height: 783px;
+  }
+
+  .portrait-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* Responsive */
+  @media (max-width: 1100px) {
+    .about-layout { flex-direction: column; }
+    .about-portrait { width: 100%; }
+    .portrait-frame { height: auto; }
+    .qa-answer { margin-left: 0; }
+  }
+</style>
+
+<script>
+  // Typewriter — questions are already visible, answers type out sequentially
+  const answers = document.querySelectorAll<HTMLElement>('.qa-answer');
+
+  // Typing speed (ms per character) and pause between pairs
+  const CHAR_DELAY   = 22;
+  const PAIR_PAUSE   = 500;  // wait after each answer finishes before starting next
+  const START_DELAY  = 400;  // initial pause before first answer starts
+
+  function typeAnswer(el: HTMLElement, text: string): Promise<void> {
+    return new Promise(resolve => {
+      const p = el.querySelector<HTMLElement>('.answer-text')!;
+      p.classList.add('typing');
+      let i = 0;
+
+      const tick = () => {
+        if (i <= text.length) {
+          p.textContent = text.slice(0, i);
+          i++;
+          setTimeout(tick, CHAR_DELAY);
+        } else {
+          p.classList.remove('typing');
+          resolve();
+        }
+      };
+      tick();
+    });
+  }
+
+  async function runSequence() {
+    await new Promise(r => setTimeout(r, START_DELAY));
+    for (const answerEl of Array.from(answers)) {
+      const text = (answerEl as HTMLElement).dataset.answer ?? '';
+      await typeAnswer(answerEl as HTMLElement, text);
+      await new Promise(r => setTimeout(r, PAIR_PAUSE));
+    }
+  }
+
+  runSequence();
+</script>

@@ -1,2 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Shrikhand&family=Carter+One&family=Nunito:wght@700&display=swap');
+
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
+
+:root {
+  --color-dark-purple: #483A74;
+  --color-medium-purple: #7863BC;
+  --color-light-purple: #AD9ED4;
+  --color-bg: #aaa8a8;
+  --color-bg-light: #e4e3eb;
+  --color-text: #EFEEF6;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-bg-light);
+  color: #000;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
+}

@@ -1,5 +1,7 @@
 ---
 import "../styles/global.css";
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
 
 interface Props {
   title: string;
@@ -12,10 +14,42 @@ const { title } = Astro.props;
   <head>
     <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Shrikhand&family=Carter+One&family=Nunito:wght@700&display=swap" rel="stylesheet" />
   </head>
   <body>
-    <slot />
+    <Nav />
+    <div class="page-content pt-0">
+      <slot />
+    </div>
+    <Footer />
   </body>
 </html>
+
+<style is:global>
+  .page-content {
+    padding-top: 0px;
+  }
+</style>
+
+<script>
+  // Run after full page load so the nav element exists
+  window.addEventListener('load', () => {
+    const nav = document.getElementById('site-nav');
+    if (!nav) return;
+
+    const onScroll = () => {
+      if (window.scrollY > 10) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
+    };
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll(); // apply immediately if already scrolled
+  });
+</script>

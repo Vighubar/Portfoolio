@@ -1,67 +1,569 @@
 ---
-import { getCollection, render } from "astro:content";
 import Layout from "../layouts/Layout.astro";
 
-const aboutEntries = await getCollection("about");
-const about = aboutEntries[0];
-const { Content: AboutContent } = await render(about);
-
-const projects = await getCollection("projects");
-const sortedProjects = projects.sort(
-  (a, b) => (a.data.sortOrder ?? 99) - (b.data.sortOrder ?? 99)
-);
+const imgPulss  = "/project-pulss.png";
+const imgOct31  = "/project-oct31.png";
+const imgBrand  = "/project-brand.png";
 ---
 
-<Layout title={`${about.data.name} — ${about.data.title}`}>
-  <main class="max-w-3xl mx-auto px-6 py-16">
-    <header class="mb-16">
-      <h1 class="text-3xl font-bold text-wrap-balance">{about.data.name}</h1>
-      <p class="text-lg text-gray-600 mt-1">{about.data.title}</p>
+<Layout title="Kelly-Leontine Merilo — Portfolio 2026">
 
-      <div class="prose prose-gray mt-6">
-        <AboutContent />
+  <!-- ── HERO ─────────────────────────────────────────────── -->
+  <section
+    class="hero-section"
+    aria-label="Hero"
+  >
+
+    <!-- Interactive scatter stars canvas -->
+    <canvas class="scatter-stars" aria-hidden="true"></canvas>
+
+    <!-- Hero star image -->
+    <div class="hero-stars" aria-hidden="true">
+      <img src="/hero-stars.png" alt="" class="star-img" />
+    </div>
+
+    <!-- Hero text block -->
+    <div class="hero-content">
+      <h1 class="hero-name">Kelly-Leontine<br />Merilo</h1>
+      <div class="hero-sub">
+        <p class="hero-tagline">Rising star of the design world</p>
+        <p class="hero-role">Product designer, indie game developer and more</p>
+      </div>
+    </div>
+
+    <!-- Bottom label -->
+    <p class="hero-year">Portfolio 2026</p>
+  </section>
+
+  <!-- ── WORKS ─────────────────────────────────────────────── -->
+  <section
+    id="projects"
+    class="works-section"
+    aria-labelledby="works-heading"
+  >
+    <div class="works-inner">
+      <h2 id="works-heading" class="section-title-lg">My works</h2>
+
+      <div class="projects-list">
+
+        <!-- Project 1: PULSS -->
+        <article class="project-card">
+          <div class="split-reveal">
+            <div class="split-half split-left">
+              <img src={imgPulss} alt="PULSS festival project" />
+            </div>
+            <div class="split-center">
+              <p class="split-title">PULSS</p>
+              <p class="split-desc">
+                Pulss is an imaginary charity music festival where the stage is open to everyone. Designed for young adults who want more than just watching from the crowd. Built in Figma for university, covering everything from the landing page to artist registration and event timetables. The tricky part was keeping it feel fun and accessible while still taking the charity side seriously.
+              </p>
+            </div>
+            <div class="split-half split-right">
+              <img src={imgPulss} alt="" aria-hidden="true" />
+            </div>
+          </div>
+        </article>
+
+        <!-- Project 2: October 31 -->
+        <article class="project-card">
+          <div class="split-reveal">
+            <div class="split-half split-left">
+              <img src={imgOct31} alt="October 31 game project" />
+            </div>
+            <div class="split-center">
+              <p class="split-title">October 31.</p>
+              <p class="split-desc">
+                What if one mistake was all it took for your entire friend group to turn on you? October 31st is a point-and-click horror mystery where you have to find a way to help Jane and defeat her darkest demons. Built in Unity as a university project, the game features a full dialogue system, multi-scene navigation, and branching endings that depend on how carefully you've been paying attention.
+              </p>
+            </div>
+            <div class="split-half split-right">
+              <img src={imgOct31} alt="" aria-hidden="true" />
+            </div>
+          </div>
+        </article>
+
+        <!-- Project 3: Brand -->
+        <article class="project-card">
+          <div class="split-reveal">
+            <div class="split-half split-left brand-cover">
+              <img src={imgBrand} alt="Brand identity project" />
+            </div>
+            <div class="split-center">
+              <p class="split-title">Brand</p>
+              <p class="split-desc">
+                A clothing brand built around a feeling. Inspired by the song Emotion Engine, the brand lives somewhere between starry nights and something harder to name — light blue, purple, and chrome. I designed the full brand identity including the logo, visual guidelines, and a hoodie print I painted by hand directly onto the piece. The kind of project where the brief was just a song and a feeling.
+              </p>
+            </div>
+            <div class="split-half split-right brand-cover">
+              <img src={imgBrand} alt="" aria-hidden="true" />
+            </div>
+          </div>
+        </article>
+
       </div>
 
-      <nav class="flex flex-wrap gap-4 mt-6" aria-label="Social links">
-        {about.data.socials.map((social) => (
-          <a
-            href={social.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="text-sm font-medium text-blue-600 hover:text-blue-800 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 rounded"
-          >
-            {social.platform} ↗
-          </a>
-        ))}
-      </nav>
-
-      <div class="flex flex-wrap gap-2 mt-6">
-        {about.data.skills.map((skill) => (
-          <span class="text-sm bg-gray-100 px-2 py-1 rounded">{skill}</span>
-        ))}
+      <!-- More projects button -->
+      <div class="more-btn-wrap">
+        <a href="/projects" class="more-btn">More projects</a>
       </div>
-    </header>
+    </div>
+  </section>
 
-    <section aria-labelledby="projects-heading">
-      <h2 id="projects-heading" class="text-2xl font-semibold mb-8">Projects</h2>
-      <div class="space-y-10">
-        {sortedProjects.map((project) => (
-          <article>
-            <a
-              href={`/projects/${project.id}`}
-              class="group block rounded-lg focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-            >
-              <h3 class="text-xl font-medium group-hover:text-blue-600 transition-colors">{project.data.title}</h3>
-              <p class="text-gray-600 mt-1">{project.data.description}</p>
-              <div class="flex flex-wrap gap-2 mt-3">
-                {project.data.tags.map((tag) => (
-                  <span class="text-xs bg-blue-50 text-blue-700 px-2 py-0.5 rounded">{tag}</span>
-                ))}
-              </div>
-            </a>
-          </article>
-        ))}
-      </div>
-    </section>
-  </main>
 </Layout>
+
+<style>
+  /* ── HERO ── */
+  .hero-section {
+    position: relative;
+    width: 100%;
+    height: 100svh;
+    min-height: 500px;
+    overflow: hidden;
+    background:
+      radial-gradient(1px 1px at 20% 30%, #fff, transparent),
+      radial-gradient(1px 1px at 80% 10%, #c9b8ff, transparent),
+      radial-gradient(2px 2px at 50% 70%, #fff, transparent),
+      radial-gradient(1px 1px at 10% 55%, #c9b8ff, transparent),
+      radial-gradient(1px 1px at 65% 45%, #fff, transparent),
+      radial-gradient(2px 2px at 35% 15%, #fff, transparent),
+      radial-gradient(1px 1px at 90% 60%, #c9b8ff, transparent),
+      radial-gradient(1px 1px at 5%  80%, #fff, transparent),
+      radial-gradient(2px 2px at 75% 85%, #c9b8ff, transparent),
+      radial-gradient(1px 1px at 45% 5%,  #fff, transparent),
+      radial-gradient(1px 1px at 25% 90%, #c9b8ff, transparent),
+      radial-gradient(2px 2px at 60% 25%, #fff, transparent),
+      radial-gradient(1px 1px at 15% 40%, #c9b8ff, transparent),
+      radial-gradient(1px 1px at 85% 75%, #fff, transparent),
+      radial-gradient(1px 1px at 40% 60%, #c9b8ff, transparent),
+      radial-gradient(2px 2px at 70% 50%, #fff, transparent),
+      radial-gradient(1px 1px at 30% 20%, #c9b8ff, transparent),
+      radial-gradient(1px 1px at 55% 95%, #fff, transparent),
+      radial-gradient(1px 1px at 95% 35%, #c9b8ff, transparent),
+      radial-gradient(2px 2px at 8%  15%, #fff, transparent),
+      radial-gradient(1px 1px at 48% 38%, #c9b8ff, transparent),
+      radial-gradient(1px 1px at 78% 22%, #fff, transparent),
+      radial-gradient(1px 1px at 22% 68%, #c9b8ff, transparent),
+      radial-gradient(2px 2px at 62% 78%, #fff, transparent),
+      radial-gradient(1px 1px at 38% 48%, #c9b8ff, transparent),
+      radial-gradient(1px 1px at 88% 88%, #fff, transparent),
+      radial-gradient(1px 1px at 12% 92%, #c9b8ff, transparent),
+      radial-gradient(2px 2px at 52% 12%, #fff, transparent),
+      radial-gradient(1px 1px at 72% 62%, #c9b8ff, transparent),
+      radial-gradient(1px 1px at 28% 42%, #fff, transparent),
+      radial-gradient(1px 1px at 18% 8%,  #c9b8ff, transparent),
+      radial-gradient(2px 2px at 58% 58%, #fff, transparent),
+      radial-gradient(1px 1px at 42% 82%, #c9b8ff, transparent),
+      radial-gradient(1px 1px at 82% 32%, #fff, transparent),
+      radial-gradient(1px 1px at 3%  48%, #c9b8ff, transparent),
+      radial-gradient(2px 2px at 93% 18%, #fff, transparent),
+      radial-gradient(1px 1px at 33% 72%, #c9b8ff, transparent),
+      radial-gradient(1px 1px at 67% 92%, #fff, transparent),
+      radial-gradient(1px 1px at 57% 37%, #c9b8ff, transparent),
+      radial-gradient(2px 2px at 17% 62%, #fff, transparent),
+      radial-gradient(1px 1px at 77% 7%,  #c9b8ff, transparent),
+      radial-gradient(1px 1px at 47% 27%, #fff, transparent),
+      radial-gradient(1px 1px at 7%  27%, #c9b8ff, transparent),
+      radial-gradient(2px 2px at 97% 77%, #fff, transparent),
+      radial-gradient(1px 1px at 37% 97%, #c9b8ff, transparent),
+      radial-gradient(1px 1px at 63% 17%, #fff, transparent),
+      radial-gradient(1px 1px at 23% 52%, #c9b8ff, transparent),
+      radial-gradient(2px 2px at 83% 47%, #fff, transparent),
+      radial-gradient(1px 1px at 53% 87%, #c9b8ff, transparent),
+      radial-gradient(1px 1px at 13% 77%, #fff, transparent),
+      radial-gradient(1px 1px at 43% 7%,  #c9b8ff, transparent),
+      radial-gradient(2px 2px at 73% 37%, #fff, transparent),
+      radial-gradient(1px 1px at 27% 57%, #c9b8ff, transparent),
+      radial-gradient(1px 1px at 87% 57%, #fff, transparent),
+      radial-gradient(1px 1px at 6%  67%, #c9b8ff, transparent),
+      radial-gradient(2px 2px at 96% 97%, #fff, transparent),
+      radial-gradient(1px 1px at 36% 87%, #c9b8ff, transparent),
+      radial-gradient(1px 1px at 66% 67%, #fff, transparent),
+      radial-gradient(1px 1px at 56% 47%, #c9b8ff, transparent),
+      radial-gradient(2px 2px at 16% 17%, #fff, transparent),
+      radial-gradient(1px 1px at 76% 97%, #c9b8ff, transparent),
+      #0d0620;
+    overflow: hidden;
+  }
+
+  .hero-stars {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .scatter-stars {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .star-img {
+    position: absolute;
+    display: block;
+    object-fit: contain;
+    left: 28%;
+    top: 10%;
+    width: 44%;
+    height: auto;
+  }
+
+  /* All text positioned absolutely to match Figma exactly */
+  .hero-content {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 3;
+  }
+
+  .hero-name {
+    position: absolute;
+    font-family: 'Shrikhand', serif;
+    font-style: italic;
+    font-size: clamp(32px, 6.5vw, 94px);
+    color: #fff;
+    line-height: 1;
+    left: 23%;
+    top: 43%;
+    width: 70%;
+    pointer-events: auto;
+  }
+
+  .hero-sub {
+    position: absolute;
+    left: 57%;
+    top: 60%;
+    pointer-events: auto;
+  }
+
+  .hero-tagline {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    font-size: clamp(11px, 1vw, 15px);
+    color: #fff;
+    line-height: 1;
+    white-space: nowrap;
+  }
+
+  .hero-role {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    font-size: clamp(14px, 1.5vw, 20px);
+    color: #fff;
+    line-height: 1;
+    margin-top: 10px;
+    white-space: nowrap;
+  }
+
+  .hero-year {
+    position: absolute;
+    left: 3%;
+    bottom: 5%;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    font-size: clamp(14px, 1.5vw, 20px);
+    color: #fff;
+    pointer-events: auto;
+  }
+
+  /* ── WORKS ── */
+  .works-section {
+    width: 100%;
+    background-color: #e4e3eb;
+    padding: 64px 0;
+  }
+
+  .works-inner {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 58px;
+  }
+
+  .section-title-lg {
+    font-family: 'Carter One', sans-serif;
+    font-size: 36px;
+    color: #000;
+    line-height: 1;
+    margin-bottom: 48px;
+  }
+
+  .projects-list {
+    display: flex;
+    flex-direction: column;
+    gap: 100px;
+  }
+
+  /* ── PROJECT CARDS — split image reveal ── */
+
+  .project-card {
+    height: 409px;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    box-shadow: 0 0 0 rgba(98, 84, 184, 0);
+    transition: box-shadow 0.4s ease;
+  }
+
+  .project-card:hover {
+    box-shadow: 0 0 32px rgba(98, 84, 184, 0.45);
+  }
+
+  /* The container that holds both halves + center text */
+  .split-reveal {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: #1a1030;
+    display: flex;
+  }
+
+  .split-half {
+    position: absolute;
+    top: 0;
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+    transition: transform 0.6s cubic-bezier(0.77, 0, 0.18, 1);
+    z-index: 2;
+  }
+
+  .split-left  { left: 0; }
+  .split-right { left: 50%; }
+
+  .brand-cover {
+    background-color: #a4e5f2;
+  }
+
+  /* Each half shows the full image but clips to its side */
+  .split-left img {
+    position: absolute;
+    top: 0; left: 0;
+    width: 200%;   /* double width so full image fits in half container */
+    height: 100%;
+    object-fit: cover;
+    object-position: left center;
+    display: block;
+  }
+
+  .split-right img {
+    position: absolute;
+    top: 0; right: 0;
+    width: 200%;
+    height: 100%;
+    object-fit: cover;
+    object-position: right center;
+    display: block;
+  }
+
+  /* On hover: left slides left, right slides right */
+  .project-card:hover .split-left  { transform: translateX(-100%); }
+  .project-card:hover .split-right { transform: translateX(100%);  }
+
+  /* Center text — revealed as halves part */
+  .split-center {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 40px 60px;
+    opacity: 0;
+    transform: scale(0.97);
+    transition:
+      opacity 0.35s ease 0.25s,
+      transform 0.45s cubic-bezier(0.4, 0, 0.2, 1) 0.2s;
+  }
+
+  .project-card:hover .split-center {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .split-title {
+    font-family: 'Carter One', sans-serif;
+    font-size: 36px;
+    color: #EFEEF6;
+    line-height: 1;
+    margin-bottom: 20px;
+    border-bottom: 3px solid #7863BC;
+    padding-bottom: 16px;
+  }
+
+  .split-desc {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    color: #EFEEF6;
+    line-height: 1.6;
+  }
+
+  /* More button */
+  .more-btn-wrap {
+    display: flex;
+    justify-content: center;
+    margin-top: 64px;
+  }
+
+  .more-btn {
+    display: inline-block;
+    background-color: #483A74;
+    padding: 5px 30px;
+    font-family: 'Carter One', sans-serif;
+    font-size: 36px;
+    color: #EFEEF6;
+    line-height: 90px;
+    text-decoration: none;
+    transition: background-color 0.2s;
+  }
+
+  .more-btn:hover {
+    background-color: #7863BC;
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 1100px) {
+    .hero-section { height: 100svh; min-height: 100svh; }
+    .hero-name    { left: 5%; top: 40%; width: 90%;
+                    font-size: clamp(28px, 7vw, 60px); }
+    .hero-sub     { left: 5%; top: 62%; }
+    .hero-role    { margin-top: 8px; white-space: normal; font-size: clamp(14px, 2.5vw, 18px); }
+    .hero-tagline { white-space: normal; }
+    .hero-year    { bottom: 5%; left: 5%; }
+    .star-img { left: 5%; top: 6%; width: 80%; }
+  }
+
+  @media (max-width: 1100px) {
+    .project-card { height: auto; min-height: 280px; }
+    .split-reveal { min-height: 280px; }
+    .split-center {
+      padding: 24px 28px;
+      opacity: 1;
+      transform: scale(1);
+      background: rgba(26, 16, 48, 0.82);
+    }
+    .split-half { display: none; }
+    .split-title { font-size: 24px; }
+    .split-desc  { font-size: 15px; }
+  }
+</style>
+
+<script>
+  const canvas = document.querySelector<HTMLCanvasElement>('.scatter-stars')!;
+  const section = canvas.closest('.hero-section') as HTMLElement;
+  const ctx = canvas.getContext('2d')!;
+
+  // Resize canvas to match hero section
+  function resize() {
+    canvas.width  = section.offsetWidth;
+    canvas.height = section.offsetHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  // Draw a 5-pointed star
+  function drawStar(cx: number, cy: number, r: number, opacity: number) {
+    const inner = r * 0.45;
+    ctx.save();
+    ctx.globalAlpha = opacity;
+    ctx.fillStyle = '#ffffff';
+    ctx.beginPath();
+    for (let i = 0; i < 10; i++) {
+      const angle = (Math.PI / 5) * i - Math.PI / 2;
+      const radius = i % 2 === 0 ? r : inner;
+      const x = cx + Math.cos(angle) * radius;
+      const y = cy + Math.sin(angle) * radius;
+      i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+    }
+    ctx.closePath();
+    ctx.fill();
+    ctx.restore();
+  }
+
+  interface Star {
+    x: number; y: number;
+    ox: number; oy: number;   // origin (home position)
+    vx: number; vy: number;   // velocity
+    r: number;                // radius
+    opacity: number;
+    twinkleOffset: number;
+  }
+
+  const STAR_COUNT = 60;
+  const SCATTER_RADIUS = 120;
+  const SCATTER_FORCE  = 6;
+  const RETURN_SPEED   = 0.06;
+  const FRICTION       = 0.82;
+
+  const stars: Star[] = [];
+  let mouse = { x: -9999, y: -9999 };
+
+  function initStars() {
+    stars.length = 0;
+    for (let i = 0; i < STAR_COUNT; i++) {
+      const x = Math.random() * canvas.width;
+      const y = Math.random() * canvas.height;
+      stars.push({
+        x, y, ox: x, oy: y,
+        vx: 0, vy: 0,
+        r: Math.random() * 2.5 + 1,
+        opacity: Math.random() * 0.5 + 0.3,
+        twinkleOffset: Math.random() * Math.PI * 2,
+      });
+    }
+  }
+  initStars();
+  window.addEventListener('resize', initStars);
+
+  // Track mouse relative to canvas
+  section.addEventListener('mousemove', (e: MouseEvent) => {
+    const rect = canvas.getBoundingClientRect();
+    mouse.x = e.clientX - rect.left;
+    mouse.y = e.clientY - rect.top;
+  });
+  section.addEventListener('mouseleave', () => {
+    mouse.x = -9999;
+    mouse.y = -9999;
+  });
+
+  let frame = 0;
+  function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    frame++;
+
+    for (const s of stars) {
+      // Scatter from cursor
+      const dx = s.x - mouse.x;
+      const dy = s.y - mouse.y;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+
+      if (dist < SCATTER_RADIUS && dist > 0) {
+        const force = (SCATTER_RADIUS - dist) / SCATTER_RADIUS * SCATTER_FORCE;
+        s.vx += (dx / dist) * force;
+        s.vy += (dy / dist) * force;
+      }
+
+      // Spring back to origin
+      s.vx += (s.ox - s.x) * RETURN_SPEED;
+      s.vy += (s.oy - s.y) * RETURN_SPEED;
+
+      // Friction
+      s.vx *= FRICTION;
+      s.vy *= FRICTION;
+
+      s.x += s.vx;
+      s.y += s.vy;
+
+      // Twinkle
+      const twinkle = 0.75 + 0.25 * Math.sin(frame * 0.04 + s.twinkleOffset);
+
+      drawStar(s.x, s.y, s.r, s.opacity * twinkle);
+    }
+
+    requestAnimationFrame(animate);
+  }
+  animate();
+</script>
