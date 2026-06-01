@@ -2,15 +2,488 @@
 import Layout from "../../layouts/Layout.astro";
 ---
 
-<Layout title="PULSS — Kelly-Leontine Merilo">
-  <div class="pulss-page">
-    <!-- Case study coming soon -->
+<Layout title="PULSS Case Study — Kelly-Leontine Merilo">
+
+  <!-- ── HERO ── -->
+  <section class="cs-hero">
+    <div class="cs-hero-inner">
+      <span class="cs-tag">UI/UX Design · Figma · University Project</span>
+      <h1 class="cs-title">PULSS</h1>
+      <p class="cs-subtitle">
+        A charity music festival where the stage is open to everyone.
+      </p>
+    </div>
+    <!-- decorative blobs -->
+    <div class="blob blob-pink" aria-hidden="true"></div>
+    <div class="blob blob-blue" aria-hidden="true"></div>
+  </section>
+
+  <!-- ── OVERVIEW ── -->
+  <section class="cs-section cs-overview">
+    <div class="cs-inner">
+      <div class="overview-grid">
+        <div class="overview-text">
+          <h2 class="cs-heading">The Brief</h2>
+          <p class="cs-body">
+            Pulss is an imaginary charity music festival designed for young adults in Tallinn,
+            aged 18–25, who want more than just watching from the crowd. The challenge was to
+            design an end-to-end experience — from the landing page to artist registration and
+            event timetables — that felt fun and accessible while still taking the charity side seriously.
+          </p>
+          <p class="cs-body">
+            The entire project was built in Figma as a university assignment, resulting in a
+            fully interactive prototype covering all key user flows.
+          </p>
+        </div>
+        <div class="overview-meta">
+          <div class="meta-block">
+            <span class="meta-label">Tool</span>
+            <span class="meta-value">Figma</span>
+          </div>
+          <div class="meta-block">
+            <span class="meta-label">Type</span>
+            <span class="meta-value">UI/UX Design</span>
+          </div>
+          <div class="meta-block">
+            <span class="meta-label">Context</span>
+            <span class="meta-value">University Project</span>
+          </div>
+          <div class="meta-block">
+            <span class="meta-label">Event date</span>
+            <span class="meta-value">24–25 August 2026</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SCREENS ── -->
+  <section class="cs-section cs-screens">
+    <div class="cs-inner">
+      <h2 class="cs-heading">The Design</h2>
+
+      <!-- Screen 1: Hero / Landing page -->
+      <div class="screen-block screen-wide">
+        <div class="screen-frame">
+          <img src="/pulss-screen1.png" alt="PULSS landing page — hero section with concert background and festival headline" />
+        </div>
+        <div class="screen-caption">
+          <span class="screen-num">01</span>
+          <div>
+            <p class="screen-title">Landing Page</p>
+            <p class="screen-desc">
+              Concert-photography hero with the festival headline and two clear CTAs —
+              buying a ticket and exploring the programme. The dark, immersive background
+              sets the energy while keeping the charity message front-and-centre.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Screen 2: Multi-screen overview -->
+      <div class="screen-block screen-wide screen-reverse">
+        <div class="screen-frame">
+          <img src="/pulss-screen2.png" alt="PULSS multi-screen overview — registration, charity and timetable sections" />
+        </div>
+        <div class="screen-caption">
+          <span class="screen-num">02</span>
+          <div>
+            <p class="screen-title">Key Screens</p>
+            <p class="screen-desc">
+              The design covers the full festival experience: a "Mis on PULSS?" intro with
+              icons, a charity impact section ("Sinu osalus loob päris mõju"), and a
+              colour-coded event timetable that makes navigating multiple stages intuitive.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Screen 3: Registration -->
+      <div class="screen-block screen-wide">
+        <div class="screen-frame">
+          <img src="/pulss-screen3.png" alt="PULSS registration page — ticket visuals and sign-up form" />
+        </div>
+        <div class="screen-caption">
+          <span class="screen-num">03</span>
+          <div>
+            <p class="screen-title">Registration & Tickets</p>
+            <p class="screen-desc">
+              The sign-up flow handles three roles — audience, performer, and volunteer.
+              Ticket visuals reinforce the brand with the pink gradient and bold PULSS
+              wordmark. The form stays minimal so the process feels quick and inclusive.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CHALLENGE & SOLUTION ── -->
+  <section class="cs-section cs-challenge">
+    <div class="cs-inner">
+      <div class="challenge-grid">
+        <div class="challenge-block">
+          <div class="challenge-icon">⚡</div>
+          <h3 class="challenge-title">The Challenge</h3>
+          <p class="cs-body">
+            Balancing a festival's high-energy, fun visual language with the credibility
+            needed for a charity event. Too playful and donors don't trust it. Too serious
+            and young attendees disengage.
+          </p>
+        </div>
+        <div class="challenge-block">
+          <div class="challenge-icon">✦</div>
+          <h3 class="challenge-title">The Solution</h3>
+          <p class="cs-body">
+            A dual-tone colour system — electric pink and blue for energy, deep navy for
+            gravitas — paired with clear typographic hierarchy that keeps the charity
+            messaging visible without overwhelming the festival spirit.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PROTOTYPE CTA ── -->
+  <section class="cs-section cs-cta">
+    <div class="cs-inner cs-cta-inner">
+      <h2 class="cs-heading">See it in action</h2>
+      <p class="cs-body cta-body">
+        Click through the full interactive prototype — all screens, all flows, live in Figma.
+      </p>
+      <a
+        href="https://www.figma.com/proto/v5nvqOsmZDn97oRbh7aSSH/Pulss?node-id=133-94&t=4hsX65caN3ZD1uSv-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=133%3A94&show-proto-sidebar=1"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="proto-btn"
+      >
+        View Prototype
+      </a>
+    </div>
+  </section>
+
+  <!-- ── BACK LINK ── -->
+  <div class="cs-back">
+    <a href="/#projects" class="back-link">← Back to works</a>
   </div>
+
 </Layout>
 
 <style>
-  .pulss-page {
-    min-height: 100vh;
-    background-color: #e4e3eb;
+  /* ── Base ── */
+  :root {
+    --pulss-navy:  #0b0820;
+    --pulss-deep:  #130f2e;
+    --pulss-pink:  #e0205c;
+    --pulss-blue:  #3b5bff;
+    --pulss-lilac: #7863bc;
+    --pulss-white: #efeef6;
+    --pulss-muted: #a89ec8;
+  }
+
+  .cs-hero,
+  .cs-section,
+  .cs-back {
+    font-family: 'Nunito', sans-serif;
+  }
+
+  .cs-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 48px;
+  }
+
+  /* ── HERO ── */
+  .cs-hero {
+    position: relative;
+    background: var(--pulss-navy);
+    min-height: 480px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    padding: 100px 48px 80px;
+  }
+
+  .cs-hero-inner {
+    position: relative;
+    z-index: 2;
+    max-width: 1100px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .cs-tag {
+    display: inline-block;
+    background: rgba(120, 99, 188, 0.25);
+    border: 1px solid var(--pulss-lilac);
+    color: var(--pulss-muted);
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    margin-bottom: 28px;
+  }
+
+  .cs-title {
+    font-family: 'Carter One', sans-serif;
+    font-size: clamp(72px, 12vw, 160px);
+    color: var(--pulss-white);
+    line-height: 0.9;
+    margin-bottom: 28px;
+    letter-spacing: -2px;
+  }
+
+  .cs-subtitle {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    font-size: clamp(16px, 2vw, 22px);
+    color: var(--pulss-muted);
+    max-width: 560px;
+    line-height: 1.5;
+  }
+
+  /* decorative gradient blobs */
+  .blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(100px);
+    opacity: 0.35;
+    pointer-events: none;
+    z-index: 1;
+  }
+  .blob-pink {
+    width: 420px; height: 420px;
+    background: var(--pulss-pink);
+    top: -80px; right: 5%;
+  }
+  .blob-blue {
+    width: 300px; height: 300px;
+    background: var(--pulss-blue);
+    bottom: -60px; right: 20%;
+  }
+
+  /* ── SECTION COMMON ── */
+  .cs-section {
+    padding: 88px 0;
+  }
+
+  .cs-heading {
+    font-family: 'Carter One', sans-serif;
+    font-size: clamp(28px, 4vw, 42px);
+    color: var(--pulss-white);
+    margin-bottom: 40px;
+    line-height: 1;
+  }
+
+  .cs-body {
+    font-weight: 700;
+    font-size: 17px;
+    color: var(--pulss-muted);
+    line-height: 1.75;
+    margin-bottom: 20px;
+  }
+
+  /* ── OVERVIEW ── */
+  .cs-overview {
+    background: var(--pulss-deep);
+  }
+
+  .overview-grid {
+    display: grid;
+    grid-template-columns: 1fr 280px;
+    gap: 80px;
+    align-items: start;
+  }
+
+  .meta-block {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(120, 99, 188, 0.25);
+  }
+  .meta-block:first-child { border-top: 1px solid rgba(120, 99, 188, 0.25); }
+
+  .meta-label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--pulss-lilac);
+  }
+  .meta-value {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--pulss-white);
+  }
+
+  /* ── SCREENS ── */
+  .cs-screens {
+    background: var(--pulss-navy);
+  }
+
+  .screen-block {
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: 56px;
+    align-items: center;
+    margin-bottom: 80px;
+  }
+  .screen-block:last-child { margin-bottom: 0; }
+
+  .screen-reverse {
+    grid-template-columns: 340px 1fr;
+  }
+  .screen-reverse .screen-frame { order: 2; }
+  .screen-reverse .screen-caption { order: 1; }
+
+  .screen-frame {
+    border: 2px solid rgba(120, 99, 188, 0.3);
+    overflow: hidden;
+    background: var(--pulss-deep);
+    line-height: 0;
+  }
+  .screen-frame img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.5s ease;
+  }
+  .screen-frame:hover img {
+    transform: scale(1.03);
+  }
+
+  .screen-caption {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+  }
+
+  .screen-num {
+    font-family: 'Carter One', sans-serif;
+    font-size: 48px;
+    color: rgba(224, 32, 92, 0.25);
+    line-height: 1;
+    flex-shrink: 0;
+    user-select: none;
+  }
+
+  .screen-title {
+    font-family: 'Carter One', sans-serif;
+    font-size: 22px;
+    color: var(--pulss-white);
+    margin-bottom: 12px;
+    line-height: 1;
+  }
+
+  .screen-desc {
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--pulss-muted);
+    line-height: 1.7;
+  }
+
+  /* ── CHALLENGE / SOLUTION ── */
+  .cs-challenge {
+    background: var(--pulss-deep);
+  }
+
+  .challenge-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+  }
+
+  .challenge-block {
+    background: rgba(120, 99, 188, 0.08);
+    border: 1px solid rgba(120, 99, 188, 0.2);
+    padding: 40px;
+  }
+
+  .challenge-icon {
+    font-size: 32px;
+    margin-bottom: 16px;
+    line-height: 1;
+  }
+
+  .challenge-title {
+    font-family: 'Carter One', sans-serif;
+    font-size: 22px;
+    color: var(--pulss-white);
+    margin-bottom: 16px;
+    line-height: 1;
+  }
+
+  /* ── CTA ── */
+  .cs-cta {
+    background: var(--pulss-navy);
+    text-align: center;
+  }
+
+  .cs-cta-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .cta-body {
+    max-width: 480px;
+    text-align: center;
+  }
+
+  .proto-btn {
+    display: inline-block;
+    margin-top: 12px;
+    background: var(--pulss-pink);
+    color: #fff;
+    font-family: 'Carter One', sans-serif;
+    font-size: 20px;
+    padding: 18px 52px;
+    text-decoration: none;
+    letter-spacing: 0.02em;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .proto-btn:hover {
+    background: #c01850;
+    transform: translateY(-2px);
+  }
+
+  /* ── BACK ── */
+  .cs-back {
+    background: var(--pulss-deep);
+    padding: 40px 48px;
+  }
+
+  .back-link {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--pulss-lilac);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .back-link:hover { color: var(--pulss-white); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .cs-hero { padding: 80px 24px 60px; }
+    .cs-inner { padding: 0 24px; }
+    .cs-back { padding: 32px 24px; }
+
+    .overview-grid {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+
+    .screen-block,
+    .screen-reverse {
+      grid-template-columns: 1fr;
+    }
+    .screen-reverse .screen-frame,
+    .screen-reverse .screen-caption { order: unset; }
+
+    .challenge-grid { grid-template-columns: 1fr; }
   }
 </style>
