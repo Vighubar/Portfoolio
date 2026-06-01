@@ -16,20 +16,16 @@ import Layout from "../../layouts/Layout.astro";
 
       <!-- LEFT: image panel -->
       <div class="cs-left">
-        <div class="cs-img-wrap">
-          <img
-            id="cs-active-img"
-            src="/pulss-screen1.png"
-            alt="PULSS mockup"
-          />
+        <div class="cs-img-wrap cs-img-empty">
+          <span class="cs-img-placeholder">Image coming soon</span>
         </div>
-        <div class="cs-img-caption" id="cs-caption">Landing page</div>
+        <div class="cs-img-caption" id="cs-caption"></div>
       </div>
 
       <!-- RIGHT: section list -->
       <div class="cs-right">
 
-        <div class="cs-row" data-img="/pulss-screen1.png" data-caption="Landing page">
+        <div class="cs-row">
           <button class="cs-row-btn" aria-expanded="false">
             <span class="cs-row-title">About the Project</span>
             <span class="cs-row-arrow">►</span>
@@ -48,7 +44,7 @@ import Layout from "../../layouts/Layout.astro";
           </div>
         </div>
 
-        <div class="cs-row" data-img="/pulss-screen1.png" data-caption="Hero section">
+        <div class="cs-row">
           <button class="cs-row-btn" aria-expanded="false">
             <span class="cs-row-title">The Challenge</span>
             <span class="cs-row-arrow">►</span>
@@ -63,7 +59,7 @@ import Layout from "../../layouts/Layout.astro";
           </div>
         </div>
 
-        <div class="cs-row" data-img="/pulss-screen2.png" data-caption="Key screens">
+        <div class="cs-row">
           <button class="cs-row-btn" aria-expanded="false">
             <span class="cs-row-title">The Process</span>
             <span class="cs-row-arrow">►</span>
@@ -78,7 +74,7 @@ import Layout from "../../layouts/Layout.astro";
           </div>
         </div>
 
-        <div class="cs-row" data-img="/pulss-screen3.png" data-caption="Registration page">
+        <div class="cs-row">
           <button class="cs-row-btn" aria-expanded="false">
             <span class="cs-row-title">Registration & Tickets</span>
             <span class="cs-row-arrow">►</span>
@@ -92,7 +88,7 @@ import Layout from "../../layouts/Layout.astro";
           </div>
         </div>
 
-        <div class="cs-row" data-img="/pulss-screen2.png" data-caption="Final result">
+        <div class="cs-row">
           <button class="cs-row-btn" aria-expanded="false">
             <span class="cs-row-title">What I Learned</span>
             <span class="cs-row-arrow">►</span>
@@ -184,11 +180,21 @@ import Layout from "../../layouts/Layout.astro";
     line-height: 0;
   }
 
-  .cs-img-wrap img {
-    width: 100%;
-    height: auto;
-    display: block;
-    transition: opacity 0.3s ease;
+  .cs-img-empty {
+    aspect-ratio: 16/10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 49, 90, 0.05);
+    line-height: 1;
+  }
+
+  .cs-img-placeholder {
+    font-family: 'Oswald', sans-serif;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: rgba(255, 49, 90, 0.35);
   }
 
   .cs-img-caption {
@@ -364,8 +370,6 @@ import Layout from "../../layouts/Layout.astro";
 
 <script>
   const rows = document.querySelectorAll<HTMLElement>('.cs-row');
-  const activeImg = document.getElementById('cs-active-img') as HTMLImageElement;
-  const captionEl = document.getElementById('cs-caption') as HTMLElement;
 
   rows.forEach(row => {
     const btn = row.querySelector<HTMLButtonElement>('.cs-row-btn')!;
@@ -383,18 +387,6 @@ import Layout from "../../layouts/Layout.astro";
       if (!isOpen) {
         btn.setAttribute('aria-expanded', 'true');
         body.classList.add('open');
-
-        // swap image
-        const newImg = row.dataset.img;
-        const newCaption = row.dataset.caption;
-        if (newImg && newImg !== activeImg.src.split('/').pop()) {
-          activeImg.style.opacity = '0';
-          setTimeout(() => {
-            activeImg.src = newImg;
-            activeImg.style.opacity = '1';
-          }, 200);
-        }
-        if (newCaption) captionEl.textContent = newCaption;
       }
     });
   });
