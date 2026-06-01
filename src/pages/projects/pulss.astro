@@ -6,99 +6,113 @@ import Layout from "../../layouts/Layout.astro";
   <div class="cs-wrap">
 
     <!-- ── PAGE TITLE ── -->
-    <div class="cs-page-header">
-      <h1 class="cs-page-title">PULSS</h1>
-      <p class="cs-page-sub">Charity Youth Festival Website</p>
+    <div class="cs-top">
+      <h1 class="cs-title">PULSS</h1>
+      <p class="cs-sub">Charity Youth Festival Website</p>
     </div>
 
-    <!-- ── HERO IMAGE ── -->
-    <div class="cs-hero-img">
-      <img src="/pulss-screen1.png" alt="PULSS landing page mockup" />
-    </div>
+    <!-- ── SPLIT LAYOUT ── -->
+    <div class="cs-split">
 
-    <!-- ── ACCORDION SECTIONS ── -->
-    <div class="cs-accordion">
+      <!-- LEFT: image panel -->
+      <div class="cs-left">
+        <div class="cs-img-wrap">
+          <img
+            id="cs-active-img"
+            src="/pulss-screen1.png"
+            alt="PULSS mockup"
+          />
+        </div>
+        <div class="cs-img-caption" id="cs-caption">Landing page</div>
+      </div>
 
-      <div class="cs-item">
-        <button class="cs-item-header" aria-expanded="true">
-          <span class="cs-item-title">About the Project</span>
-          <span class="cs-item-arrow">↓</span>
-        </button>
-        <div class="cs-item-body open">
-          <p class="cs-body">
-            PULSS is an imaginary youth festival in Tallinn with the goal of giving
-            young people a chance to actually participate, not just be part of the audience.
-            I designed the website in Figma as part of my UI Design 1 course, covering
-            everything from the landing page to artist registration and event timetables.
-          </p>
-          <div class="cs-meta-row">
-            <span class="cs-meta-item"><span class="cs-meta-label">Tool</span> Figma</span>
-            <span class="cs-meta-item"><span class="cs-meta-label">Type</span> UI/UX Design</span>
-            <span class="cs-meta-item"><span class="cs-meta-label">Context</span> University project</span>
-            <span class="cs-meta-item"><span class="cs-meta-label">Event</span> 24–25 Aug 2026, Tallinn</span>
+      <!-- RIGHT: section list -->
+      <div class="cs-right">
+
+        <div class="cs-row" data-img="/pulss-screen1.png" data-caption="Landing page">
+          <button class="cs-row-btn" aria-expanded="false">
+            <span class="cs-row-title">About the Project</span>
+            <span class="cs-row-arrow">►</span>
+          </button>
+          <div class="cs-row-body">
+            <p class="cs-body">
+              PULSS is an imaginary youth festival in Tallinn with the goal of giving young
+              people a chance to actually participate, not just be part of the audience.
+              I designed the website in Figma as part of my UI Design 1 course.
+            </p>
+            <div class="cs-tags">
+              <span class="cs-tag">Figma</span>
+              <span class="cs-tag">UI/UX Design</span>
+              <span class="cs-tag">University project</span>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="cs-item">
-        <button class="cs-item-header" aria-expanded="false">
-          <span class="cs-item-title">The Challenge</span>
-          <span class="cs-item-arrow">↓</span>
-        </button>
-        <div class="cs-item-body">
-          <p class="cs-body">
-            The hardest part was finding the right vibe — something that didn't feel too clinical
-            but also not too chaotic, while still keeping that charitable feeling intact. The red
-            and blue provided were also quite challenging since finding the right shades that worked
-            together took a lot of trial and error.
-          </p>
-        </div>
-      </div>
-
-      <div class="cs-item">
-        <button class="cs-item-header" aria-expanded="false">
-          <span class="cs-item-title">The Process</span>
-          <span class="cs-item-arrow">↓</span>
-        </button>
-        <div class="cs-item-body">
-          <p class="cs-body">
-            Finding the visual style required a lot of experimentation. I used red as an accent
-            color but decided to go with a different color for the CTAs. I chose dark tones to
-            capture the feeling of a festival. The main focus was on the desktop view but I also
-            designed a mobile version alongside it. I tried working with a design system and
-            reusable components for the first time.
-          </p>
-          <div class="cs-screens">
-            <img src="/pulss-screen2.png" alt="PULSS key screens" />
-            <img src="/pulss-screen3.png" alt="PULSS registration" />
+        <div class="cs-row" data-img="/pulss-screen1.png" data-caption="Hero section">
+          <button class="cs-row-btn" aria-expanded="false">
+            <span class="cs-row-title">The Challenge</span>
+            <span class="cs-row-arrow">►</span>
+          </button>
+          <div class="cs-row-body">
+            <p class="cs-body">
+              The hardest part was finding the right vibe — something that didn't feel too
+              clinical but also not too chaotic, while keeping that charitable feeling intact.
+              The red and blue the client provided were challenging since finding shades that
+              worked together took a lot of trial and error.
+            </p>
           </div>
         </div>
-      </div>
 
-      <div class="cs-item">
-        <button class="cs-item-header" aria-expanded="false">
-          <span class="cs-item-title">What I Learned</span>
-          <span class="cs-item-arrow">↓</span>
-        </button>
-        <div class="cs-item-body">
-          <p class="cs-body">
-            The schedule section still isn't where I want it to be, but with better references
-            it's something I could improve in the future. Working with a real colour system for
-            the first time taught me a lot about consistency and reusability in design.
-          </p>
+        <div class="cs-row" data-img="/pulss-screen2.png" data-caption="Key screens">
+          <button class="cs-row-btn" aria-expanded="false">
+            <span class="cs-row-title">The Process</span>
+            <span class="cs-row-arrow">►</span>
+          </button>
+          <div class="cs-row-body">
+            <p class="cs-body">
+              Finding the visual style required a lot of experimentation. I used red as an
+              accent color but chose a different color for the CTAs. Dark tones capture the
+              feeling of a festival. I also designed a mobile version alongside desktop and
+              worked with a design system and reusable components for the first time.
+            </p>
+          </div>
         </div>
+
+        <div class="cs-row" data-img="/pulss-screen3.png" data-caption="Registration page">
+          <button class="cs-row-btn" aria-expanded="false">
+            <span class="cs-row-title">Registration & Tickets</span>
+            <span class="cs-row-arrow">►</span>
+          </button>
+          <div class="cs-row-body">
+            <p class="cs-body">
+              Three roles — audience, performer, volunteer. Ticket visuals reinforce the brand
+              with the pink gradient and bold PULSS wordmark. The form stays minimal so the
+              process feels quick and open to everyone.
+            </p>
+          </div>
+        </div>
+
+        <div class="cs-row" data-img="/pulss-screen2.png" data-caption="Final result">
+          <button class="cs-row-btn" aria-expanded="false">
+            <span class="cs-row-title">What I Learned</span>
+            <span class="cs-row-arrow">►</span>
+          </button>
+          <div class="cs-row-body">
+            <p class="cs-body">
+              The schedule section still isn't where I want it to be, but with better references
+              it's something I could improve in the future. Working with a real colour system for
+              the first time taught me a lot about consistency and reusability in design.
+            </p>
+            <a
+              href="https://www.figma.com/proto/v5nvqOsmZDn97oRbh7aSSH/Pulss?node-id=133-94&t=4hsX65caN3ZD1uSv-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=133%3A94&show-proto-sidebar=1"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="cs-proto-btn"
+            >View Prototype →</a>
+          </div>
+        </div>
+
       </div>
-
-    </div>
-
-    <!-- ── PROTOTYPE BTN ── -->
-    <div class="cs-proto-wrap">
-      <a
-        href="https://www.figma.com/proto/v5nvqOsmZDn97oRbh7aSSH/Pulss?node-id=133-94&t=4hsX65caN3ZD1uSv-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=133%3A94&show-proto-sidebar=1"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="cs-proto-btn"
-      >PROTOTYPE</a>
     </div>
 
     <!-- ── BACK ── -->
@@ -117,62 +131,90 @@ import Layout from "../../layouts/Layout.astro";
     min-height: 100vh;
     padding-top: 56px;
     font-family: 'Oswald', sans-serif;
+    color: #fff;
   }
 
-  /* ── page header ── */
-  .cs-page-header {
-    padding: 60px 80px 32px;
-    max-width: 1200px;
-    margin: 0 auto;
+  /* ── top ── */
+  .cs-top {
+    padding: 56px 72px 40px;
   }
 
-  .cs-page-title {
+  .cs-title {
     font-family: 'Oswald', sans-serif;
     font-weight: 700;
-    font-size: clamp(48px, 8vw, 96px);
+    font-size: clamp(48px, 8vw, 100px);
     color: #FF315A;
-    line-height: 1;
     text-transform: uppercase;
     letter-spacing: 0.04em;
+    line-height: 1;
   }
 
-  .cs-page-sub {
+  .cs-sub {
     font-family: 'Oswald', sans-serif;
     font-weight: 400;
-    font-size: clamp(16px, 2vw, 22px);
+    font-size: clamp(14px, 1.8vw, 20px);
     color: #D7DAFF;
-    margin-top: 8px;
     text-transform: uppercase;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.1em;
+    margin-top: 6px;
   }
 
-  /* ── hero image ── */
-  .cs-hero-img {
-    padding: 0 80px 0;
-    max-width: 1200px;
-    margin: 0 auto 0;
+  /* ── split ── */
+  .cs-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 70vh;
   }
-  .cs-hero-img img {
+
+  /* ── left ── */
+  .cs-left {
+    position: sticky;
+    top: 56px;
+    height: calc(100vh - 56px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 48px 0 72px;
+    gap: 16px;
+  }
+
+  .cs-img-wrap {
+    overflow: hidden;
+    border: 2px solid rgba(255, 49, 90, 0.35);
+    line-height: 0;
+  }
+
+  .cs-img-wrap img {
     width: 100%;
     height: auto;
     display: block;
-    border: 2px solid rgba(255, 49, 90, 0.3);
+    transition: opacity 0.3s ease;
   }
 
-  /* ── accordion ── */
-  .cs-accordion {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 80px;
-    border-top: 1px solid rgba(255, 49, 90, 0.25);
-    margin-top: 48px;
+  .cs-img-caption {
+    font-family: 'Oswald', sans-serif;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: rgba(215, 218, 255, 0.45);
   }
 
-  .cs-item {
-    border-bottom: 1px solid rgba(255, 49, 90, 0.25);
+  /* ── right ── */
+  .cs-right {
+    padding: 0 72px 0 0;
+    display: flex;
+    flex-direction: column;
   }
 
-  .cs-item-header {
+  /* ── row ── */
+  .cs-row {
+    border-bottom: 1px solid rgba(255, 49, 90, 0.2);
+  }
+  .cs-row:first-child {
+    border-top: 1px solid rgba(255, 49, 90, 0.2);
+  }
+
+  .cs-row-btn {
     width: 100%;
     background: none;
     border: none;
@@ -181,111 +223,92 @@ import Layout from "../../layouts/Layout.astro";
     justify-content: space-between;
     align-items: center;
     padding: 28px 0;
-    text-align: left;
     gap: 16px;
+    text-align: left;
   }
 
-  .cs-item-title {
+  .cs-row-title {
     font-family: 'Oswald', sans-serif;
     font-weight: 600;
-    font-size: clamp(22px, 3vw, 36px);
+    font-size: clamp(20px, 2.2vw, 30px);
     color: #fff;
     text-transform: uppercase;
-    letter-spacing: 0.06em;
+    letter-spacing: 0.05em;
     transition: color 0.2s;
   }
 
-  .cs-item-header:hover .cs-item-title,
-  .cs-item-header[aria-expanded="true"] .cs-item-title {
+  .cs-row-btn:hover .cs-row-title,
+  .cs-row-btn[aria-expanded="true"] .cs-row-title {
     color: #FF315A;
   }
 
-  .cs-item-arrow {
-    font-size: 24px;
-    color: #FF315A;
-    transition: transform 0.3s ease;
+  .cs-row-arrow {
+    width: 44px;
+    height: 44px;
+    background: #3546FF;
+    color: #fff;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     flex-shrink: 0;
+    transition: background 0.2s, transform 0.3s;
   }
 
-  .cs-item-header[aria-expanded="true"] .cs-item-arrow {
-    transform: rotate(180deg);
+  .cs-row-btn:hover .cs-row-arrow {
+    background: #FF315A;
   }
 
-  /* ── item body ── */
-  .cs-item-body {
+  .cs-row-btn[aria-expanded="true"] .cs-row-arrow {
+    background: #FF315A;
+    transform: rotate(90deg);
+  }
+
+  /* ── row body ── */
+  .cs-row-body {
     display: grid;
     grid-template-rows: 0fr;
     transition: grid-template-rows 0.35s ease;
     overflow: hidden;
   }
 
-  .cs-item-body.open {
+  .cs-row-body.open {
     grid-template-rows: 1fr;
   }
 
-  .cs-item-body > * {
+  .cs-row-body > * {
     overflow: hidden;
   }
 
-  .cs-item-body .cs-body {
-    padding-bottom: 32px;
+  .cs-row-body .cs-body {
+    padding-bottom: 28px;
   }
 
   .cs-body {
     font-family: 'Oswald', sans-serif;
     font-weight: 400;
-    font-size: clamp(15px, 1.4vw, 18px);
+    font-size: clamp(14px, 1.3vw, 17px);
     color: rgba(255, 255, 255, 0.76);
-    line-height: 1.8;
-    max-width: 800px;
+    line-height: 1.85;
+    max-width: 520px;
   }
 
-  /* meta row */
-  .cs-meta-row {
+  .cs-tags {
     display: flex;
     flex-wrap: wrap;
-    gap: 32px;
-    padding-bottom: 32px;
-    margin-top: 20px;
+    gap: 8px;
+    padding-bottom: 28px;
+    margin-top: -8px;
   }
 
-  .cs-meta-item {
+  .cs-tag {
     font-family: 'Oswald', sans-serif;
-    font-size: 14px;
-    color: #D7DAFF;
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
+    font-size: 12px;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
-  }
-
-  .cs-meta-label {
-    color: #FF315A;
-    font-size: 11px;
-    letter-spacing: 0.12em;
-  }
-
-  /* screens inside accordion */
-  .cs-screens {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-    padding-bottom: 32px;
-    margin-top: 24px;
-  }
-  .cs-screens img {
-    width: 100%;
-    height: auto;
-    display: block;
-    border: 1px solid rgba(255, 49, 90, 0.25);
-  }
-
-  /* ── prototype btn ── */
-  .cs-proto-wrap {
-    display: flex;
-    justify-content: center;
-    padding: 64px 80px;
+    letter-spacing: 0.08em;
+    color: #D7DAFF;
+    border: 1px solid rgba(215, 218, 255, 0.3);
+    padding: 4px 12px;
   }
 
   .cs-proto-btn {
@@ -294,61 +317,84 @@ import Layout from "../../layouts/Layout.astro";
     color: #fff;
     font-family: 'Oswald', sans-serif;
     font-weight: 600;
-    font-size: 22px;
-    letter-spacing: 0.12em;
+    font-size: 15px;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
-    padding: 18px 80px;
+    padding: 12px 32px;
     text-decoration: none;
+    margin-top: 8px;
+    margin-bottom: 28px;
     transition: background 0.2s;
+    align-self: flex-start;
+    display: inline-block;
   }
   .cs-proto-btn:hover { background: #5566ff; }
 
   /* ── back ── */
   .cs-back {
-    padding: 0 80px 56px;
+    padding: 48px 72px 56px;
+    border-top: 1px solid rgba(255, 49, 90, 0.15);
   }
+
   .cs-back-link {
     font-family: 'Oswald', sans-serif;
-    font-size: 15px;
-    color: rgba(215, 218, 255, 0.5);
-    text-decoration: none;
+    font-size: 14px;
     text-transform: uppercase;
-    letter-spacing: 0.06em;
+    letter-spacing: 0.08em;
+    color: rgba(215, 218, 255, 0.4);
+    text-decoration: none;
     transition: color 0.2s;
   }
   .cs-back-link:hover { color: #FF315A; }
 
   /* ── responsive ── */
   @media (max-width: 900px) {
-    .cs-page-header,
-    .cs-hero-img,
-    .cs-accordion,
-    .cs-proto-wrap,
-    .cs-back {
-      padding-left: 24px;
-      padding-right: 24px;
+    .cs-top { padding: 40px 24px 28px; }
+    .cs-split { grid-template-columns: 1fr; }
+    .cs-left {
+      position: relative;
+      top: 0;
+      height: auto;
+      padding: 0 24px 32px;
     }
-    .cs-screens { grid-template-columns: 1fr; }
+    .cs-right { padding: 0 24px; }
+    .cs-back { padding: 40px 24px 48px; }
   }
 </style>
 
 <script>
-  document.querySelectorAll<HTMLButtonElement>('.cs-item-header').forEach(btn => {
+  const rows = document.querySelectorAll<HTMLElement>('.cs-row');
+  const activeImg = document.getElementById('cs-active-img') as HTMLImageElement;
+  const captionEl = document.getElementById('cs-caption') as HTMLElement;
+
+  rows.forEach(row => {
+    const btn = row.querySelector<HTMLButtonElement>('.cs-row-btn')!;
+    const body = row.querySelector<HTMLElement>('.cs-row-body')!;
+
     btn.addEventListener('click', () => {
-      const body = btn.nextElementSibling as HTMLElement;
       const isOpen = btn.getAttribute('aria-expanded') === 'true';
 
       // close all
-      document.querySelectorAll<HTMLButtonElement>('.cs-item-header').forEach(b => {
-        b.setAttribute('aria-expanded', 'false');
-        const bd = b.nextElementSibling as HTMLElement;
-        bd.classList.remove('open');
+      rows.forEach(r => {
+        r.querySelector<HTMLButtonElement>('.cs-row-btn')!.setAttribute('aria-expanded', 'false');
+        r.querySelector<HTMLElement>('.cs-row-body')!.classList.remove('open');
       });
 
-      // open clicked if it was closed
       if (!isOpen) {
         btn.setAttribute('aria-expanded', 'true');
         body.classList.add('open');
+
+        // swap image
+        const newImg = row.dataset.img;
+        const newCaption = row.dataset.caption;
+        if (newImg && newImg !== activeImg.src.split('/').pop()) {
+          activeImg.style.opacity = '0';
+          setTimeout(() => {
+            activeImg.src = newImg;
+            activeImg.style.opacity = '1';
+          }, 200);
+        }
+        if (newCaption) captionEl.textContent = newCaption;
       }
     });
   });
