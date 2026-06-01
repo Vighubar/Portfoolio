@@ -50,16 +50,17 @@ const imgBrand  = "/project-brand.png";
         <article class="project-card">
           <div class="split-reveal">
             <div class="split-half split-left">
-              <img src={imgPulss} alt="PULSS festival project" />
+              <img src="/pulss-left.png" alt="PULSS festival project" />
             </div>
             <div class="split-center">
               <p class="split-title">PULSS</p>
               <p class="split-desc">
                 Pulss is an imaginary charity music festival where the stage is open to everyone. Designed for young adults who want more than just watching from the crowd. Built in Figma for university, covering everything from the landing page to artist registration and event timetables. The tricky part was keeping it feel fun and accessible while still taking the charity side seriously.
               </p>
+              <a href="/projects/pulss" class="split-btn">View case study</a>
             </div>
             <div class="split-half split-right">
-              <img src={imgPulss} alt="" aria-hidden="true" />
+              <img src="/pulss-right.png" alt="" aria-hidden="true" />
             </div>
           </div>
         </article>
@@ -68,16 +69,17 @@ const imgBrand  = "/project-brand.png";
         <article class="project-card">
           <div class="split-reveal">
             <div class="split-half split-left">
-              <img src={imgOct31} alt="October 31 game project" />
+              <img src="/oct31-left.png" alt="October 31 game project" />
             </div>
             <div class="split-center">
               <p class="split-title">October 31.</p>
               <p class="split-desc">
                 What if one mistake was all it took for your entire friend group to turn on you? October 31st is a point-and-click horror mystery where you have to find a way to help Jane and defeat her darkest demons. Built in Unity as a university project, the game features a full dialogue system, multi-scene navigation, and branching endings that depend on how carefully you've been paying attention.
               </p>
+              <a href="/projects/october-31" class="split-btn">View case study</a>
             </div>
             <div class="split-half split-right">
-              <img src={imgOct31} alt="" aria-hidden="true" />
+              <img src="/oct31-right.png" alt="" aria-hidden="true" />
             </div>
           </div>
         </article>
@@ -337,24 +339,24 @@ const imgBrand  = "/project-brand.png";
     background-color: #a4e5f2;
   }
 
-  /* Each half shows the full image but clips to its side */
+  /* Each half shows its own image fully */
   .split-left img {
     position: absolute;
     top: 0; left: 0;
-    width: 200%;   /* double width so full image fits in half container */
+    width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: left center;
+    object-position: center;
     display: block;
   }
 
   .split-right img {
     position: absolute;
-    top: 0; right: 0;
-    width: 200%;
+    top: 0; left: 0;
+    width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: right center;
+    object-position: center;
     display: block;
   }
 
@@ -399,6 +401,23 @@ const imgBrand  = "/project-brand.png";
     font-size: 18px;
     color: #EFEEF6;
     line-height: 1.6;
+  }
+
+  .split-btn {
+    display: inline-block;
+    margin-top: 24px;
+    background-color: #7863BC;
+    color: #EFEEF6;
+    font-family: 'Carter One', sans-serif;
+    font-size: 18px;
+    padding: 10px 28px;
+    text-decoration: none;
+    pointer-events: auto;
+    transition: background-color 0.2s;
+  }
+
+  .split-btn:hover {
+    background-color: #AD9ED4;
   }
 
   /* More button */
