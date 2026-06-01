@@ -148,7 +148,6 @@ import Layout from "../../layouts/Layout.astro";
     position: sticky;
     top: 56px;
     height: calc(100vh - 56px);
-    border-right: 1px solid rgba(255, 49, 90, 0.2);
   }
 
   .cs-left-inner {
@@ -361,6 +360,19 @@ import Layout from "../../layouts/Layout.astro";
     .cs-row-btn { padding-left: 0; }
     .cs-row-body-inner { padding-left: 0; }
     .cs-back { padding-left: 0; }
+  }
+</style>
+
+<style is:global>
+  /* Override nav + footer colours on Pulss page only */
+  body:has(.cs-wrap) #site-nav {
+    background-color: #06062F;
+  }
+  body:has(.cs-wrap) #site-nav.scrolled {
+    background-color: rgba(6, 6, 47, 0.6);
+  }
+  body:has(.cs-wrap) .site-footer {
+    background-color: #06062F;
   }
 </style>
 
