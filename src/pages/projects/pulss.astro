@@ -5,24 +5,21 @@ import Layout from "../../layouts/Layout.astro";
 <Layout title="PULSS — Kelly-Leontine Merilo">
   <div class="cs-wrap">
 
-    <!-- ── PAGE TITLE ── -->
-    <div class="cs-top">
-      <h1 class="cs-title">PULSS</h1>
-      <p class="cs-sub">Charity Youth Festival Website</p>
-    </div>
-
     <!-- ── SPLIT LAYOUT ── -->
     <div class="cs-split">
 
-      <!-- LEFT: image panel -->
+      <!-- LEFT: title + image placeholder -->
       <div class="cs-left">
-        <div class="cs-img-wrap cs-img-empty">
-          <span class="cs-img-placeholder">Image coming soon</span>
+        <div class="cs-left-inner">
+          <h1 class="cs-title">PULSS</h1>
+          <p class="cs-sub">Charity Youth Festival Website</p>
+          <div class="cs-img-wrap cs-img-empty">
+            <span class="cs-img-placeholder">Image coming soon</span>
+          </div>
         </div>
-        <div class="cs-img-caption" id="cs-caption"></div>
       </div>
 
-      <!-- RIGHT: section list -->
+      <!-- RIGHT: accordion -->
       <div class="cs-right">
 
         <div class="cs-row">
@@ -31,15 +28,17 @@ import Layout from "../../layouts/Layout.astro";
             <span class="cs-row-arrow">►</span>
           </button>
           <div class="cs-row-body">
-            <p class="cs-body">
-              PULSS is an imaginary youth festival in Tallinn with the goal of giving young
-              people a chance to actually participate, not just be part of the audience.
-              I designed the website in Figma as part of my UI Design 1 course.
-            </p>
-            <div class="cs-tags">
-              <span class="cs-tag">Figma</span>
-              <span class="cs-tag">UI/UX Design</span>
-              <span class="cs-tag">University project</span>
+            <div class="cs-row-body-inner">
+              <p class="cs-body">
+                PULSS is an imaginary youth festival in Tallinn with the goal of giving young
+                people a chance to actually participate, not just be part of the audience.
+                I designed the website in Figma as part of my UI Design 1 course.
+              </p>
+              <div class="cs-tags">
+                <span class="cs-tag">Figma</span>
+                <span class="cs-tag">UI/UX Design</span>
+                <span class="cs-tag">University project</span>
+              </div>
             </div>
           </div>
         </div>
@@ -50,12 +49,14 @@ import Layout from "../../layouts/Layout.astro";
             <span class="cs-row-arrow">►</span>
           </button>
           <div class="cs-row-body">
-            <p class="cs-body">
-              The hardest part was finding the right vibe — something that didn't feel too
-              clinical but also not too chaotic, while keeping that charitable feeling intact.
-              The red and blue the client provided were challenging since finding shades that
-              worked together took a lot of trial and error.
-            </p>
+            <div class="cs-row-body-inner">
+              <p class="cs-body">
+                The hardest part was finding the right vibe — something that didn't feel too
+                clinical but also not too chaotic, while keeping that charitable feeling intact.
+                The red and blue the client provided were challenging since finding shades that
+                worked together took a lot of trial and error.
+              </p>
+            </div>
           </div>
         </div>
 
@@ -65,12 +66,14 @@ import Layout from "../../layouts/Layout.astro";
             <span class="cs-row-arrow">►</span>
           </button>
           <div class="cs-row-body">
-            <p class="cs-body">
-              Finding the visual style required a lot of experimentation. I used red as an
-              accent color but chose a different color for the CTAs. Dark tones capture the
-              feeling of a festival. I also designed a mobile version alongside desktop and
-              worked with a design system and reusable components for the first time.
-            </p>
+            <div class="cs-row-body-inner">
+              <p class="cs-body">
+                Finding the visual style required a lot of experimentation. I used red as an
+                accent color but chose a different color for the CTAs. Dark tones capture the
+                feeling of a festival. I also designed a mobile version alongside desktop and
+                worked with a design system and reusable components for the first time.
+              </p>
+            </div>
           </div>
         </div>
 
@@ -80,11 +83,13 @@ import Layout from "../../layouts/Layout.astro";
             <span class="cs-row-arrow">►</span>
           </button>
           <div class="cs-row-body">
-            <p class="cs-body">
-              Three roles — audience, performer, volunteer. Ticket visuals reinforce the brand
-              with the pink gradient and bold PULSS wordmark. The form stays minimal so the
-              process feels quick and open to everyone.
-            </p>
+            <div class="cs-row-body-inner">
+              <p class="cs-body">
+                Three roles — audience, performer, volunteer. Ticket visuals reinforce the brand
+                with the pink gradient and bold PULSS wordmark. The form stays minimal so the
+                process feels quick and open to everyone.
+              </p>
+            </div>
           </div>
         </div>
 
@@ -94,26 +99,28 @@ import Layout from "../../layouts/Layout.astro";
             <span class="cs-row-arrow">►</span>
           </button>
           <div class="cs-row-body">
-            <p class="cs-body">
-              The schedule section still isn't where I want it to be, but with better references
-              it's something I could improve in the future. Working with a real colour system for
-              the first time taught me a lot about consistency and reusability in design.
-            </p>
-            <a
-              href="https://www.figma.com/proto/v5nvqOsmZDn97oRbh7aSSH/Pulss?node-id=133-94&t=4hsX65caN3ZD1uSv-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=133%3A94&show-proto-sidebar=1"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="cs-proto-btn"
-            >View Prototype →</a>
+            <div class="cs-row-body-inner">
+              <p class="cs-body">
+                The schedule section still isn't where I want it to be, but with better references
+                it's something I could improve in the future. Working with a real colour system for
+                the first time taught me a lot about consistency and reusability in design.
+              </p>
+              <a
+                href="https://www.figma.com/proto/v5nvqOsmZDn97oRbh7aSSH/Pulss?node-id=133-94&t=4hsX65caN3ZD1uSv-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=133%3A94&show-proto-sidebar=1"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="cs-proto-btn"
+              >View Prototype →</a>
+            </div>
           </div>
         </div>
 
-      </div>
-    </div>
+        <!-- back link at bottom of right col -->
+        <div class="cs-back">
+          <a href="/#projects" class="cs-back-link">← Back to works</a>
+        </div>
 
-    <!-- ── BACK ── -->
-    <div class="cs-back">
-      <a href="/#projects" class="cs-back-link">← Back to works</a>
+      </div>
     </div>
 
   </div>
@@ -130,15 +137,32 @@ import Layout from "../../layouts/Layout.astro";
     color: #fff;
   }
 
-  /* ── top ── */
-  .cs-top {
-    padding: 56px 72px 40px;
+  /* ── split ── */
+  .cs-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: calc(100vh - 56px);
+  }
+
+  /* ── left ── */
+  .cs-left {
+    position: sticky;
+    top: 56px;
+    height: calc(100vh - 56px);
+    border-right: 1px solid rgba(255, 49, 90, 0.2);
+  }
+
+  .cs-left-inner {
+    padding: 60px 48px 48px 72px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
   }
 
   .cs-title {
     font-family: 'Oswald', sans-serif;
     font-weight: 700;
-    font-size: clamp(48px, 8vw, 100px);
+    font-size: clamp(56px, 7vw, 96px);
     color: #FF315A;
     text-transform: uppercase;
     letter-spacing: 0.04em;
@@ -148,61 +172,33 @@ import Layout from "../../layouts/Layout.astro";
   .cs-sub {
     font-family: 'Oswald', sans-serif;
     font-weight: 400;
-    font-size: clamp(14px, 1.8vw, 20px);
+    font-size: clamp(13px, 1.4vw, 17px);
     color: #D7DAFF;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    margin-top: 6px;
-  }
-
-  /* ── split ── */
-  .cs-split {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    min-height: 70vh;
-  }
-
-  /* ── left ── */
-  .cs-left {
-    position: sticky;
-    top: 56px;
-    height: calc(100vh - 56px);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 0 48px 0 72px;
-    gap: 16px;
+    margin-top: 8px;
+    margin-bottom: 40px;
   }
 
   .cs-img-wrap {
+    flex: 1;
+    border: 2px solid rgba(255, 49, 90, 0.3);
     overflow: hidden;
-    border: 2px solid rgba(255, 49, 90, 0.35);
-    line-height: 0;
   }
 
   .cs-img-empty {
-    aspect-ratio: 16/10;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgba(255, 49, 90, 0.05);
-    line-height: 1;
+    background: rgba(255, 49, 90, 0.04);
   }
 
   .cs-img-placeholder {
     font-family: 'Oswald', sans-serif;
-    font-size: 13px;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: rgba(255, 49, 90, 0.35);
-  }
-
-  .cs-img-caption {
-    font-family: 'Oswald', sans-serif;
     font-size: 12px;
     text-transform: uppercase;
-    letter-spacing: 0.14em;
-    color: rgba(215, 218, 255, 0.45);
+    letter-spacing: 0.12em;
+    color: rgba(255, 49, 90, 0.3);
   }
 
   /* ── right ── */
@@ -212,7 +208,7 @@ import Layout from "../../layouts/Layout.astro";
     flex-direction: column;
   }
 
-  /* ── row ── */
+  /* ── rows ── */
   .cs-row {
     border-bottom: 1px solid rgba(255, 49, 90, 0.2);
   }
@@ -228,7 +224,7 @@ import Layout from "../../layouts/Layout.astro";
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 28px 0;
+    padding: 28px 0 28px 48px;
     gap: 16px;
     text-align: left;
   }
@@ -236,7 +232,7 @@ import Layout from "../../layouts/Layout.astro";
   .cs-row-title {
     font-family: 'Oswald', sans-serif;
     font-weight: 600;
-    font-size: clamp(20px, 2.2vw, 30px);
+    font-size: clamp(18px, 2vw, 28px);
     color: #fff;
     text-transform: uppercase;
     letter-spacing: 0.05em;
@@ -253,7 +249,7 @@ import Layout from "../../layouts/Layout.astro";
     height: 44px;
     background: #3546FF;
     color: #fff;
-    font-size: 18px;
+    font-size: 16px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -270,46 +266,45 @@ import Layout from "../../layouts/Layout.astro";
     transform: rotate(90deg);
   }
 
-  /* ── row body ── */
+  /* ── accordion body ── */
   .cs-row-body {
     display: grid;
     grid-template-rows: 0fr;
     transition: grid-template-rows 0.35s ease;
-    overflow: hidden;
   }
 
   .cs-row-body.open {
     grid-template-rows: 1fr;
   }
 
-  .cs-row-body > * {
+  .cs-row-body-inner {
     overflow: hidden;
+    padding: 0 0 0 48px;
   }
 
-  .cs-row-body .cs-body {
+  .cs-row-body.open .cs-row-body-inner {
     padding-bottom: 28px;
   }
 
   .cs-body {
     font-family: 'Oswald', sans-serif;
     font-weight: 400;
-    font-size: clamp(14px, 1.3vw, 17px);
+    font-size: clamp(14px, 1.2vw, 16px);
     color: rgba(255, 255, 255, 0.76);
     line-height: 1.85;
-    max-width: 520px;
+    max-width: 480px;
   }
 
   .cs-tags {
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
-    padding-bottom: 28px;
-    margin-top: -8px;
+    margin-top: 16px;
   }
 
   .cs-tag {
     font-family: 'Oswald', sans-serif;
-    font-size: 12px;
+    font-size: 11px;
     text-transform: uppercase;
     letter-spacing: 0.08em;
     color: #D7DAFF;
@@ -323,31 +318,28 @@ import Layout from "../../layouts/Layout.astro";
     color: #fff;
     font-family: 'Oswald', sans-serif;
     font-weight: 600;
-    font-size: 15px;
+    font-size: 14px;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    padding: 12px 32px;
+    padding: 11px 28px;
     text-decoration: none;
-    margin-top: 8px;
-    margin-bottom: 28px;
+    margin-top: 20px;
     transition: background 0.2s;
-    align-self: flex-start;
-    display: inline-block;
   }
   .cs-proto-btn:hover { background: #5566ff; }
 
   /* ── back ── */
   .cs-back {
-    padding: 48px 72px 56px;
-    border-top: 1px solid rgba(255, 49, 90, 0.15);
+    padding: 32px 0 48px 48px;
+    margin-top: auto;
   }
 
   .cs-back-link {
     font-family: 'Oswald', sans-serif;
-    font-size: 14px;
+    font-size: 13px;
     text-transform: uppercase;
     letter-spacing: 0.08em;
-    color: rgba(215, 218, 255, 0.4);
+    color: rgba(215, 218, 255, 0.35);
     text-decoration: none;
     transition: color 0.2s;
   }
@@ -355,16 +347,20 @@ import Layout from "../../layouts/Layout.astro";
 
   /* ── responsive ── */
   @media (max-width: 900px) {
-    .cs-top { padding: 40px 24px 28px; }
     .cs-split { grid-template-columns: 1fr; }
     .cs-left {
       position: relative;
       top: 0;
       height: auto;
-      padding: 0 24px 32px;
     }
+    .cs-left-inner {
+      padding: 40px 24px 32px;
+    }
+    .cs-img-wrap { min-height: 220px; flex: none; }
     .cs-right { padding: 0 24px; }
-    .cs-back { padding: 40px 24px 48px; }
+    .cs-row-btn { padding-left: 0; }
+    .cs-row-body-inner { padding-left: 0; }
+    .cs-back { padding-left: 0; }
   }
 </style>
 
