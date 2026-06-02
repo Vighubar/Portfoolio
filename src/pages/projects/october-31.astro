@@ -3,14 +3,372 @@ import Layout from "../../layouts/Layout.astro";
 ---
 
 <Layout title="October 31. — Kelly-Leontine Merilo">
-  <div class="oct31-page">
-    <!-- Case study coming soon -->
+  <div class="cs-wrap">
+
+    <div class="cs-split">
+
+      <!-- LEFT: title + image -->
+      <div class="cs-left">
+        <div class="cs-left-inner">
+          <h1 class="cs-title">October 31.</h1>
+          <p class="cs-sub">Game Design & Development — EKA Project 2026</p>
+          <div class="cs-img-wrap">
+            <img id="cs-active-img" src="/oct31-left.png" alt="October 31 screenshot" />
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: accordion -->
+      <div class="cs-right">
+
+        <div class="cs-row" data-img="/oct31-left.png">
+          <button class="cs-row-btn" aria-expanded="false">
+            <span class="cs-row-title">About the Project</span>
+            <span class="cs-row-arrow">►</span>
+          </button>
+          <div class="cs-row-body">
+            <div class="cs-row-body-inner">
+              <p class="cs-body">
+                October 31 is a comedy-horror point-and-click game about helping a friend through
+                depression. Built in Unity using C#, it was developed as an art project exploring
+                mental health, loneliness, and the importance of showing up for the people around
+                you. All visuals are hand-made and edited in a style inspired by early 2020s
+                internet aesthetics and low-res 2000s digital photography.
+              </p>
+              <div class="cs-tags">
+                <span class="cs-tag">Unity</span>
+                <span class="cs-tag">C#</span>
+                <span class="cs-tag">Figma</span>
+                <span class="cs-tag">Game Design</span>
+                <span class="cs-tag">Narrative Design</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="cs-row" data-img="/oct31-2.png">
+          <button class="cs-row-btn" aria-expanded="false">
+            <span class="cs-row-title">The Challenge</span>
+            <span class="cs-row-arrow">►</span>
+          </button>
+          <div class="cs-row-body">
+            <div class="cs-row-body-inner">
+              <p class="cs-body">
+                Designing a game that handles heavy subject matter without feeling heavy-handed.
+                The core challenge was balancing the dark emotional narrative with a genuinely
+                funny antagonist, and making the gameplay feel meaningful rather than mechanical.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="cs-row" data-img="/oct31-right.png">
+          <button class="cs-row-btn" aria-expanded="false">
+            <span class="cs-row-title">The Process</span>
+            <span class="cs-row-arrow">►</span>
+          </button>
+          <div class="cs-row-body">
+            <div class="cs-row-body-inner">
+              <p class="cs-body">
+                Developed solo over four months. Started with concept and narrative, moved into
+                Unity for scene building and interaction systems, then iterated heavily based on
+                playtesting feedback. The UI was designed in Figma and implemented in Unity.
+                All 18 items were written, illustrated, and placed by hand.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="cs-row" data-img="/oct31-left.png">
+          <button class="cs-row-btn" aria-expanded="false">
+            <span class="cs-row-title">What I Learned</span>
+            <span class="cs-row-arrow">►</span>
+          </button>
+          <div class="cs-row-body">
+            <div class="cs-row-body-inner">
+              <p class="cs-body">
+                How to build a complete narrative game from scratch — writing, art, UI, sound,
+                and code all under one roof. The project pushed me to think about how mechanics
+                and story can reinforce each other rather than exist separately.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="cs-back">
+          <a href="/#projects" class="cs-back-link">← Back to works</a>
+        </div>
+
+      </div>
+    </div>
+
   </div>
 </Layout>
 
 <style>
-  .oct31-page {
+  @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Nunito:wght@700&display=swap');
+
+  :root {
+    --oct-bg:       #0d0a06;
+    --oct-deep:     #150f07;
+    --oct-amber:    #c47a14;
+    --oct-purple:   #5b3fa0;
+    --oct-blue:     #4a7fff;
+    --oct-cream:    #e8c88a;
+    --oct-text:     rgba(255, 255, 255, 0.82);
+    --oct-divider:  rgba(196, 122, 20, 0.25);
+  }
+
+  .cs-wrap {
+    background: var(--oct-bg);
     min-height: 100vh;
-    background-color: #e4e3eb;
+    padding-top: 56px;
+    font-family: 'Nunito', sans-serif;
+    color: #fff;
+  }
+
+  /* ── split ── */
+  .cs-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: calc(100vh - 56px);
+  }
+
+  /* ── left ── */
+  .cs-left {
+    position: sticky;
+    top: 56px;
+    height: calc(100vh - 56px);
+  }
+
+  .cs-left-inner {
+    padding: 60px 48px 48px 72px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .cs-title {
+    font-family: 'Space Mono', monospace;
+    font-weight: 700;
+    font-size: clamp(36px, 5vw, 72px);
+    color: var(--oct-amber);
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+
+  .cs-sub {
+    font-family: 'Space Mono', monospace;
+    font-weight: 400;
+    font-size: clamp(11px, 1vw, 13px);
+    color: var(--oct-cream);
+    letter-spacing: 0.05em;
+    margin-top: 10px;
+    margin-bottom: 32px;
+    line-height: 1.5;
+  }
+
+  .cs-img-wrap {
+    flex: 1;
+    border: 2px solid var(--oct-purple);
+    overflow: hidden;
+    min-height: 0;
+    position: relative;
+  }
+
+  .cs-img-wrap img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    transition: opacity 0.25s ease;
+  }
+
+  /* ── right ── */
+  .cs-right {
+    padding: 0 72px 0 0;
+    display: flex;
+    flex-direction: column;
+    padding-top: 180px;
+  }
+
+  /* ── rows ── */
+  .cs-row {
+    border-bottom: 1px solid var(--oct-divider);
+  }
+  .cs-row:first-child {
+    border-top: 1px solid var(--oct-divider);
+  }
+
+  .cs-row-btn {
+    width: 100%;
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 28px 0 28px 48px;
+    gap: 16px;
+    text-align: left;
+  }
+
+  .cs-row-title {
+    font-family: 'Space Mono', monospace;
+    font-weight: 700;
+    font-size: clamp(15px, 1.6vw, 22px);
+    color: #fff;
+    letter-spacing: 0.02em;
+    transition: color 0.2s;
+    text-transform: uppercase;
+  }
+
+  .cs-row-btn:hover .cs-row-title,
+  .cs-row-btn[aria-expanded="true"] .cs-row-title {
+    color: var(--oct-amber);
+  }
+
+  .cs-row-arrow {
+    width: 44px;
+    height: 44px;
+    background: var(--oct-purple);
+    color: #fff;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: background 0.2s, transform 0.3s;
+  }
+
+  .cs-row-btn:hover .cs-row-arrow {
+    background: var(--oct-blue);
+  }
+
+  .cs-row-btn[aria-expanded="true"] .cs-row-arrow {
+    background: var(--oct-amber);
+    transform: rotate(90deg);
+  }
+
+  /* ── body ── */
+  .cs-row-body {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.35s ease;
+  }
+
+  .cs-row-body.open {
+    grid-template-rows: 1fr;
+  }
+
+  .cs-row-body-inner {
+    overflow: hidden;
+    padding: 0 0 0 48px;
+  }
+
+  .cs-row-body.open .cs-row-body-inner {
+    padding-bottom: 28px;
+  }
+
+  .cs-body {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    font-size: clamp(14px, 1.2vw, 16px);
+    color: var(--oct-text);
+    line-height: 1.85;
+    max-width: 480px;
+  }
+
+  .cs-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 16px;
+  }
+
+  .cs-tag {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    color: var(--oct-cream);
+    border: 1px solid rgba(232, 200, 138, 0.3);
+    padding: 4px 12px;
+  }
+
+  /* ── back ── */
+  .cs-back {
+    padding: 32px 0 48px 48px;
+    margin-top: auto;
+  }
+
+  .cs-back-link {
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    color: rgba(232, 200, 138, 0.4);
+    text-decoration: none;
+    transition: color 0.2s;
+    text-transform: uppercase;
+  }
+  .cs-back-link:hover { color: var(--oct-amber); }
+
+  /* ── responsive ── */
+  @media (max-width: 900px) {
+    .cs-split { grid-template-columns: 1fr; }
+    .cs-left { position: relative; top: 0; height: auto; }
+    .cs-left-inner { padding: 40px 24px 32px; }
+    .cs-img-wrap { min-height: 240px; flex: none; }
+    .cs-right { padding: 0 24px; padding-top: 0; }
+    .cs-row-btn { padding-left: 0; }
+    .cs-row-body-inner { padding-left: 0; }
+    .cs-back { padding-left: 0; }
   }
 </style>
+
+<style is:global>
+  body:has(.cs-wrap) #site-nav {
+    background-color: #150f07;
+  }
+  body:has(.cs-wrap) #site-nav.scrolled {
+    background-color: rgba(21, 15, 7, 0.7);
+  }
+  body:has(.cs-wrap) .site-footer {
+    background-color: #150f07;
+  }
+</style>
+
+<script>
+  const rows = document.querySelectorAll<HTMLElement>('.cs-row');
+  const activeImg = document.getElementById('cs-active-img') as HTMLImageElement;
+
+  rows.forEach(row => {
+    const btn = row.querySelector<HTMLButtonElement>('.cs-row-btn')!;
+    const body = row.querySelector<HTMLElement>('.cs-row-body')!;
+
+    btn.addEventListener('click', () => {
+      const isOpen = btn.getAttribute('aria-expanded') === 'true';
+
+      rows.forEach(r => {
+        r.querySelector<HTMLButtonElement>('.cs-row-btn')!.setAttribute('aria-expanded', 'false');
+        r.querySelector<HTMLElement>('.cs-row-body')!.classList.remove('open');
+      });
+
+      if (!isOpen) {
+        btn.setAttribute('aria-expanded', 'true');
+        body.classList.add('open');
+
+        const newImg = row.dataset.img;
+        if (newImg && activeImg.src !== window.location.origin + newImg) {
+          activeImg.style.opacity = '0';
+          setTimeout(() => {
+            activeImg.src = newImg;
+            activeImg.style.opacity = '1';
+          }, 200);
+        }
+      }
+    });
+  });
+</script>
