@@ -95,6 +95,32 @@ import Layout from "../../layouts/Layout.astro";
           </div>
         </div>
 
+        <!-- download buttons -->
+        <div class="cs-buttons">
+          <a
+            href="https://drive.google.com/file/d/1K1Qg3VIBEzHDRMtT4Oy_HoHTHPlFyfpe/view?usp=sharing"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="cs-dl-btn"
+          >
+            <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-12.9-1.801"/>
+            </svg>
+            Download for Windows
+          </a>
+          <a
+            href="https://docs.google.com/document/d/1ctmqoSDXObtfE64VSSsVs-SSxwXJXnk5Ors9jFZtdEo/edit?usp=sharing"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="cs-dl-btn cs-dl-btn--outline"
+          >
+            <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM8 13h8v1H8v-1zm0 3h8v1H8v-1zm0-6h5v1H8v-1z"/>
+            </svg>
+            Game Design Document
+          </a>
+        </div>
+
         <div class="cs-back">
           <a href="/#projects" class="cs-back-link">← Back to works</a>
         </div>
@@ -295,6 +321,48 @@ import Layout from "../../layouts/Layout.astro";
     color: #422500;
     border: 1px solid rgba(66, 37, 0, 0.3);
     padding: 4px 12px;
+  }
+
+  /* ── download buttons ── */
+  .cs-buttons {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    padding: 32px 0 0 48px;
+    border-top: 1px solid var(--oct-divider);
+  }
+
+  .cs-dl-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--oct-accent);
+    color: #fff;
+    font-family: 'Space Mono', monospace;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    padding: 12px 24px;
+    text-decoration: none;
+    transition: background 0.2s;
+    white-space: nowrap;
+  }
+  .cs-dl-btn:hover { background: var(--oct-accent-h); }
+
+  .cs-dl-btn--outline {
+    background: transparent;
+    border: 2px solid var(--oct-accent);
+    color: var(--oct-text);
+  }
+  .cs-dl-btn--outline:hover {
+    background: var(--oct-accent);
+    color: #fff;
+  }
+
+  .btn-icon {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
   }
 
   /* ── back ── */
