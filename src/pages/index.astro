@@ -85,19 +85,17 @@ const imgBrand  = "/project-brand.png";
         </article>
 
         <!-- Project 3: Brand -->
-        <article class="project-card">
+        <article class="project-card brand-wip">
           <div class="split-reveal">
-            <div class="split-half split-left brand-cover">
-              <img src={imgBrand} alt="Brand identity project" />
+            <div class="split-half split-left">
+              <img src="/under-construction.png" alt="Brand project coming soon" />
             </div>
-            <div class="split-center">
+            <div class="split-center split-center-wip">
               <p class="split-title">Brand</p>
-              <p class="split-desc">
-                A clothing brand built around a feeling. Inspired by the song Emotion Engine, the brand lives somewhere between starry nights and something harder to name — light blue, purple, and chrome. I designed the full brand identity including the logo, visual guidelines, and a hoodie print I painted by hand directly onto the piece. The kind of project where the brief was just a song and a feeling.
-              </p>
+              <p class="split-desc coming-soon-text">Coming soon</p>
             </div>
-            <div class="split-half split-right brand-cover">
-              <img src={imgBrand} alt="" aria-hidden="true" />
+            <div class="split-half split-right">
+              <img src="/under-construction.png" alt="" aria-hidden="true" />
             </div>
           </div>
         </article>
@@ -418,6 +416,14 @@ const imgBrand  = "/project-brand.png";
 
   .split-btn:hover {
     background-color: #AD9ED4;
+  }
+
+  .coming-soon-text {
+    font-family: 'Carter One', sans-serif;
+    font-size: 28px;
+    color: #c9b8ff;
+    letter-spacing: 0.06em;
+    margin-top: 8px;
   }
 
   /* More button */
