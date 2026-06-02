@@ -109,14 +109,13 @@ import Layout from "../../layouts/Layout.astro";
   @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Nunito:wght@700&display=swap');
 
   :root {
-    --oct-bg:       #2a2000;
-    --oct-deep:     #1e1700;
-    --oct-amber:    #e8a020;
-    --oct-gray:     #6b6b6b;
-    --oct-gray-hover: #8f8f8f;
-    --oct-cream:    #c8a84a;
-    --oct-text:     #1a1200;
-    --oct-divider:  rgba(232, 160, 32, 0.3);
+    --oct-bg:         #FFD279;
+    --oct-deep:       #e8b84a;
+    --oct-accent:     #676D74;
+    --oct-accent-h:   #888f97;
+    --oct-text:       #422500;
+    --oct-text-muted: rgba(66, 37, 0, 0.55);
+    --oct-divider:    rgba(66, 37, 0, 0.18);
   }
 
   .cs-wrap {
@@ -161,7 +160,7 @@ import Layout from "../../layouts/Layout.astro";
     font-family: 'Space Mono', monospace;
     font-weight: 400;
     font-size: clamp(11px, 1vw, 13px);
-    color: #3a2d00;
+    color: #422500;
     letter-spacing: 0.05em;
     margin-top: 10px;
     margin-bottom: 32px;
@@ -170,7 +169,7 @@ import Layout from "../../layouts/Layout.astro";
 
   .cs-img-wrap {
     flex: 1;
-    border: 2px solid var(--oct-gray);
+    border: 2px solid var(--oct-accent);
     overflow: hidden;
     min-height: 0;
     position: relative;
@@ -234,7 +233,7 @@ import Layout from "../../layouts/Layout.astro";
   .cs-row-arrow {
     width: 44px;
     height: 44px;
-    background: var(--oct-gray);
+    background: var(--oct-accent);
     color: #fff;
     font-size: 16px;
     display: flex;
@@ -245,11 +244,11 @@ import Layout from "../../layouts/Layout.astro";
   }
 
   .cs-row-btn:hover .cs-row-arrow {
-    background: var(--oct-gray-hover);
+    background: var(--oct-accent-h);
   }
 
   .cs-row-btn[aria-expanded="true"] .cs-row-arrow {
-    background: var(--oct-gray-hover);
+    background: var(--oct-accent-h);
     transform: rotate(90deg);
   }
 
@@ -277,7 +276,7 @@ import Layout from "../../layouts/Layout.astro";
     font-family: 'Nunito', sans-serif;
     font-weight: 700;
     font-size: clamp(14px, 1.2vw, 16px);
-    color: #1a1200;
+    color: #422500;
     line-height: 1.85;
     max-width: 480px;
   }
@@ -293,8 +292,8 @@ import Layout from "../../layouts/Layout.astro";
     font-family: 'Space Mono', monospace;
     font-size: 11px;
     letter-spacing: 0.06em;
-    color: #3a2d00;
-    border: 1px solid rgba(58, 45, 0, 0.35);
+    color: #422500;
+    border: 1px solid rgba(66, 37, 0, 0.3);
     padding: 4px 12px;
   }
 
@@ -313,7 +312,7 @@ import Layout from "../../layouts/Layout.astro";
     transition: color 0.2s;
     text-transform: uppercase;
   }
-  .cs-back-link:hover { color: #1a1200; }
+  .cs-back-link:hover { color: #422500; }
 
   /* ── responsive ── */
   @media (max-width: 900px) {
@@ -330,13 +329,13 @@ import Layout from "../../layouts/Layout.astro";
 
 <style is:global>
   body:has(.cs-wrap) #site-nav {
-    background-color: #1e1700;
+    background-color: #e8b84a;
   }
   body:has(.cs-wrap) #site-nav.scrolled {
-    background-color: rgba(30, 23, 0, 0.85);
+    background-color: rgba(232, 184, 74, 0.9);
   }
   body:has(.cs-wrap) .site-footer {
-    background-color: #1e1700;
+    background-color: #e8b84a;
   }
 </style>
 
