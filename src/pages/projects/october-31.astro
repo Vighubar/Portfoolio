@@ -109,14 +109,14 @@ import Layout from "../../layouts/Layout.astro";
   @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Nunito:wght@700&display=swap');
 
   :root {
-    --oct-bg:       #0d0a06;
-    --oct-deep:     #150f07;
-    --oct-amber:    #c47a14;
-    --oct-purple:   #5b3fa0;
-    --oct-blue:     #4a7fff;
-    --oct-cream:    #e8c88a;
-    --oct-text:     rgba(255, 255, 255, 0.82);
-    --oct-divider:  rgba(196, 122, 20, 0.25);
+    --oct-bg:       #2a2000;
+    --oct-deep:     #1e1700;
+    --oct-amber:    #e8a020;
+    --oct-gray:     #6b6b6b;
+    --oct-gray-hover: #8f8f8f;
+    --oct-cream:    #c8a84a;
+    --oct-text:     #1a1200;
+    --oct-divider:  rgba(232, 160, 32, 0.3);
   }
 
   .cs-wrap {
@@ -124,7 +124,7 @@ import Layout from "../../layouts/Layout.astro";
     min-height: 100vh;
     padding-top: 56px;
     font-family: 'Nunito', sans-serif;
-    color: #fff;
+    color: var(--oct-text);
   }
 
   /* ── split ── */
@@ -152,7 +152,7 @@ import Layout from "../../layouts/Layout.astro";
     font-family: 'Space Mono', monospace;
     font-weight: 700;
     font-size: clamp(36px, 5vw, 72px);
-    color: var(--oct-amber);
+    color: var(--oct-text);
     line-height: 1;
     letter-spacing: -0.02em;
   }
@@ -161,7 +161,7 @@ import Layout from "../../layouts/Layout.astro";
     font-family: 'Space Mono', monospace;
     font-weight: 400;
     font-size: clamp(11px, 1vw, 13px);
-    color: var(--oct-cream);
+    color: #3a2d00;
     letter-spacing: 0.05em;
     margin-top: 10px;
     margin-bottom: 32px;
@@ -170,7 +170,7 @@ import Layout from "../../layouts/Layout.astro";
 
   .cs-img-wrap {
     flex: 1;
-    border: 2px solid var(--oct-purple);
+    border: 2px solid var(--oct-gray);
     overflow: hidden;
     min-height: 0;
     position: relative;
@@ -220,7 +220,7 @@ import Layout from "../../layouts/Layout.astro";
     font-family: 'Space Mono', monospace;
     font-weight: 700;
     font-size: clamp(15px, 1.6vw, 22px);
-    color: #fff;
+    color: var(--oct-text);
     letter-spacing: 0.02em;
     transition: color 0.2s;
     text-transform: uppercase;
@@ -228,13 +228,13 @@ import Layout from "../../layouts/Layout.astro";
 
   .cs-row-btn:hover .cs-row-title,
   .cs-row-btn[aria-expanded="true"] .cs-row-title {
-    color: var(--oct-amber);
+    color: #000;
   }
 
   .cs-row-arrow {
     width: 44px;
     height: 44px;
-    background: var(--oct-purple);
+    background: var(--oct-gray);
     color: #fff;
     font-size: 16px;
     display: flex;
@@ -245,11 +245,11 @@ import Layout from "../../layouts/Layout.astro";
   }
 
   .cs-row-btn:hover .cs-row-arrow {
-    background: var(--oct-blue);
+    background: var(--oct-gray-hover);
   }
 
   .cs-row-btn[aria-expanded="true"] .cs-row-arrow {
-    background: var(--oct-amber);
+    background: var(--oct-gray-hover);
     transform: rotate(90deg);
   }
 
@@ -277,7 +277,7 @@ import Layout from "../../layouts/Layout.astro";
     font-family: 'Nunito', sans-serif;
     font-weight: 700;
     font-size: clamp(14px, 1.2vw, 16px);
-    color: var(--oct-text);
+    color: #1a1200;
     line-height: 1.85;
     max-width: 480px;
   }
@@ -293,8 +293,8 @@ import Layout from "../../layouts/Layout.astro";
     font-family: 'Space Mono', monospace;
     font-size: 11px;
     letter-spacing: 0.06em;
-    color: var(--oct-cream);
-    border: 1px solid rgba(232, 200, 138, 0.3);
+    color: #3a2d00;
+    border: 1px solid rgba(58, 45, 0, 0.35);
     padding: 4px 12px;
   }
 
@@ -308,12 +308,12 @@ import Layout from "../../layouts/Layout.astro";
     font-family: 'Space Mono', monospace;
     font-size: 12px;
     letter-spacing: 0.08em;
-    color: rgba(232, 200, 138, 0.4);
+    color: rgba(58, 45, 0, 0.5);
     text-decoration: none;
     transition: color 0.2s;
     text-transform: uppercase;
   }
-  .cs-back-link:hover { color: var(--oct-amber); }
+  .cs-back-link:hover { color: #1a1200; }
 
   /* ── responsive ── */
   @media (max-width: 900px) {
@@ -330,13 +330,13 @@ import Layout from "../../layouts/Layout.astro";
 
 <style is:global>
   body:has(.cs-wrap) #site-nav {
-    background-color: #150f07;
+    background-color: #1e1700;
   }
   body:has(.cs-wrap) #site-nav.scrolled {
-    background-color: rgba(21, 15, 7, 0.7);
+    background-color: rgba(30, 23, 0, 0.85);
   }
   body:has(.cs-wrap) .site-footer {
-    background-color: #150f07;
+    background-color: #1e1700;
   }
 </style>
 
