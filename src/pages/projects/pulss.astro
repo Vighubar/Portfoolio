@@ -43,7 +43,7 @@ import Layout from "../../layouts/Layout.astro";
           </div>
         </div>
 
-        <div class="cs-row" data-img="/pulss-abt.png">
+        <div class="cs-row" data-img="/pulss-process.png">
           <button class="cs-row-btn" aria-expanded="false">
             <span class="cs-row-title">The Challenge</span>
             <span class="cs-row-arrow">►</span>
@@ -182,17 +182,17 @@ import Layout from "../../layouts/Layout.astro";
     flex: 1;
     border: 2px solid rgba(255, 49, 90, 0.3);
     overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(6, 6, 47, 0.6);
     min-height: 0;
+    position: relative;
   }
 
   .cs-img-wrap img {
+    position: absolute;
+    inset: 0;
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    object-fit: cover;
+    object-position: center top;
     display: block;
     transition: opacity 0.25s ease;
   }
