@@ -7,13 +7,17 @@ import Layout from "../../layouts/Layout.astro";
 
     <div class="cs-split">
 
-      <!-- LEFT: title + image -->
+      <!-- LEFT: title + video -->
       <div class="cs-left">
         <div class="cs-left-inner">
           <h1 class="cs-title">Arduino MX5</h1>
           <p class="cs-sub">Physical Computing</p>
-          <div class="cs-img-wrap">
-            <img id="cs-active-img" src="/miot1.png" alt="Arduino Miata coaster" />
+          <div class="cs-video-wrap">
+            <video
+              class="cs-video"
+              src="/arduino-miata.mp4"
+              controls
+            ></video>
           </div>
         </div>
       </div>
@@ -21,7 +25,7 @@ import Layout from "../../layouts/Layout.astro";
       <!-- RIGHT: accordion -->
       <div class="cs-right">
 
-        <div class="cs-row" data-img="/miot2.png">
+        <div class="cs-row">
           <button class="cs-row-btn" aria-expanded="false">
             <span class="cs-row-title">About the Project</span>
             <span class="cs-row-arrow">►</span>
@@ -41,7 +45,7 @@ import Layout from "../../layouts/Layout.astro";
           </div>
         </div>
 
-        <div class="cs-row" data-img="/miot3.png">
+        <div class="cs-row">
           <button class="cs-row-btn" aria-expanded="false">
             <span class="cs-row-title">The Challenge</span>
             <span class="cs-row-arrow">►</span>
@@ -55,7 +59,7 @@ import Layout from "../../layouts/Layout.astro";
           </div>
         </div>
 
-        <div class="cs-row" data-img="/miot4.png">
+        <div class="cs-row">
           <button class="cs-row-btn" aria-expanded="false">
             <span class="cs-row-title">The Process</span>
             <span class="cs-row-arrow">►</span>
@@ -69,7 +73,7 @@ import Layout from "../../layouts/Layout.astro";
           </div>
         </div>
 
-        <div class="cs-row" data-img="/miot5.png">
+        <div class="cs-row">
           <button class="cs-row-btn" aria-expanded="false">
             <span class="cs-row-title">What I Learned</span>
             <span class="cs-row-arrow">►</span>
@@ -83,14 +87,8 @@ import Layout from "../../layouts/Layout.astro";
           </div>
         </div>
 
-        <!-- video button at bottom -->
+        <!-- back link -->
         <div class="cs-back">
-          <video
-            class="cs-video"
-            src="/arduino-miata.mp4"
-            controls
-            style="width: 100%; max-width: 100%; display: block; margin-bottom: 24px;"
-          ></video>
         </div>
 
       </div>
@@ -175,6 +173,22 @@ import Layout from "../../layouts/Layout.astro";
     object-position: center;
     display: block;
     transition: opacity 0.25s ease;
+  }
+
+  .cs-video-wrap {
+    flex: 1;
+    overflow: hidden;
+    min-height: 0;
+    position: relative;
+    background: #000;
+    border-radius: 4px;
+  }
+
+  .cs-video {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
   }
 
   /* ── right ── */
@@ -338,7 +352,6 @@ import Layout from "../../layouts/Layout.astro";
 
 <script>
   const rows = document.querySelectorAll<HTMLElement>('.cs-row');
-  const activeImg = document.getElementById('cs-active-img') as HTMLImageElement;
 
   rows.forEach(row => {
     const btn = row.querySelector<HTMLButtonElement>('.cs-row-btn')!;
@@ -355,15 +368,6 @@ import Layout from "../../layouts/Layout.astro";
       if (!isOpen) {
         btn.setAttribute('aria-expanded', 'true');
         body.classList.add('open');
-
-        const newImg = row.dataset.img;
-        if (newImg && activeImg.src !== window.location.origin + newImg) {
-          activeImg.style.opacity = '0';
-          setTimeout(() => {
-            activeImg.src = newImg;
-            activeImg.style.opacity = '1';
-          }, 200);
-        }
       }
     });
   });
