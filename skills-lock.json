@@ -7,6 +7,12 @@
       "skillPath": "skills/agent-browser/SKILL.md",
       "computedHash": "228f87d57035100d9dc6efcfc05aafd4b6e3962adacaa04b8217ab2fadb15dc8"
     },
+    "portfolio-audit": {
+      "source": "hey-stefan/portfolio-audit",
+      "sourceType": "github",
+      "skillPath": "SKILL.md",
+      "computedHash": "b0bf37b4fe9f38f54a1b4c19b8f489e493558d114df8f436b03e873a9ecfcec8"
+    },
     "web-design-guidelines": {
       "source": "vercel-labs/agent-skills",
       "sourceType": "github",

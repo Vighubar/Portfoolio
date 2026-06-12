@@ -1,0 +1,251 @@
+---
+import Layout from "../../layouts/Layout.astro";
+---
+
+<Layout title="Arduino MX5 — Kelly-Leontine Merilo">
+  <div class="cs-page">
+    <main class="cs-main">
+
+      <a href="/" class="back-link">← Back</a>
+
+      <!-- Header -->
+      <header class="cs-header">
+        <div class="cs-tags">
+          <span class="cs-tag">Arduino</span>
+          <span class="cs-tag">3D Modelling</span>
+          <span class="cs-tag">Fusion 360</span>
+          <span class="cs-tag">Physical Computing</span>
+        </div>
+        <h1 class="cs-title">Miata Arduino Coaster</h1>
+        <p class="cs-subtitle">
+          The Miata Coaster is a 3D printed model of a Mazda MX5, built around an Arduino brain. Place something on top of it and the headlights pop up while RGB lights switch on across the front, back and underneath.
+        </p>
+      </header>
+
+      <!-- Video -->
+      <div class="cs-video-wrap">
+        <video
+          class="cs-video"
+          src="/arduino-miata.mp4"
+          autoplay
+          muted
+          loop
+          playsinline
+          controls
+        ></video>
+      </div>
+
+      <!-- Meta -->
+      <div class="cs-meta">
+        <div class="cs-meta-item">
+          <span class="cs-meta-label">Role</span>
+          <span class="cs-meta-value">Solo — Design, Code, Build</span>
+        </div>
+        <div class="cs-meta-item">
+          <span class="cs-meta-label">Tools</span>
+          <span class="cs-meta-value">Arduino, Fusion 360, 3D Printing, Soldering</span>
+        </div>
+        <div class="cs-meta-item">
+          <span class="cs-meta-label">Status</span>
+          <span class="cs-meta-value">Work in progress</span>
+        </div>
+      </div>
+
+      <!-- PSO cards -->
+      <div class="cs-pso">
+        <div class="cs-pso-card">
+          <h2 class="cs-pso-label">About</h2>
+          <p class="cs-pso-text">An Arduino project made as part of an Arduino course. The idea is to model the body of a Mazda Miata MX5 and turn it into a coaster that pops up its headlights and lights up RGB lights in the front, back and underneath when an item is placed on top of it.</p>
+        </div>
+        <div class="cs-pso-card">
+          <h2 class="cs-pso-label">The Challenge</h2>
+          <p class="cs-pso-text">The assignment was open ended — the goal was simply to get familiar with coding and how Arduino components work together. There wasn't really a problem to solve, it was more about learning something new in a fun and hands-on way.</p>
+        </div>
+        <div class="cs-pso-card">
+          <h2 class="cs-pso-label">What I Learned</h2>
+          <p class="cs-pso-text">Soldering, modelling in Fusion 360, how Arduino actually works on a code level, and the basics of 3D printing. If I were to do it differently, I would remodel the whole body and print the mechanism in a different way.</p>
+        </div>
+      </div>
+
+      <!-- Body -->
+      <article class="cs-body">
+
+        <h2>The Process</h2>
+        <p>I started by sketching out some design ideas by hand, then modelled the body in Fusion 360 based on an existing blueprint of the car. Along the way I got a lot of mentoring from my teacher on the Arduino side, and feedback from classmates on the 3D model.</p>
+        <p>The design isn't final yet — I'm still not fully satisfied with how it turned out. The project is still a work in progress and I'm continuing to improve it.</p>
+
+        <h2>Next Steps</h2>
+        <p>Remodel the full body from scratch with better proportions, rework the pop-up headlight mechanism for smoother movement, and refine the RGB lighting logic.</p>
+
+      </article>
+
+    </main>
+  </div>
+</Layout>
+
+<style>
+  .cs-page {
+    min-height: 100vh;
+    background-color: #e4e3eb;
+  }
+
+  .cs-main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 100px 58px 80px;
+  }
+
+  .back-link {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    color: #483A74;
+    text-decoration: none;
+    display: inline-block;
+    margin-bottom: 48px;
+    transition: color 0.2s;
+  }
+
+  .back-link:hover { color: #7863BC; }
+
+  /* Header */
+  .cs-header { margin-bottom: 48px; }
+
+  .cs-tags {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+  }
+
+  .cs-tag {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #7863BC;
+    background: rgba(120, 99, 188, 0.12);
+    padding: 4px 12px;
+  }
+
+  .cs-title {
+    font-family: 'Carter One', sans-serif;
+    font-size: clamp(36px, 5vw, 72px);
+    color: #000;
+    line-height: 1;
+    margin-bottom: 20px;
+  }
+
+  .cs-subtitle {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    color: #483A74;
+    line-height: 1.6;
+    max-width: 720px;
+  }
+
+  /* Video */
+  .cs-video-wrap {
+    width: 100%;
+    margin-bottom: 48px;
+    background: #000;
+  }
+
+  .cs-video {
+    width: 100%;
+    max-height: 600px;
+    object-fit: contain;
+    display: block;
+  }
+
+  /* Meta */
+  .cs-meta {
+    display: flex;
+    gap: 48px;
+    flex-wrap: wrap;
+    padding: 24px 0;
+    border-top: 3px solid #483A74;
+    border-bottom: 3px solid #483A74;
+    margin-bottom: 48px;
+  }
+
+  .cs-meta-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .cs-meta-label {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #7863BC;
+  }
+
+  .cs-meta-value {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    color: #000;
+  }
+
+  /* PSO */
+  .cs-pso {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 64px;
+  }
+
+  .cs-pso-card {
+    background: #483A74;
+    padding: 28px 24px;
+  }
+
+  .cs-pso-label {
+    font-family: 'Carter One', sans-serif;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #AD9ED4;
+    margin-bottom: 12px;
+  }
+
+  .cs-pso-text {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    color: #EFEEF6;
+    line-height: 1.6;
+  }
+
+  /* Body */
+  .cs-body {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    color: #000;
+    line-height: 1.7;
+    max-width: 720px;
+  }
+
+  .cs-body h2 {
+    font-family: 'Carter One', sans-serif;
+    font-size: 28px;
+    color: #483A74;
+    margin: 48px 0 16px;
+    line-height: 1;
+  }
+
+  .cs-body p { margin-bottom: 20px; }
+
+  @media (max-width: 900px) {
+    .cs-main { padding: 80px 24px 60px; }
+    .cs-pso { grid-template-columns: 1fr; }
+    .cs-meta { flex-direction: column; gap: 16px; }
+  }
+</style>
