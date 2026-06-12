@@ -3,249 +3,368 @@ import Layout from "../../layouts/Layout.astro";
 ---
 
 <Layout title="Arduino MX5 — Kelly-Leontine Merilo">
-  <div class="cs-page">
-    <main class="cs-main">
+  <div class="cs-wrap">
 
-      <a href="/" class="back-link">← Back</a>
+    <div class="cs-split">
 
-      <!-- Header -->
-      <header class="cs-header">
-        <div class="cs-tags">
-          <span class="cs-tag">Arduino</span>
-          <span class="cs-tag">3D Modelling</span>
-          <span class="cs-tag">Fusion 360</span>
-          <span class="cs-tag">Physical Computing</span>
-        </div>
-        <h1 class="cs-title">Miata Arduino Coaster</h1>
-        <p class="cs-subtitle">
-          The Miata Coaster is a 3D printed model of a Mazda MX5, built around an Arduino brain. Place something on top of it and the headlights pop up while RGB lights switch on across the front, back and underneath.
-        </p>
-      </header>
-
-      <!-- Video -->
-      <div class="cs-video-wrap">
-        <video
-          class="cs-video"
-          src="/arduino-miata.mp4"
-          autoplay
-          muted
-          loop
-          playsinline
-          controls
-        ></video>
-      </div>
-
-      <!-- Meta -->
-      <div class="cs-meta">
-        <div class="cs-meta-item">
-          <span class="cs-meta-label">Role</span>
-          <span class="cs-meta-value">Solo — Design, Code, Build</span>
-        </div>
-        <div class="cs-meta-item">
-          <span class="cs-meta-label">Tools</span>
-          <span class="cs-meta-value">Arduino, Fusion 360, 3D Printing, Soldering</span>
-        </div>
-        <div class="cs-meta-item">
-          <span class="cs-meta-label">Status</span>
-          <span class="cs-meta-value">Work in progress</span>
+      <!-- LEFT: title + image -->
+      <div class="cs-left">
+        <div class="cs-left-inner">
+          <h1 class="cs-title">Arduino MX5</h1>
+          <p class="cs-sub">Physical Computing</p>
+          <div class="cs-img-wrap">
+            <img id="cs-active-img" src="/miot1.png" alt="Arduino Miata coaster" />
+          </div>
         </div>
       </div>
 
-      <!-- PSO cards -->
-      <div class="cs-pso">
-        <div class="cs-pso-card">
-          <h2 class="cs-pso-label">About</h2>
-          <p class="cs-pso-text">An Arduino project made as part of an Arduino course. The idea is to model the body of a Mazda Miata MX5 and turn it into a coaster that pops up its headlights and lights up RGB lights in the front, back and underneath when an item is placed on top of it.</p>
+      <!-- RIGHT: accordion -->
+      <div class="cs-right">
+
+        <div class="cs-row" data-img="/miot2.png">
+          <button class="cs-row-btn" aria-expanded="false">
+            <span class="cs-row-title">About the Project</span>
+            <span class="cs-row-arrow">►</span>
+          </button>
+          <div class="cs-row-body">
+            <div class="cs-row-body-inner">
+              <p class="cs-body">
+                The Miata Coaster is a 3D printed model of a Mazda MX5, built around an Arduino brain. Place something on top of it and the headlights pop up while RGB lights switch on across the front, back and underneath. Built solo during an Arduino course to learn soldering, coding and 3D modelling in Fusion 360 from scratch.
+              </p>
+              <div class="cs-tags">
+                <span class="cs-tag">Arduino</span>
+                <span class="cs-tag">3D Modelling</span>
+                <span class="cs-tag">Fusion 360</span>
+                <span class="cs-tag">Physical Computing</span>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="cs-pso-card">
-          <h2 class="cs-pso-label">The Challenge</h2>
-          <p class="cs-pso-text">The assignment was open ended — the goal was simply to get familiar with coding and how Arduino components work together. There wasn't really a problem to solve, it was more about learning something new in a fun and hands-on way.</p>
+
+        <div class="cs-row" data-img="/miot3.png">
+          <button class="cs-row-btn" aria-expanded="false">
+            <span class="cs-row-title">The Challenge</span>
+            <span class="cs-row-arrow">►</span>
+          </button>
+          <div class="cs-row-body">
+            <div class="cs-row-body-inner">
+              <p class="cs-body">
+                The assignment was open ended — the goal was simply to get familiar with coding and how Arduino components work together. There wasn't really a problem to solve, it was more about learning something new in a fun and hands-on way.
+              </p>
+            </div>
+          </div>
         </div>
-        <div class="cs-pso-card">
-          <h2 class="cs-pso-label">What I Learned</h2>
-          <p class="cs-pso-text">Soldering, modelling in Fusion 360, how Arduino actually works on a code level, and the basics of 3D printing. If I were to do it differently, I would remodel the whole body and print the mechanism in a different way.</p>
+
+        <div class="cs-row" data-img="/miot4.png">
+          <button class="cs-row-btn" aria-expanded="false">
+            <span class="cs-row-title">The Process</span>
+            <span class="cs-row-arrow">►</span>
+          </button>
+          <div class="cs-row-body">
+            <div class="cs-row-body-inner">
+              <p class="cs-body">
+                I started by sketching out some design ideas by hand, then modelled the body in Fusion 360 based on an existing blueprint of the car. Along the way I got a lot of mentoring from my teacher on the Arduino side, and feedback from classmates on the 3D model. The design isn't final yet — I'm still not fully satisfied with how it turned out.
+              </p>
+            </div>
+          </div>
         </div>
+
+        <div class="cs-row" data-img="/miot5.png">
+          <button class="cs-row-btn" aria-expanded="false">
+            <span class="cs-row-title">What I Learned</span>
+            <span class="cs-row-arrow">►</span>
+          </button>
+          <div class="cs-row-body">
+            <div class="cs-row-body-inner">
+              <p class="cs-body">
+                This project taught me a lot of new skills all at once: soldering, modelling in Fusion 360, how Arduino actually works on a code level, and the basics of 3D printing. If I were to do it differently, I would remodel the whole body and print the mechanism in a different way. The project is still a work in progress and I'm continuing to improve it.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- video button at bottom -->
+        <div class="cs-back">
+          <a
+            href="/arduino-miata.mp4"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="cs-proto-btn"
+          >Watch Video →</a>
+        </div>
+
       </div>
+    </div>
 
-      <!-- Body -->
-      <article class="cs-body">
-
-        <h2>The Process</h2>
-        <p>I started by sketching out some design ideas by hand, then modelled the body in Fusion 360 based on an existing blueprint of the car. Along the way I got a lot of mentoring from my teacher on the Arduino side, and feedback from classmates on the 3D model.</p>
-        <p>The design isn't final yet — I'm still not fully satisfied with how it turned out. The project is still a work in progress and I'm continuing to improve it.</p>
-
-        <h2>Next Steps</h2>
-        <p>Remodel the full body from scratch with better proportions, rework the pop-up headlight mechanism for smoother movement, and refine the RGB lighting logic.</p>
-
-      </article>
-
-    </main>
   </div>
 </Layout>
 
 <style>
-  .cs-page {
+  :root {
+    --mx5-bg:         #2d2b3d;
+    --mx5-accent:     #8B7BA8;
+    --mx5-accent-h:   #AD9ED4;
+    --mx5-text:       #EFEEF6;
+    --mx5-text-muted: rgba(239, 238, 246, 0.72);
+    --mx5-divider:    rgba(120, 99, 188, 0.25);
+  }
+
+  .cs-wrap {
+    background: var(--mx5-bg);
     min-height: 100vh;
-    background-color: #e4e3eb;
-  }
-
-  .cs-main {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 100px 58px 80px;
-  }
-
-  .back-link {
+    padding-top: 56px;
     font-family: 'Nunito', sans-serif;
-    font-weight: 700;
-    font-size: 16px;
-    color: #483A74;
-    text-decoration: none;
-    display: inline-block;
-    margin-bottom: 48px;
-    transition: color 0.2s;
+    color: var(--mx5-text);
   }
 
-  .back-link:hover { color: #7863BC; }
+  /* ── split ── */
+  .cs-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: calc(100vh - 56px);
+  }
 
-  /* Header */
-  .cs-header { margin-bottom: 48px; }
+  /* ── left ── */
+  .cs-left {
+    position: sticky;
+    top: 56px;
+    height: calc(100vh - 56px);
+  }
 
-  .cs-tags {
+  .cs-left-inner {
+    padding: 60px 48px 48px 72px;
     display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-    margin-bottom: 16px;
-  }
-
-  .cs-tag {
-    font-family: 'Nunito', sans-serif;
-    font-weight: 700;
-    font-size: 12px;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: #7863BC;
-    background: rgba(120, 99, 188, 0.12);
-    padding: 4px 12px;
+    flex-direction: column;
+    height: 100%;
   }
 
   .cs-title {
     font-family: 'Carter One', sans-serif;
-    font-size: clamp(36px, 5vw, 72px);
-    color: #000;
+    font-weight: 700;
+    font-size: clamp(48px, 6vw, 80px);
+    color: var(--mx5-text);
     line-height: 1;
-    margin-bottom: 20px;
+    letter-spacing: -0.01em;
   }
 
-  .cs-subtitle {
+  .cs-sub {
     font-family: 'Nunito', sans-serif;
     font-weight: 700;
-    font-size: 20px;
-    color: #483A74;
-    line-height: 1.6;
-    max-width: 720px;
+    font-size: clamp(11px, 1vw, 14px);
+    color: var(--mx5-accent);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-top: 8px;
+    margin-bottom: 40px;
+    line-height: 1.5;
   }
 
-  /* Video */
-  .cs-video-wrap {
-    width: 100%;
-    margin-bottom: 48px;
-    background: #000;
+  .cs-img-wrap {
+    flex: 1;
+    overflow: hidden;
+    min-height: 0;
+    position: relative;
   }
 
-  .cs-video {
+  .cs-img-wrap img {
+    position: absolute;
+    inset: 0;
     width: 100%;
-    max-height: 600px;
-    object-fit: contain;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
     display: block;
+    transition: opacity 0.25s ease;
   }
 
-  /* Meta */
-  .cs-meta {
-    display: flex;
-    gap: 48px;
-    flex-wrap: wrap;
-    padding: 24px 0;
-    border-top: 3px solid #483A74;
-    border-bottom: 3px solid #483A74;
-    margin-bottom: 48px;
-  }
-
-  .cs-meta-item {
+  /* ── right ── */
+  .cs-right {
+    padding: 0 72px 0 0;
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    padding-top: 180px;
   }
 
-  .cs-meta-label {
-    font-family: 'Nunito', sans-serif;
-    font-weight: 700;
-    font-size: 12px;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: #7863BC;
+  /* ── rows ── */
+  .cs-row {
+    border-bottom: 1px solid var(--mx5-divider);
+  }
+  .cs-row:first-child {
+    border-top: 1px solid var(--mx5-divider);
   }
 
-  .cs-meta-value {
-    font-family: 'Nunito', sans-serif;
-    font-weight: 700;
-    font-size: 16px;
-    color: #000;
-  }
-
-  /* PSO */
-  .cs-pso {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+  .cs-row-btn {
+    width: 100%;
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 28px 0 28px 48px;
     gap: 16px;
-    margin-bottom: 64px;
+    text-align: left;
   }
 
-  .cs-pso-card {
-    background: #483A74;
-    padding: 28px 24px;
-  }
-
-  .cs-pso-label {
+  .cs-row-title {
     font-family: 'Carter One', sans-serif;
-    font-size: 14px;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: #AD9ED4;
-    margin-bottom: 12px;
-  }
-
-  .cs-pso-text {
-    font-family: 'Nunito', sans-serif;
     font-weight: 700;
-    font-size: 15px;
-    color: #EFEEF6;
-    line-height: 1.6;
+    font-size: clamp(15px, 1.6vw, 22px);
+    color: var(--mx5-text);
+    letter-spacing: 0.02em;
+    transition: color 0.2s;
+    text-transform: uppercase;
   }
 
-  /* Body */
+  .cs-row-btn:hover .cs-row-title,
+  .cs-row-btn[aria-expanded="true"] .cs-row-title {
+    color: var(--mx5-accent-h);
+  }
+
+  .cs-row-arrow {
+    width: 44px;
+    height: 44px;
+    background: var(--mx5-accent);
+    color: #fff;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: background 0.2s, transform 0.3s;
+  }
+
+  .cs-row-btn:hover .cs-row-arrow {
+    background: var(--mx5-accent-h);
+  }
+
+  .cs-row-btn[aria-expanded="true"] .cs-row-arrow {
+    background: var(--mx5-accent-h);
+    transform: rotate(90deg);
+  }
+
+  /* ── body ── */
+  .cs-row-body {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.35s ease;
+  }
+
+  .cs-row-body.open {
+    grid-template-rows: 1fr;
+  }
+
+  .cs-row-body-inner {
+    overflow: hidden;
+    padding: 0 0 0 48px;
+  }
+
+  .cs-row-body.open .cs-row-body-inner {
+    padding-bottom: 28px;
+  }
+
   .cs-body {
     font-family: 'Nunito', sans-serif;
     font-weight: 700;
-    font-size: 18px;
-    color: #000;
-    line-height: 1.7;
-    max-width: 720px;
+    font-size: clamp(14px, 1.2vw, 16px);
+    color: var(--mx5-text-muted);
+    line-height: 1.85;
+    max-width: 480px;
   }
 
-  .cs-body h2 {
+  .cs-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 16px;
+  }
+
+  .cs-tag {
+    font-family: 'Nunito', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    color: var(--mx5-accent);
+    border: 1px solid var(--mx5-divider);
+    padding: 4px 12px;
+    text-transform: uppercase;
+  }
+
+  .cs-proto-btn {
+    display: inline-block;
+    background: var(--mx5-accent);
+    color: #fff;
     font-family: 'Carter One', sans-serif;
-    font-size: 28px;
-    color: #483A74;
-    margin: 48px 0 16px;
-    line-height: 1;
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 11px 28px;
+    text-decoration: none;
+    margin-top: 20px;
+    transition: background 0.2s;
+  }
+  .cs-proto-btn:hover { background: var(--mx5-accent-h); }
+
+  /* ── back ── */
+  .cs-back {
+    padding: 32px 0 48px 48px;
+    margin-top: auto;
   }
 
-  .cs-body p { margin-bottom: 20px; }
-
+  /* ── responsive ── */
   @media (max-width: 900px) {
-    .cs-main { padding: 80px 24px 60px; }
-    .cs-pso { grid-template-columns: 1fr; }
-    .cs-meta { flex-direction: column; gap: 16px; }
+    .cs-split { grid-template-columns: 1fr; }
+    .cs-left { position: relative; top: 0; height: auto; }
+    .cs-left-inner { padding: 40px 24px 32px; }
+    .cs-img-wrap { min-height: 220px; flex: none; }
+    .cs-right { padding: 0 24px; padding-top: 0; }
+    .cs-row-btn { padding-left: 0; }
+    .cs-row-body-inner { padding-left: 0; }
+    .cs-back { padding-left: 0; }
   }
 </style>
+
+<style is:global>
+  body:has(.cs-wrap) #site-nav {
+    background-color: #2d2b3d;
+  }
+  body:has(.cs-wrap) #site-nav.scrolled {
+    background-color: rgba(45, 43, 61, 0.8);
+  }
+  body:has(.cs-wrap) .site-footer {
+    background-color: #2d2b3d;
+  }
+</style>
+
+<script>
+  const rows = document.querySelectorAll<HTMLElement>('.cs-row');
+  const activeImg = document.getElementById('cs-active-img') as HTMLImageElement;
+
+  rows.forEach(row => {
+    const btn = row.querySelector<HTMLButtonElement>('.cs-row-btn')!;
+    const body = row.querySelector<HTMLElement>('.cs-row-body')!;
+
+    btn.addEventListener('click', () => {
+      const isOpen = btn.getAttribute('aria-expanded') === 'true';
+
+      rows.forEach(r => {
+        r.querySelector<HTMLButtonElement>('.cs-row-btn')!.setAttribute('aria-expanded', 'false');
+        r.querySelector<HTMLElement>('.cs-row-body')!.classList.remove('open');
+      });
+
+      if (!isOpen) {
+        btn.setAttribute('aria-expanded', 'true');
+        body.classList.add('open');
+
+        const newImg = row.dataset.img;
+        if (newImg && activeImg.src !== window.location.origin + newImg) {
+          activeImg.style.opacity = '0';
+          setTimeout(() => {
+            activeImg.src = newImg;
+            activeImg.style.opacity = '1';
+          }, 200);
+        }
+      }
+    });
+  });
+</script>
