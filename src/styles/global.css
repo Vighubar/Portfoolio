@@ -1,8 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Shrikhand&family=Carter+One&family=Nunito:wght@700&display=swap');
 
-@import "tailwindcss";
-@plugin "@tailwindcss/typography";
-
 :root {
   --color-dark-purple: #483A74;
   --color-medium-purple: #7863BC;
