@@ -66,28 +66,6 @@ input {
   clip-path: inset(0 2px);
 }
 
-/* The design's river shape, grown outward on every side by --widen using a same-colour stroke. */
-.river {
-  --widen: 28px;
-  position: absolute;
-  left: 0;
-  top: 0;
-  pointer-events: none;
-  stroke-linejoin: round;
-}
-
-.river__bank {
-  fill: #4a6fa5;
-  stroke: #4a6fa5;
-  stroke-width: calc(var(--widen) * 2 + 4px);
-}
-
-.river__water {
-  fill: #8aaee0;
-  stroke: #8aaee0;
-  stroke-width: calc(var(--widen) * 2);
-}
-
 .boat-route {
   position: absolute;
 }
