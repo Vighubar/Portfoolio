@@ -210,9 +210,8 @@ input {
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
   overflow: hidden;
-  font-family: var(--font-body);
-  font-size: 10px;
-  font-weight: 500;
+  font-family: var(--font-display);
+  font-size: 11px;
   line-height: 12px;
   color: rgb(255 255 255 / 0.9);
   overflow-wrap: anywhere;
