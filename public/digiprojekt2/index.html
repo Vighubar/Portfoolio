@@ -25,27 +25,35 @@
       <div class="sidebar__history" id="board-list"></div>
     </nav>
 
-    <div class="scene-wrap" id="scene-wrap">
-      <main class="scene" id="scene" aria-label="Projects">
-        <img class="asset ground" src="ground.svg" alt="" width="938" height="820" style="left:0;top:204px" />
-        <img class="asset" src="river.svg" alt="" width="616" height="822" style="left:165px;top:203px" />
+    <div class="scene-area">
+      <div class="scene-wrap" id="scene-wrap">
+        <div class="scene-sizer" id="scene-sizer"></div>
+        <main class="scene" id="scene" aria-label="Projects">
+          <img class="asset ground" src="ground.svg" alt="" width="938" height="820" style="left:0;top:204px" />
+          <svg class="asset river" id="river" width="938" height="0" aria-hidden="true"></svg>
 
-        <img class="asset" src="bush.svg" alt="" width="139" height="112" style="left:423px;top:422px" />
-        <img class="asset" src="bush.svg" alt="" width="139" height="112" style="left:33px;top:192px" />
-        <img class="asset" src="bush.svg" alt="" width="139" height="112" style="left:130px;top:915px" />
+          <img class="asset" src="bush.svg" alt="" width="139" height="112" style="left:423px;top:422px" />
+          <img class="asset" src="bush.svg" alt="" width="139" height="112" style="left:33px;top:192px" />
+          <img class="asset" src="bush.svg" alt="" width="139" height="112" style="left:130px;top:915px" />
+          <div id="more-bushes"></div>
 
-        <svg class="boat-route" id="boat-route" width="0" height="0" aria-hidden="true"></svg>
-        <img class="asset boat" id="boat" src="boat.svg" alt="" width="132" height="140" />
-        <img class="asset" src="claud.svg" alt="" width="96" height="62" style="left:29px;top:17px" />
-        <img class="asset" src="claud.svg" alt="" width="96" height="62" style="left:497px;top:109px" />
-        <img class="asset" src="sun.svg" alt="" width="85" height="87" style="left:780px;top:28px" />
+          <svg class="boat-route" id="boat-route" width="0" height="0" aria-hidden="true"></svg>
+          <img class="asset boat" id="boat" src="boat.svg" alt="" width="132" height="140" />
+          <img class="asset" src="claud.svg" alt="" width="96" height="62" style="left:29px;top:17px" />
+          <img class="asset" src="claud.svg" alt="" width="96" height="62" style="left:497px;top:109px" />
+          <img class="asset" src="sun.svg" alt="" width="85" height="87" style="left:780px;top:28px" />
 
-        <div id="projects"></div>
+          <div id="projects"></div>
 
-        <img class="asset" src="tree.svg" alt="" width="85" height="147" style="left:915px;top:174px" />
-        <img class="asset" src="tree.svg" alt="" width="85" height="147" style="left:285px;top:569px" />
-        <img class="asset" src="tree.svg" alt="" width="85" height="147" style="left:664px;top:760px" />
-      </main>
+          <img class="asset" src="tree.svg" alt="" width="85" height="147" style="left:915px;top:174px" />
+          <img class="asset" src="tree.svg" alt="" width="85" height="147" style="left:285px;top:569px" />
+          <img class="asset" src="tree.svg" alt="" width="85" height="147" style="left:664px;top:760px" />
+          <div id="more-trees"></div>
+        </main>
+      </div>
+      <button class="add-house" id="add-house" type="button">
+        <span class="add-house__icon" aria-hidden="true">+</span> Add house
+      </button>
     </div>
 
     <aside class="diary" aria-labelledby="diary-title">
@@ -74,6 +82,7 @@
         <input class="modal__input" type="text" name="text" placeholder="new task..." required aria-label="Task text" />
         <button class="modal__add" type="submit">add</button>
       </form>
+      <button class="modal__remove" id="remove-house" type="button">delete house</button>
     </section>
   </div>
 

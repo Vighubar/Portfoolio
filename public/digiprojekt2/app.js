@@ -5,14 +5,26 @@ const GROUND_Y = 205;
 // Extra grass on each side of the design frame, so houses can sit further from the river.
 const SCENE_PAD_X = 110;
 
-// House and sign positions within the 938x1024 design frame; negative x or x past 938 sits in the side padding.
-// growFrom is the point (relative to the house) that stays fixed when the house is enlarged.
+// Each extra scenery section repeats the river below the last one, mirrored left-right every other time.
+const TILE_H = 819.965;
+const MIRROR_X = 962;
+const HOUSE_W = 148;
+const HOUSE_SCALE = 1.3;
+const SIGN_W = 109;
+
+// Plots for the four houses of one section; negative x or x past 938 sits in the side padding.
+// (gx, gy) is the point (relative to the house) that stays fixed when the house is enlarged.
 const SLOTS = [
-  { x: -50, y: 410, signX: 20, signY: 87, growFrom: "50px 0" },
-  { x: 700, y: 248, signX: 17, signY: 83, growFrom: "40px 0" },
-  { x: -50, y: 744, signX: 17, signY: 85, growFrom: "50px 0" },
-  { x: 850, y: 574, signX: 19, signY: 83, growFrom: "0 0" },
+  { x: -50, y: 410, signX: 20, signY: 87, gx: 50, gy: 0 },
+  { x: 700, y: 248, signX: 17, signY: 83, gx: 40, gy: 0 },
+  { x: -50, y: 744, signX: 17, signY: 85, gx: 50, gy: 0 },
+  { x: 850, y: 574, signX: 19, signY: 83, gx: 0, gy: 0 },
 ];
+// The order the river passes the plots of a section.
+const RIVER_ORDER = [1, 0, 3, 2];
+
+const BUSHES = [[423, 422], [33, 192], [130, 915]];
+const TREES = [[915, 174], [285, 569], [664, 760]];
 
 const uid = () => Math.random().toString(36).slice(2, 10);
 const today = () => new Date().toISOString().slice(0, 10);
@@ -30,9 +42,11 @@ function newBoard(name) {
     name,
     created: now,
     updated: now,
-    projects: SLOTS.map(() => ({
+    tiles: 1,
+    projects: SLOTS.map((_, slot) => ({
       id: uid(),
       name: "Example",
+      slot,
       tasks: [{ id: uid(), date: today(), text: "example text", done: false }],
     })),
     diary: [{ id: uid(), date: today(), text: "example text" }],
@@ -40,6 +54,16 @@ function newBoard(name) {
 }
 
 const isBoard = (b) => b && Array.isArray(b.projects) && Array.isArray(b.diary);
+
+// Boards saved before houses could be added have no plots or sections yet.
+function upgradeBoard(board) {
+  board.projects.forEach((p, i) => {
+    if (!Number.isInteger(p.slot)) p.slot = i;
+  });
+  const lastSlot = Math.max(-1, ...board.projects.map((p) => p.slot));
+  board.tiles = Math.max(1, board.tiles || 1, Math.floor(lastSlot / 4) + 1);
+  return board;
+}
 
 function loadStore() {
   try {
@@ -63,6 +87,7 @@ function loadStore() {
 }
 
 const store = loadStore();
+store.boards.forEach(upgradeBoard);
 let state = store.boards.find((b) => b.id === store.activeId);
 
 const persist = () => localStorage.setItem(STORAGE_KEY, JSON.stringify(store));
@@ -79,62 +104,163 @@ const byDate = (a, b) => a.date.localeCompare(b.date);
 const sceneWrap = document.getElementById("scene-wrap");
 const scene = document.getElementById("scene");
 
-// Fit the whole scene, resting on the bottom edge; leftover space continues the sky and grass.
+const sceneSizer = document.getElementById("scene-sizer");
+const sceneHeight = () => SCENE_H + TILE_H * (state.tiles - 1);
+
+// Fit the first section to the screen, resting on the bottom edge; extra sections scroll below it.
 function fitScene() {
-  const { width, height } = sceneWrap.getBoundingClientRect();
+  const width = sceneWrap.clientWidth;
+  const height = sceneWrap.clientHeight;
   const viewW = SCENE_W + SCENE_PAD_X * 2;
   const scale = Math.min(width / viewW, height / SCENE_H);
   const left = (width - viewW * scale) / 2 + SCENE_PAD_X * scale;
   const top = height - SCENE_H * scale;
   scene.style.transform = `translate(${left}px, ${top}px) scale(${scale})`;
+  sceneSizer.style.height = `${top + sceneHeight() * scale}px`;
 
   const horizon = top + GROUND_Y * scale;
   const edge = Math.max(1, scale);
-  sceneWrap.style.background = `linear-gradient(var(--sky) ${horizon - edge}px, var(--grass-edge) ${horizon - edge}px, var(--grass-edge) ${horizon + edge}px, var(--grass) ${horizon + edge}px)`;
+  sceneWrap.style.backgroundImage = `linear-gradient(var(--sky) ${horizon - edge}px, var(--grass-edge) ${horizon - edge}px, var(--grass-edge) ${horizon + edge}px, var(--grass) ${horizon + edge}px)`;
 }
 
 new ResizeObserver(fitScene).observe(sceneWrap);
-fitScene();
+
+/* ---------- Scenery sections ---------- */
+
+// Points below are in the river's own coordinates (river.svg's frame); section k sits TILE_H * k lower.
+const toScene = (k, [x, y]) => [k % 2 ? MIRROR_X - 165 - x : x + 165, y + 203 + TILE_H * k];
+const mirrorX = (k, x, w) => (k % 2 ? MIRROR_X - x - w : x);
+
+// river.svg's shape. Later sections reshape the top to join the bottom of the section above.
+// Only the first section outlines its top (the horizon); no section outlines its bottom, so sections join cleanly.
+const RIVER_TOPS = [
+  {
+    left: "C296.426 45.9432 12.9841 1 12.9841 1",
+    edge: "H209.134",
+    bankStart: "M12.9841 1H209.134",
+    right: "C209.134 1 419.319 42.947 427.535 146.316",
+  },
+  {
+    left: "C296.426 45.9432 17.215 70 17.215 0",
+    edge: "H204.465",
+    bankStart: "M204.465 0",
+    right: "C160 30 419.319 42.947 427.535 146.316",
+  },
+];
+const RIVER_RIGHT =
+  "C435.751 249.686 209.134 235.703 209.134 309.61" +
+  "C209.134 383.516 605.542 338.573 614.785 474.402C624.027 610.23 170.434 577.771 238.214 638.694" +
+  "C305.994 699.617 614.785 789.004 614.785 819.965";
+// The first control point leads into the next section's bank, so the joins stay smooth.
+const RIVER_LEFT =
+  "C383 790 290.229 730.798 56.2139 638.694C-177.801 546.59 482.991 549.806 481.279 474.402" +
+  "C479.568 398.997 -0.366345 393.004 1.00292 294.629C2.37219 196.253 316.281 246.689 306.353 146.316";
+
+function riverShape(k) {
+  const top = RIVER_TOPS[k ? 1 : 0];
+  return {
+    fill: `M306.353 146.316${top.left}${top.edge}${top.right}${RIVER_RIGHT}H427.535${RIVER_LEFT}Z`,
+    banks: `${top.bankStart}${top.right}${RIVER_RIGHT}M427.535 819.965${RIVER_LEFT}${top.left}`,
+  };
+}
+
+// River centerline as cubic curves, split at each bend where a house sits, then out the bottom.
+const FIRST_START = [135, -23];
+const FIRST_BEND = [[165, 37], [355, 47], [366.5, 146]];
+const CONTINUED_BEND = [[110.84, 70], [355, 47], [366.5, 146]];
+const CENTER_CURVES = [
+  [[375.5, 247.5], [105.5, 215.5], [105, 301.5]],
+  [[104, 388], [542, 368], [547.5, 474]],
+  [[553.5, 579.5], [-3.5, 561.5], [147, 638]],
+  [[297.5, 714.5], [521.15, 760], [521.15, TILE_H]],
+];
+const CURVES_PER_TILE = 5;
+// How many curves lead from a section's start to the bend beside each of its plots.
+const DOCK_CURVES = [2, 1, 4, 3];
+
+const SVG_NS = "http://www.w3.org/2000/svg";
+const riverSvg = document.getElementById("river");
+const moreBushes = document.getElementById("more-bushes");
+const moreTrees = document.getElementById("more-trees");
+
+function svgEl(tag, attrs) {
+  const el = document.createElementNS(SVG_NS, tag);
+  for (const [k, v] of Object.entries(attrs)) el.setAttribute(k, v);
+  return el;
+}
+
+function decoration(src, w, h, x, y) {
+  const img = document.createElement("img");
+  Object.assign(img, { className: "asset", src, alt: "", width: w, height: h });
+  img.style.left = `${x}px`;
+  img.style.top = `${y}px`;
+  return img;
+}
+
+function renderScenery() {
+  const fills = [];
+  const banks = [];
+  const bushes = [];
+  const trees = [];
+  for (let k = 0; k < state.tiles; k++) {
+    const y = 203 + TILE_H * k;
+    const transform = k % 2 ? `translate(${MIRROR_X - 165} ${y}) scale(-1 1)` : `translate(165 ${y})`;
+    const shape = riverShape(k);
+    fills.push(svgEl("path", { d: shape.fill, transform, fill: "#8AAEE0" }));
+    banks.push(svgEl("path", { d: shape.banks, transform, fill: "none", stroke: "#4A6FA5", "stroke-width": 2, "stroke-linecap": "round" }));
+    if (!k) continue;
+
+    for (const [x, by] of BUSHES) bushes.push(decoration("bush.svg", 139, 112, mirrorX(k, x, 139), by + TILE_H * k));
+    for (const [x, ty] of TREES) trees.push(decoration("tree.svg", 85, 147, mirrorX(k, x, 85), ty + TILE_H * k));
+  }
+  riverSvg.setAttribute("height", sceneHeight());
+  riverSvg.replaceChildren(...fills, ...banks);
+  moreBushes.replaceChildren(...bushes);
+  moreTrees.replaceChildren(...trees);
+  scene.style.height = `${sceneHeight()}px`;
+  buildRoute();
+  fitScene();
+}
 
 /* ---------- Boat ---------- */
 
-// River centerline in scene coordinates, split at each bend where a house sits.
-const RIVER_SEGMENTS = [
-  "M300 180 C330 240 520 250 531.5 349",
-  "C540.5 450.5 270.5 418.5 270 504.5",
-  "C269 591 707 571 712.5 677",
-  "C718.5 782.5 161.5 764.5 312 841",
-];
-// How many river segments lead from the start to the bend beside each slot's house.
-const DOCK_SEGMENTS = [2, 1, 4, 3];
 const BOAT_ANCHOR = { x: 66, y: 125 };
 const BOAT_START_Y = 232;
 
-const SVG_NS = "http://www.w3.org/2000/svg";
 const routeSvg = document.getElementById("boat-route");
 const boat = document.getElementById("boat");
+const route = routeSvg.appendChild(svgEl("path", {}));
+let routeLength = 0;
+let dockLengths = [];
+let boatStart = 0;
 
-function makePath(d) {
-  const path = document.createElementNS(SVG_NS, "path");
-  path.setAttribute("d", d);
-  routeSvg.append(path);
-  return path;
+function curveString(k, curve) {
+  return "C" + curve.map((p) => toScene(k, p).join(" ")).join(" ");
 }
 
-const route = makePath(RIVER_SEGMENTS.join(" "));
-const routeLength = route.getTotalLength();
-const dockLengths = DOCK_SEGMENTS.map((n) => {
-  const prefix = makePath(RIVER_SEGMENTS.slice(0, n).join(" "));
-  const length = prefix.getTotalLength();
+function buildRoute() {
+  const curves = [];
+  for (let k = 0; k < state.tiles; k++) {
+    curves.push(curveString(k, k ? CONTINUED_BEND : FIRST_BEND), ...CENTER_CURVES.map((c) => curveString(k, c)));
+  }
+  const start = "M" + toScene(0, FIRST_START).join(" ");
+  route.setAttribute("d", start + curves.join(""));
+  routeLength = route.getTotalLength();
+
+  const prefix = routeSvg.appendChild(svgEl("path", {}));
+  dockLengths = Array.from({ length: state.tiles * 4 }, (_, slot) => {
+    const n = Math.floor(slot / 4) * CURVES_PER_TILE + DOCK_CURVES[slot % 4];
+    prefix.setAttribute("d", start + curves.slice(0, n).join(""));
+    return prefix.getTotalLength();
+  });
   prefix.remove();
-  return length;
-});
 
-// The river starts above the horizon; the boat's journey begins where it first touches the water.
-let boatStart = 0;
-while (route.getPointAtLength(boatStart).y < BOAT_START_Y) boatStart += 1;
+  // The river starts above the horizon; the boat's journey begins where it first touches the water.
+  boatStart = 0;
+  while (route.getPointAtLength(boatStart).y < BOAT_START_Y) boatStart += 1;
+}
 
-let boatAt = boatStart;
+let boatAt = 0;
 let boatFrame = 0;
 
 function placeBoat(length) {
@@ -146,12 +272,10 @@ function placeBoat(length) {
 }
 
 function boatTarget() {
-  const i = state.projects.findIndex((p) => p.id === state.boat?.projectId);
-  if (i < 0) return boatStart;
-  const { tasks } = state.projects[i];
-  if (!tasks.length) return boatStart;
-  const done = tasks.filter((t) => t.done).length;
-  return boatStart + ((dockLengths[i] - boatStart) * done) / tasks.length;
+  const project = state.projects.find((p) => p.id === state.boat?.projectId);
+  if (!project?.tasks.length) return boatStart;
+  const done = project.tasks.filter((t) => t.done).length;
+  return boatStart + ((dockLengths[project.slot] - boatStart) * done) / project.tasks.length;
 }
 
 // Sails toward the given project's house, as far as that project's share of finished tasks.
@@ -180,6 +304,7 @@ function sailBoat(projectId = state.boat?.projectId) {
   boatFrame = requestAnimationFrame(step);
 }
 
+renderScenery();
 boatAt = boatTarget();
 placeBoat(boatAt);
 
@@ -192,14 +317,36 @@ function nextTask(project) {
   return [...project.tasks].sort(byDate).find((t) => !t.done);
 }
 
+// Where a plot's house and sign go; plots in mirrored sections are flipped to the other bank.
+function plotPosition(index) {
+  const k = Math.floor(index / 4);
+  const base = SLOTS[index % 4];
+  const y = base.y + TILE_H * k;
+  if (k % 2 === 0) return { ...base, y };
+
+  const grown = HOUSE_W * HOUSE_SCALE;
+  const left = mirrorX(k, base.x - (HOUSE_SCALE - 1) * base.gx, grown);
+  const gx = HOUSE_W - base.gx;
+  return { x: left + (HOUSE_SCALE - 1) * gx, y, gx, gy: base.gy, signX: HOUSE_W - base.signX - SIGN_W, signY: base.signY };
+}
+
+// The first empty plot going down the river, adding a new scenery section when all are taken.
+function freePlot() {
+  const taken = new Set(state.projects.map((p) => p.slot));
+  for (let k = 0; ; k++) {
+    for (const i of RIVER_ORDER) if (!taken.has(k * 4 + i)) return k * 4 + i;
+  }
+}
+
 function renderProjects() {
   projectsEl.replaceChildren(
-    ...state.projects.map((project, i) => {
-      const slot = SLOTS[i];
+    ...state.projects.map((project) => {
+      const slot = plotPosition(project.slot);
       const el = houseTemplate.content.firstElementChild.cloneNode(true);
+      el.dataset.id = project.id;
       el.style.left = `${slot.x}px`;
       el.style.top = `${slot.y}px`;
-      el.style.setProperty("--grow-from", slot.growFrom);
+      el.style.setProperty("--grow-from", `${slot.gx}px ${slot.gy}px`);
 
       const house = el.querySelector(".house");
       house.setAttribute("aria-label", `Open project ${project.name}`);
@@ -243,15 +390,41 @@ let openProjectId = null;
 
 const currentProject = () => state.projects.find((p) => p.id === openProjectId);
 
-function openProject(id) {
+function openProject(id, { naming = false } = {}) {
   openProjectId = id;
   const project = currentProject();
   modalName.value = project.name;
   taskForm.date.value = today();
   renderTasks();
   modal.hidden = false;
-  taskForm.text.focus();
+  if (naming) modalName.select();
+  else taskForm.text.focus();
 }
+
+document.getElementById("add-house").addEventListener("click", () => {
+  const slot = freePlot();
+  const tiles = Math.max(state.tiles, Math.floor(slot / 4) + 1);
+  const project = { id: uid(), name: "New house", slot, tasks: [] };
+  state.projects.push(project);
+  if (tiles !== state.tiles) {
+    state.tiles = tiles;
+    renderScenery();
+  }
+  save();
+  renderProjects();
+  projectsEl.querySelector(`[data-id="${project.id}"]`).scrollIntoView({ block: "center", behavior: "smooth" });
+  openProject(project.id, { naming: true });
+});
+
+// The house's plot empties, but the scenery keeps its size.
+document.getElementById("remove-house").addEventListener("click", () => {
+  const project = currentProject();
+  if (!confirm(`Delete the house "${project.name}" and its tasks?`)) return;
+  state.projects = state.projects.filter((p) => p.id !== project.id);
+  save();
+  closeProject();
+  sailBoat();
+});
 
 function closeProject() {
   modal.hidden = true;
@@ -498,6 +671,8 @@ function showBoard() {
   store.activeId = state.id;
   persist();
   cancelAnimationFrame(boatFrame);
+  renderScenery();
+  sceneWrap.scrollTop = 0;
   boatAt = boatTarget();
   placeBoat(boatAt);
   renderProjects();
