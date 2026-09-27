@@ -3,6 +3,7 @@ import Layout from "../layouts/Layout.astro";
 
 const imgPulss   = "/project-pulss.png";
 const imgOct31   = "/project-oct31.png";
+const imgBrand   = "/project-brand.png";
 const imgFrame20 = "/project-frame20.png";
 ---
 
@@ -60,12 +61,20 @@ const imgFrame20 = "/project-frame20.png";
 
         <!-- Featured layout: 1 large + 2 small stacked -->
         <div class="grid-featured">
-          <div class="thumb-card featured">
+          <a href="/projects/pulss" class="thumb-card featured thumb-link">
             <img src={imgPulss} alt="PULSS festival" />
-          </div>
-          <div class="thumb-card">
+            <div class="thumb-overlay">
+              <span class="thumb-label">PULSS</span>
+              <span class="thumb-sub">View case study →</span>
+            </div>
+          </a>
+          <a href="/projects/october-31" class="thumb-card thumb-link">
             <img src={imgOct31} alt="October 31 game" />
-          </div>
+            <div class="thumb-overlay">
+              <span class="thumb-label">October 31.</span>
+              <span class="thumb-sub">View case study →</span>
+            </div>
+          </a>
           <a class="thumb-card digiprojekt-card" href="/digiprojekt2/index.html" aria-label="Digiprojekt — project and task planner"></a>
         </div>
 
@@ -181,6 +190,46 @@ const imgFrame20 = "/project-frame20.png";
     height: 100%;
     object-fit: cover;
     display: block;
+    transition: transform 0.4s ease;
+  }
+
+  /* ── linked cards ── */
+  .thumb-link {
+    display: block;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .thumb-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(72, 58, 116, 0.82);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .thumb-link:hover .thumb-overlay { opacity: 1; }
+  .thumb-link:hover img { transform: scale(1.05); }
+
+  .thumb-label {
+    font-family: 'Carter One', sans-serif;
+    font-size: clamp(22px, 3vw, 36px);
+    color: #EFEEF6;
+    line-height: 1;
+  }
+
+  .thumb-sub {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    color: #c9b8ff;
+    letter-spacing: 0.04em;
   }
 
   .thumb-card.brand-bg {

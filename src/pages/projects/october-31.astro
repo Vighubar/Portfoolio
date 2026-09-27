@@ -1,0 +1,436 @@
+---
+import Layout from "../../layouts/Layout.astro";
+---
+
+<Layout title="October 31. — Kelly-Leontine Merilo">
+  <div class="cs-wrap">
+
+    <div class="cs-split">
+
+      <!-- LEFT: title + image -->
+      <div class="cs-left">
+        <div class="cs-left-inner">
+          <h1 class="cs-title">October 31.</h1>
+          <p class="cs-sub">Game</p>
+          <div class="cs-img-wrap">
+            <img id="cs-active-img" src="/oct1.png" alt="October 31 screenshot" />
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: accordion -->
+      <div class="cs-right">
+
+        <div class="cs-row" data-img="/oct2.png">
+          <button class="cs-row-btn" aria-expanded="false">
+            <span class="cs-row-title">About the Project</span>
+            <span class="cs-row-arrow">►</span>
+          </button>
+          <div class="cs-row-body">
+            <div class="cs-row-body-inner">
+              <p class="cs-body">
+                October 31 is a comedy-horror point-and-click narrative game built in Unity. It
+                was made over three months as part of Digital Creative Project 1, a solo project
+                from start to finish.
+              </p>
+              <div class="cs-tags">
+                <span class="cs-tag">Unity</span>
+                <span class="cs-tag">C#</span>
+                <span class="cs-tag">Figma</span>
+                <span class="cs-tag">Game Design</span>
+                <span class="cs-tag">Narrative Design</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="cs-row" data-img="/oct3.png">
+          <button class="cs-row-btn" aria-expanded="false">
+            <span class="cs-row-title">The Challenge</span>
+            <span class="cs-row-arrow">►</span>
+          </button>
+          <div class="cs-row-body">
+            <div class="cs-row-body-inner">
+              <p class="cs-body">
+                The main goal was to build a fully working game with a coherent story. Not just
+                a technical demo, but something with a beginning, middle and end that actually
+                made sense to play through.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="cs-row" data-img="/oct4.png">
+          <button class="cs-row-btn" aria-expanded="false">
+            <span class="cs-row-title">The Process</span>
+            <span class="cs-row-arrow">►</span>
+          </button>
+          <div class="cs-row-body">
+            <div class="cs-row-body-inner">
+              <p class="cs-body">
+                The most interesting part to build was the cat feeding system and the logic for
+                moving between scenes. Getting those to work smoothly took more problem-solving
+                than expected. I also handled all the photography and asset editing myself, which
+                ended up being one of my favourite parts of the whole project.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="cs-row" data-img="/oct5.png">
+          <button class="cs-row-btn" aria-expanded="false">
+            <span class="cs-row-title">What I Learned</span>
+            <span class="cs-row-arrow">►</span>
+          </button>
+          <div class="cs-row-body">
+            <div class="cs-row-body-inner">
+              <p class="cs-body">
+                I came into this having never used Unity before, so picking up a completely new
+                engine was the biggest challenge. Along the way I also got a lot better at writing
+                story structure and editing visuals. If I had more time, I would make the game
+                longer and add more puzzles and interactive moments throughout.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- download buttons -->
+        <div class="cs-buttons">
+          <a
+            href="https://drive.google.com/file/d/1K1Qg3VIBEzHDRMtT4Oy_HoHTHPlFyfpe/view?usp=sharing"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="cs-dl-btn"
+          >
+            <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-12.9-1.801"/>
+            </svg>
+            Download for Windows
+          </a>
+          <a
+            href="https://docs.google.com/document/d/1ctmqoSDXObtfE64VSSsVs-SSxwXJXnk5Ors9jFZtdEo/edit?usp=sharing"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="cs-dl-btn cs-dl-btn--outline"
+          >
+            <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM8 13h8v1H8v-1zm0 3h8v1H8v-1zm0-6h5v1H8v-1z"/>
+            </svg>
+            Game Design Document
+          </a>
+        </div>
+
+
+      </div>
+    </div>
+
+  </div>
+</Layout>
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Nunito:wght@700&display=swap');
+
+  :root {
+    --oct-bg:         #FFD279;
+    --oct-deep:       #e8b84a;
+    --oct-accent:     #676D74;
+    --oct-accent-h:   #888f97;
+    --oct-text:       #422500;
+    --oct-text-muted: rgba(66, 37, 0, 0.55);
+    --oct-divider:    rgba(66, 37, 0, 0.18);
+  }
+
+  .cs-wrap {
+    background: var(--oct-bg);
+    min-height: 100vh;
+    padding-top: 56px;
+    font-family: 'Nunito', sans-serif;
+    color: var(--oct-text);
+  }
+
+  /* ── split ── */
+  .cs-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: calc(100vh - 56px);
+  }
+
+  /* ── left ── */
+  .cs-left {
+    position: sticky;
+    top: 56px;
+    height: calc(100vh - 56px);
+  }
+
+  .cs-left-inner {
+    padding: 60px 48px 48px 72px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .cs-title {
+    font-family: 'Space Mono', monospace;
+    font-weight: 700;
+    font-size: clamp(36px, 5vw, 72px);
+    color: var(--oct-text);
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+
+  .cs-sub {
+    font-family: 'Space Mono', monospace;
+    font-weight: 400;
+    font-size: clamp(11px, 1vw, 13px);
+    color: #422500;
+    letter-spacing: 0.05em;
+    margin-top: 10px;
+    margin-bottom: 32px;
+    line-height: 1.5;
+  }
+
+  .cs-img-wrap {
+    flex: 1;
+    overflow: hidden;
+    min-height: 0;
+    position: relative;
+  }
+
+  .cs-img-wrap img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    transition: opacity 0.25s ease;
+  }
+
+  /* ── right ── */
+  .cs-right {
+    padding: 0 72px 0 0;
+    display: flex;
+    flex-direction: column;
+    padding-top: 180px;
+  }
+
+  /* ── rows ── */
+  .cs-row {
+    border-bottom: 1px solid var(--oct-divider);
+  }
+  .cs-row:first-child {
+    border-top: 1px solid var(--oct-divider);
+  }
+
+  .cs-row-btn {
+    width: 100%;
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 28px 0 28px 48px;
+    gap: 16px;
+    text-align: left;
+  }
+
+  .cs-row-title {
+    font-family: 'Space Mono', monospace;
+    font-weight: 700;
+    font-size: clamp(15px, 1.6vw, 22px);
+    color: var(--oct-text);
+    letter-spacing: 0.02em;
+    transition: color 0.2s;
+    text-transform: uppercase;
+  }
+
+  .cs-row-btn:hover .cs-row-title,
+  .cs-row-btn[aria-expanded="true"] .cs-row-title {
+    color: #000;
+  }
+
+  .cs-row-arrow {
+    width: 44px;
+    height: 44px;
+    background: var(--oct-accent);
+    color: #fff;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: background 0.2s, transform 0.3s;
+  }
+
+  .cs-row-btn:hover .cs-row-arrow {
+    background: var(--oct-accent-h);
+  }
+
+  .cs-row-btn[aria-expanded="true"] .cs-row-arrow {
+    background: var(--oct-accent-h);
+    transform: rotate(90deg);
+  }
+
+  /* ── body ── */
+  .cs-row-body {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.35s ease;
+  }
+
+  .cs-row-body.open {
+    grid-template-rows: 1fr;
+  }
+
+  .cs-row-body-inner {
+    overflow: hidden;
+    padding: 0 0 0 48px;
+  }
+
+  .cs-row-body.open .cs-row-body-inner {
+    padding-bottom: 28px;
+  }
+
+  .cs-body {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    font-size: clamp(14px, 1.2vw, 16px);
+    color: #422500;
+    line-height: 1.85;
+    max-width: 480px;
+  }
+
+  .cs-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 16px;
+  }
+
+  .cs-tag {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    color: #422500;
+    border: 1px solid rgba(66, 37, 0, 0.3);
+    padding: 4px 12px;
+  }
+
+  /* ── download buttons ── */
+  .cs-buttons {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    padding: 48px 0 48px 48px;
+    border-top: 1px solid var(--oct-divider);
+  }
+
+  .cs-dl-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--oct-accent);
+    color: #fff;
+    font-family: 'Space Mono', monospace;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    padding: 12px 24px;
+    text-decoration: none;
+    transition: background 0.2s;
+    white-space: nowrap;
+  }
+  .cs-dl-btn:hover { background: var(--oct-accent-h); }
+
+  .cs-dl-btn--outline {
+    background: transparent;
+    border: 2px solid var(--oct-accent);
+    color: var(--oct-text);
+  }
+  .cs-dl-btn--outline:hover {
+    background: var(--oct-accent);
+    color: #fff;
+  }
+
+  .btn-icon {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+  }
+
+  /* ── back ── */
+  .cs-back {
+    padding: 32px 0 48px 48px;
+    margin-top: auto;
+  }
+
+  .cs-back-link {
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    color: rgba(58, 45, 0, 0.5);
+    text-decoration: none;
+    transition: color 0.2s;
+    text-transform: uppercase;
+  }
+  .cs-back-link:hover { color: #422500; }
+
+  /* ── responsive ── */
+  @media (max-width: 900px) {
+    .cs-split { grid-template-columns: 1fr; }
+    .cs-left { position: relative; top: 0; height: auto; }
+    .cs-left-inner { padding: 40px 24px 32px; }
+    .cs-img-wrap { min-height: 240px; flex: none; }
+    .cs-right { padding: 0 24px; padding-top: 0; }
+    .cs-row-btn { padding-left: 0; }
+    .cs-row-body-inner { padding-left: 0; }
+    .cs-back { padding-left: 0; }
+  }
+</style>
+
+<style is:global>
+  body:has(.cs-wrap) #site-nav {
+    background-color: #e8b84a;
+  }
+  body:has(.cs-wrap) #site-nav.scrolled {
+    background-color: rgba(232, 184, 74, 0.9);
+  }
+  body:has(.cs-wrap) .site-footer {
+    background-color: #e8b84a;
+  }
+</style>
+
+<script>
+  const rows = document.querySelectorAll<HTMLElement>('.cs-row');
+  const activeImg = document.getElementById('cs-active-img') as HTMLImageElement;
+
+  rows.forEach(row => {
+    const btn = row.querySelector<HTMLButtonElement>('.cs-row-btn')!;
+    const body = row.querySelector<HTMLElement>('.cs-row-body')!;
+
+    btn.addEventListener('click', () => {
+      const isOpen = btn.getAttribute('aria-expanded') === 'true';
+
+      rows.forEach(r => {
+        r.querySelector<HTMLButtonElement>('.cs-row-btn')!.setAttribute('aria-expanded', 'false');
+        r.querySelector<HTMLElement>('.cs-row-body')!.classList.remove('open');
+      });
+
+      if (!isOpen) {
+        btn.setAttribute('aria-expanded', 'true');
+        body.classList.add('open');
+
+        const newImg = row.dataset.img;
+        if (newImg && activeImg.src !== window.location.origin + newImg) {
+          activeImg.style.opacity = '0';
+          setTimeout(() => {
+            activeImg.src = newImg;
+            activeImg.style.opacity = '1';
+          }, 200);
+        }
+      }
+    });
+  });
+</script>

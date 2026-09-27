@@ -32,13 +32,13 @@ const currentPath = Astro.url.pathname;
     transition:
       background-color 0.35s ease,
       box-shadow 0.35s ease;
+    backdrop-filter: blur(0px);
+    -webkit-backdrop-filter: blur(0px);
   }
 
   .site-nav.scrolled {
-    background-color: rgba(72, 58, 116, 0.45);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    box-shadow: 0 2px 20px rgba(13, 6, 32, 0.3);
+    background-color: rgba(72, 58, 116, 0.85);
+    box-shadow: 0 2px 20px rgba(13, 6, 32, 0.15);
   }
 
   .nav-logo {
