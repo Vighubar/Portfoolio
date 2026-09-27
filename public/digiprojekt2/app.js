@@ -22,8 +22,14 @@ function formatDate(iso) {
   return `${dd}.${mm}`;
 }
 
-function defaultState() {
+// A board is one whole planner: four houses, a diary and the boat. The sidebar lists every board.
+function newBoard(name) {
+  const now = Date.now();
   return {
+    id: uid(),
+    name,
+    created: now,
+    updated: now,
     projects: SLOTS.map(() => ({
       id: uid(),
       name: "Example",
@@ -33,18 +39,38 @@ function defaultState() {
   };
 }
 
-function loadState() {
+const isBoard = (b) => b && Array.isArray(b.projects) && Array.isArray(b.diary);
+
+function loadStore() {
   try {
     const saved = JSON.parse(localStorage.getItem(STORAGE_KEY));
-    if (saved && Array.isArray(saved.projects) && Array.isArray(saved.diary)) return saved;
+    if (saved && Array.isArray(saved.boards) && saved.boards.some(isBoard)) {
+      saved.boards = saved.boards.filter(isBoard);
+      if (!saved.boards.some((b) => b.id === saved.activeId)) saved.activeId = saved.boards[0].id;
+      return saved;
+    }
+    // Data saved before the sidebar existed becomes the first board.
+    if (isBoard(saved)) {
+      const now = Date.now();
+      const board = { id: uid(), name: "My project", created: now, updated: now, ...saved };
+      return { activeId: board.id, boards: [board] };
+    }
   } catch {
-    // Corrupt storage falls through to a fresh state.
+    // Corrupt storage falls through to a fresh store.
   }
-  return defaultState();
+  const board = newBoard("My project");
+  return { activeId: board.id, boards: [board] };
 }
 
-let state = loadState();
-const save = () => localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+const store = loadStore();
+let state = store.boards.find((b) => b.id === store.activeId);
+
+const persist = () => localStorage.setItem(STORAGE_KEY, JSON.stringify(store));
+function save() {
+  state.updated = Date.now();
+  persist();
+  renderBoards();
+}
 
 const byDate = (a, b) => a.date.localeCompare(b.date);
 
@@ -350,5 +376,170 @@ diaryForm.addEventListener("submit", (e) => {
   renderDiary();
 });
 
+/* ---------- Sidebar (board history) ---------- */
+
+const app = document.querySelector(".app");
+const boardList = document.getElementById("board-list");
+const sidebarToggle = document.getElementById("sidebar-toggle");
+let renamingId = null;
+
+const DAY = 24 * 60 * 60 * 1000;
+
+function groupLabel(time) {
+  const startOfToday = new Date().setHours(0, 0, 0, 0);
+  if (time >= startOfToday) return "Today";
+  if (time >= startOfToday - DAY) return "Yesterday";
+  if (time >= startOfToday - 7 * DAY) return "Previous 7 days";
+  if (time >= startOfToday - 30 * DAY) return "Previous 30 days";
+  return "Older";
+}
+
+function boardProgress(board) {
+  const tasks = board.projects.flatMap((p) => p.tasks);
+  if (!tasks.length) return "no tasks yet";
+  return `${tasks.filter((t) => t.done).length}/${tasks.length} tasks done`;
+}
+
+function renderBoards() {
+  const groups = new Map();
+  for (const board of [...store.boards].sort((a, b) => b.updated - a.updated)) {
+    const label = groupLabel(board.updated);
+    if (!groups.has(label)) groups.set(label, []);
+    groups.get(label).push(board);
+  }
+
+  boardList.replaceChildren(
+    ...[...groups].map(([label, boards]) => {
+      const section = document.createElement("section");
+      const heading = document.createElement("h3");
+      heading.className = "sidebar__group";
+      heading.textContent = label;
+      const ul = document.createElement("ul");
+      ul.className = "sidebar__boards";
+      ul.append(...boards.map(boardItem));
+      section.append(heading, ul);
+      return section;
+    })
+  );
+}
+
+function boardItem(board) {
+  const li = document.createElement("li");
+  li.className = "board";
+  li.classList.toggle("is-active", board.id === state.id);
+
+  if (board.id === renamingId) {
+    const input = document.createElement("input");
+    input.className = "board__rename-input";
+    input.value = board.name;
+    input.maxLength = 40;
+    input.setAttribute("aria-label", "Project name");
+    let done = false;
+    const finish = (commit) => {
+      if (done) return;
+      done = true;
+      renamingId = null;
+      if (commit) board.name = input.value.trim() || "Untitled";
+      persist();
+      renderBoards();
+    };
+    input.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") finish(true);
+      if (e.key === "Escape") finish(false);
+    });
+    input.addEventListener("blur", () => finish(true));
+    li.append(input);
+    requestAnimationFrame(() => {
+      input.focus();
+      input.select();
+    });
+    return li;
+  }
+
+  const open = document.createElement("button");
+  open.type = "button";
+  open.className = "board__open";
+  if (board.id === state.id) open.setAttribute("aria-current", "true");
+  open.addEventListener("click", () => switchBoard(board.id));
+  open.addEventListener("dblclick", () => startRename(board.id));
+
+  const name = document.createElement("span");
+  name.className = "board__name";
+  name.textContent = board.name;
+  const meta = document.createElement("span");
+  meta.className = "board__meta";
+  meta.textContent = boardProgress(board);
+  open.append(name, meta);
+
+  const rename = document.createElement("button");
+  rename.type = "button";
+  rename.className = "board__action";
+  rename.textContent = "\u270e";
+  rename.setAttribute("aria-label", `Rename ${board.name}`);
+  rename.addEventListener("click", () => startRename(board.id));
+
+  const del = document.createElement("button");
+  del.type = "button";
+  del.className = "board__action";
+  del.textContent = "\u00d7";
+  del.setAttribute("aria-label", `Delete ${board.name}`);
+  del.addEventListener("click", () => deleteBoard(board.id));
+
+  li.append(open, rename, del);
+  return li;
+}
+
+function startRename(id) {
+  renamingId = id;
+  renderBoards();
+}
+
+function showBoard() {
+  store.activeId = state.id;
+  persist();
+  cancelAnimationFrame(boatFrame);
+  boatAt = boatTarget();
+  placeBoat(boatAt);
+  renderProjects();
+  renderDiary();
+  renderBoards();
+}
+
+function switchBoard(id) {
+  if (id === state.id) return;
+  state = store.boards.find((b) => b.id === id);
+  showBoard();
+}
+
+function deleteBoard(id) {
+  const board = store.boards.find((b) => b.id === id);
+  if (!confirm(`Delete "${board.name}" and all its tasks?`)) return;
+  store.boards = store.boards.filter((b) => b.id !== id);
+  if (!store.boards.length) store.boards.push(newBoard("My project"));
+  if (id === state.id) state = [...store.boards].sort((a, b) => b.updated - a.updated)[0];
+  showBoard();
+}
+
+document.getElementById("new-board").addEventListener("click", () => {
+  const board = newBoard(`Project ${store.boards.length + 1}`);
+  store.boards.push(board);
+  state = board;
+  renamingId = board.id;
+  if (store.sidebarCollapsed) setCollapsed(false);
+  showBoard();
+});
+
+function setCollapsed(collapsed) {
+  store.sidebarCollapsed = collapsed;
+  app.classList.toggle("is-sidebar-collapsed", collapsed);
+  sidebarToggle.setAttribute("aria-expanded", String(!collapsed));
+  sidebarToggle.setAttribute("aria-label", collapsed ? "Show project list" : "Hide project list");
+  persist();
+}
+
+sidebarToggle.addEventListener("click", () => setCollapsed(!store.sidebarCollapsed));
+setCollapsed(Boolean(store.sidebarCollapsed));
+
 renderProjects();
 renderDiary();
+renderBoards();
