@@ -3,7 +3,6 @@ import Layout from "../layouts/Layout.astro";
 
 const imgPulss   = "/project-pulss.png";
 const imgOct31   = "/project-oct31.png";
-const imgBrand   = "/project-brand.png";
 const imgFrame20 = "/project-frame20.png";
 ---
 
@@ -67,9 +66,7 @@ const imgFrame20 = "/project-frame20.png";
           <div class="thumb-card">
             <img src={imgOct31} alt="October 31 game" />
           </div>
-          <div class="thumb-card brand-bg">
-            <img src={imgBrand} alt="Brand identity" />
-          </div>
+          <a class="thumb-card digiprojekt-card" href="/digiprojekt2/index.html" aria-label="Digiprojekt — project and task planner"></a>
         </div>
 
         <!-- Secondary row: wider cards -->
@@ -188,6 +185,17 @@ const imgFrame20 = "/project-frame20.png";
 
   .thumb-card.brand-bg {
     background-color: #a4e5f2;
+  }
+
+  .digiprojekt-card {
+    display: block;
+    background: #8aaee0;
+    transition: background-color 0.2s ease;
+  }
+
+  .digiprojekt-card:hover,
+  .digiprojekt-card:focus-visible {
+    background: #4a6fa5;
   }
 
   /* Secondary 2-column grid */

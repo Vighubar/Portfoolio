@@ -1,0 +1,452 @@
+:root {
+  --sky: #c5dcf0;
+  --wood-dark: #80653a;
+  --wood: #9b7b46;
+  --wall: #d0bdb3;
+  --wall-edge: #8b7c74;
+  --roof: #cf4545;
+  --leaf: #40916c;
+  --check-edge: #bfc3c8;
+  --font-display: "Kelly Slab", Georgia, serif;
+  --font-body: "Inter", system-ui, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+  background: var(--sky);
+}
+
+button,
+input {
+  font: inherit;
+  color: inherit;
+}
+
+/* The design is a fixed 1440x1024 frame; app.js scales it to fit the window. */
+.viewport {
+  position: fixed;
+  inset: 0;
+}
+
+.stage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1440px;
+  height: 1024px;
+  overflow: hidden;
+  background: var(--sky);
+  transform-origin: 0 0;
+}
+
+.scene {
+  position: absolute;
+  inset: 0 502px 0 0;
+}
+
+.asset {
+  position: absolute;
+  display: block;
+  pointer-events: none;
+  user-select: none;
+}
+
+.boat-route {
+  position: absolute;
+}
+
+/* Origin is the hull's waterline center, the point that follows the river route. */
+.boat {
+  left: 0;
+  top: 0;
+  transform: translate(326px, 112.5px);
+  transform-origin: 66px 125px;
+}
+
+/* ---------- Projects (houses + signs) ---------- */
+
+.project {
+  position: absolute;
+  width: 148px;
+  height: 80px;
+}
+
+.house {
+  position: relative;
+  display: block;
+  width: 148px;
+  height: 80px;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+
+.house:hover,
+.house:focus-visible {
+  transform: translateY(-3px);
+  outline: none;
+}
+
+.house:focus-visible .house__art {
+  filter: drop-shadow(0 0 4px #fff);
+}
+
+.house__art {
+  display: block;
+}
+
+.house__name {
+  position: absolute;
+  left: 14px;
+  top: 36px;
+  width: 119px;
+  height: 41px;
+  line-height: 41px;
+  text-align: center;
+  font-family: var(--font-display);
+  font-size: 20px;
+  text-transform: uppercase;
+  color: #fff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sign {
+  position: absolute;
+  left: var(--sign-x);
+  top: var(--sign-y);
+  width: 109px;
+  height: 53px;
+  background: var(--wood-dark);
+}
+
+.sign__board {
+  position: absolute;
+  left: 8px;
+  top: 7px;
+  width: 92px;
+  height: 39px;
+  background: var(--wood);
+}
+
+.sign__text {
+  position: absolute;
+  left: 4.5px;
+  top: 8.5px;
+  width: 64px;
+  font-family: var(--font-body);
+  font-size: 6.6px;
+  line-height: 8px;
+  color: rgb(255 255 255 / 0.52);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sign__check {
+  position: absolute;
+  left: 67px;
+  top: 7px;
+  width: 12px;
+  height: 12px;
+  cursor: pointer;
+}
+
+.sign__check input {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.sign__box {
+  position: absolute;
+  left: 4.43px;
+  top: 4.05px;
+  width: 3.73px;
+  height: 3.73px;
+  background: #fff;
+  border: 0.41px solid var(--check-edge);
+  pointer-events: none;
+}
+
+.sign__check input:checked + .sign__box {
+  background: var(--leaf);
+}
+
+.sign__check input:disabled {
+  cursor: default;
+}
+
+.sign__check input:focus-visible + .sign__box {
+  outline: 1px solid #fff;
+  outline-offset: 1px;
+}
+
+/* ---------- Diary ---------- */
+
+.diary {
+  position: absolute;
+  left: 938px;
+  top: 0;
+  width: 502px;
+  height: 1024px;
+  background: var(--wood-dark);
+  color: #fff;
+  font-family: var(--font-display);
+}
+
+.diary__title {
+  position: absolute;
+  left: 36px;
+  top: 20px;
+  margin: 0;
+  font-size: 32px;
+  line-height: 40px;
+  font-weight: 400;
+}
+
+.diary__page {
+  position: absolute;
+  left: 36px;
+  top: 76px;
+  width: 432px;
+  height: 916px;
+  display: flex;
+  flex-direction: column;
+  background: var(--wood);
+}
+
+.diary__list {
+  flex: 1;
+  margin: 0;
+  padding: 44px 15px 0;
+  list-style: none;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--wood-dark) transparent;
+}
+
+.diary__entry {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 12px;
+  font-size: 24px;
+  line-height: 30px;
+  color: rgb(255 255 255 / 0.67);
+  word-break: break-word;
+}
+
+.diary__entry-text {
+  flex: 1;
+}
+
+.diary__delete,
+.modal__delete {
+  flex: none;
+  padding: 0 4px;
+  border: 0;
+  background: none;
+  color: rgb(255 255 255 / 0.5);
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+.diary__entry:hover .diary__delete,
+.diary__delete:focus-visible,
+.modal__task:hover .modal__delete,
+.modal__delete:focus-visible {
+  opacity: 1;
+}
+
+.diary__delete:hover,
+.modal__delete:hover {
+  color: #fff;
+}
+
+.diary__form,
+.modal__form {
+  display: flex;
+  gap: 8px;
+  padding: 15px;
+  border-top: 2px solid var(--wood-dark);
+}
+
+.diary__date,
+.diary__input,
+.modal__date,
+.modal__input,
+.modal__name {
+  min-width: 0;
+  padding: 6px 8px;
+  border: 0;
+  border-bottom: 2px solid rgb(255 255 255 / 0.35);
+  background: transparent;
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: 18px;
+  outline: none;
+  color-scheme: dark;
+}
+
+.diary__date,
+.modal__date {
+  flex: none;
+  width: 150px;
+  font-size: 15px;
+}
+
+.diary__input,
+.modal__input {
+  flex: 1;
+}
+
+.diary__input::placeholder,
+.modal__input::placeholder {
+  color: rgb(255 255 255 / 0.45);
+}
+
+.diary__date:focus,
+.diary__input:focus,
+.modal__date:focus,
+.modal__input:focus,
+.modal__name:focus {
+  border-bottom-color: #fff;
+}
+
+.diary__add,
+.modal__add {
+  flex: none;
+  padding: 0 14px;
+  border: 0;
+  background: var(--wood-dark);
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.diary__add:hover,
+.modal__add:hover {
+  background: #6d5530;
+}
+
+/* ---------- Project modal ---------- */
+
+.modal[hidden] {
+  display: none;
+}
+
+.modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgb(30 40 30 / 0.35);
+}
+
+.modal__panel {
+  position: absolute;
+  left: 469px;
+  top: 512px;
+  width: 560px;
+  max-height: 720px;
+  display: flex;
+  flex-direction: column;
+  transform: translate(-50%, -50%);
+  padding: 12px;
+  background: var(--wood-dark);
+  color: #fff;
+  font-family: var(--font-display);
+  box-shadow: 0 12px 40px rgb(0 0 0 / 0.3);
+}
+
+.modal__header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 4px 14px;
+}
+
+.modal__name {
+  flex: 1;
+  font-size: 28px;
+  text-transform: uppercase;
+}
+
+.modal__close {
+  width: 40px;
+  height: 40px;
+  border: 0;
+  background: none;
+  font-size: 32px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.modal__tasks {
+  flex: 1;
+  min-height: 120px;
+  margin: 0;
+  padding: 14px 16px;
+  list-style: none;
+  overflow-y: auto;
+  background: var(--wood);
+}
+
+.modal__task {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 6px 0;
+  font-size: 20px;
+  color: rgb(255 255 255 / 0.8);
+}
+
+.modal__task.is-done .modal__task-text {
+  text-decoration: line-through;
+  opacity: 0.55;
+}
+
+.modal__task input[type="checkbox"] {
+  flex: none;
+  width: 18px;
+  height: 18px;
+  margin: 0;
+  accent-color: var(--leaf);
+  cursor: pointer;
+}
+
+.modal__task-date {
+  flex: none;
+  color: rgb(255 255 255 / 0.6);
+}
+
+.modal__task-text {
+  flex: 1;
+  word-break: break-word;
+}
+
+.modal__empty {
+  padding: 6px 0;
+  font-size: 18px;
+  color: rgb(255 255 255 / 0.55);
+}
+
+.modal__form {
+  padding: 14px 4px 4px;
+  border-top: 0;
+}

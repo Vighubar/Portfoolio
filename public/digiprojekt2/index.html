@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Digiprojekt</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Kelly+Slab&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="viewport">
+    <div class="stage" id="stage">
+      <main class="scene" aria-label="Projects">
+        <img class="asset" src="ground.svg" alt="" width="938" height="820" style="left:0;top:204px" />
+        <img class="asset" src="river.svg" alt="" width="616" height="822" style="left:165px;top:203px" />
+
+        <img class="asset" src="bush.svg" alt="" width="139" height="112" style="left:423px;top:422px" />
+        <img class="asset" src="bush.svg" alt="" width="139" height="112" style="left:33px;top:192px" />
+        <img class="asset" src="bush.svg" alt="" width="139" height="112" style="left:263px;top:904px" />
+
+        <svg class="boat-route" id="boat-route" width="0" height="0" aria-hidden="true"></svg>
+        <img class="asset boat" id="boat" src="boat.svg" alt="" width="132" height="140" />
+        <img class="asset" src="claud.svg" alt="" width="96" height="62" style="left:29px;top:17px" />
+        <img class="asset" src="claud.svg" alt="" width="96" height="62" style="left:497px;top:109px" />
+        <img class="asset" src="sun.svg" alt="" width="85" height="87" style="left:780px;top:28px" />
+
+        <div id="projects"></div>
+
+        <img class="asset" src="tree.svg" alt="" width="85" height="147" style="left:817px;top:174px" />
+        <img class="asset" src="tree.svg" alt="" width="85" height="147" style="left:285px;top:569px" />
+        <img class="asset" src="tree.svg" alt="" width="85" height="147" style="left:664px;top:760px" />
+      </main>
+
+      <aside class="diary" aria-labelledby="diary-title">
+        <h1 class="diary__title" id="diary-title">Design diary</h1>
+        <div class="diary__page">
+          <ul class="diary__list" id="diary-list"></ul>
+          <form class="diary__form" id="diary-form" autocomplete="off">
+            <input class="diary__date" type="date" name="date" required aria-label="Entry date" />
+            <input class="diary__input" type="text" name="text" placeholder="write an entry..." required aria-label="Entry text" />
+            <button class="diary__add" type="submit" aria-label="Add entry">+</button>
+          </form>
+        </div>
+      </aside>
+
+      <div class="modal" id="modal" hidden>
+        <div class="modal__backdrop" data-close></div>
+        <section class="modal__panel" role="dialog" aria-modal="true" aria-labelledby="modal-name">
+          <header class="modal__header">
+            <input class="modal__name" id="modal-name" type="text" maxlength="24" aria-label="Project name" />
+            <button class="modal__close" type="button" data-close aria-label="Close">&times;</button>
+          </header>
+          <ul class="modal__tasks" id="modal-tasks"></ul>
+          <form class="modal__form" id="task-form" autocomplete="off">
+            <input class="modal__date" type="date" name="date" required aria-label="Task date" />
+            <input class="modal__input" type="text" name="text" placeholder="new task..." required aria-label="Task text" />
+            <button class="modal__add" type="submit">add</button>
+          </form>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <template id="house-template">
+    <div class="project">
+      <button class="house" type="button">
+        <svg class="house__art" width="148" height="80" viewBox="0 0 148 80" aria-hidden="true">
+          <rect x="12.5513" y="34.3333" width="122.176" height="44.6667" fill="#D0BDB3" stroke="#8B7C74" stroke-width="2" />
+          <path d="M136.07 33.3887H11.9297L74 0.56543L136.07 33.3887Z" fill="#CF4545" stroke="#993030" />
+        </svg>
+        <span class="house__name"></span>
+      </button>
+      <div class="sign">
+        <div class="sign__board">
+          <span class="sign__text"></span>
+          <label class="sign__check">
+            <input type="checkbox" />
+            <span class="sign__box" aria-hidden="true"></span>
+          </label>
+        </div>
+      </div>
+    </div>
+  </template>
+
+  <script src="app.js"></script>
+</body>
+</html>
