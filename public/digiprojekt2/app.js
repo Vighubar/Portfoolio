@@ -4,11 +4,12 @@ const SCENE_H = 1024;
 const GROUND_Y = 205;
 
 // House and sign positions taken from the design frame (px within the 938x1024 scene).
+// growFrom is the point (relative to the house) that stays fixed when the house is enlarged.
 const SLOTS = [
-  { x: 19, y: 410, signX: 20, signY: 87 },
-  { x: 635, y: 248, signX: 17, signY: 83 },
-  { x: 19, y: 744, signX: 17, signY: 85 },
-  { x: 771, y: 574, signX: 19, signY: 83 },
+  { x: 19, y: 410, signX: 20, signY: 87, growFrom: "50px 0" },
+  { x: 635, y: 248, signX: 17, signY: 83, growFrom: "40px 0" },
+  { x: 19, y: 744, signX: 17, signY: 85, growFrom: "50px 0" },
+  { x: 771, y: 574, signX: 19, signY: 83, growFrom: "98px 0" },
 ];
 
 const uid = () => Math.random().toString(36).slice(2, 10);
@@ -163,6 +164,7 @@ function renderProjects() {
       const el = houseTemplate.content.firstElementChild.cloneNode(true);
       el.style.left = `${slot.x}px`;
       el.style.top = `${slot.y}px`;
+      el.style.setProperty("--grow-from", slot.growFrom);
 
       const house = el.querySelector(".house");
       house.setAttribute("aria-label", `Open project ${project.name}`);
