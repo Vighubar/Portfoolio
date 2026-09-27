@@ -104,8 +104,6 @@ const RIVER_SEGMENTS = [
   "C540.5 450.5 270.5 418.5 270 504.5",
   "C269 591 707 571 712.5 677",
   "C718.5 782.5 161.5 764.5 312 841",
-  // Final stretch to the castle gate, sailed only once every task is done.
-  "C462 917 520 930 560 975",
 ];
 // How many river segments lead from the start to the bend beside each slot's house.
 const DOCK_SEGMENTS = [2, 1, 4, 3];
@@ -148,9 +146,6 @@ function placeBoat(length) {
 }
 
 function boatTarget() {
-  const allTasks = state.projects.flatMap((p) => p.tasks);
-  if (allTasks.length && allTasks.every((t) => t.done)) return routeLength;
-
   const i = state.projects.findIndex((p) => p.id === state.boat?.projectId);
   if (i < 0) return boatStart;
   const { tasks } = state.projects[i];
