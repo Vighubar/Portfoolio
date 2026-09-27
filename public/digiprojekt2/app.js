@@ -2,14 +2,16 @@ const STORAGE_KEY = "digiprojekt";
 const SCENE_W = 938;
 const SCENE_H = 1024;
 const GROUND_Y = 205;
+// Extra grass on each side of the design frame, so houses can sit further from the river.
+const SCENE_PAD_X = 110;
 
-// House and sign positions taken from the design frame (px within the 938x1024 scene).
+// House and sign positions within the 938x1024 design frame; negative x or x past 938 sits in the side padding.
 // growFrom is the point (relative to the house) that stays fixed when the house is enlarged.
 const SLOTS = [
-  { x: 19, y: 410, signX: 20, signY: 87, growFrom: "50px 0" },
-  { x: 635, y: 248, signX: 17, signY: 83, growFrom: "40px 0" },
-  { x: 19, y: 744, signX: 17, signY: 85, growFrom: "50px 0" },
-  { x: 771, y: 574, signX: 19, signY: 83, growFrom: "98px 0" },
+  { x: -50, y: 410, signX: 20, signY: 87, growFrom: "50px 0" },
+  { x: 700, y: 248, signX: 17, signY: 83, growFrom: "40px 0" },
+  { x: -50, y: 744, signX: 17, signY: 85, growFrom: "50px 0" },
+  { x: 850, y: 574, signX: 19, signY: 83, growFrom: "0 0" },
 ];
 
 const uid = () => Math.random().toString(36).slice(2, 10);
@@ -54,13 +56,15 @@ const scene = document.getElementById("scene");
 // Fit the whole scene, resting on the bottom edge; leftover space continues the sky and grass.
 function fitScene() {
   const { width, height } = sceneWrap.getBoundingClientRect();
-  const scale = Math.min(width / SCENE_W, height / SCENE_H);
-  const left = (width - SCENE_W * scale) / 2;
+  const viewW = SCENE_W + SCENE_PAD_X * 2;
+  const scale = Math.min(width / viewW, height / SCENE_H);
+  const left = (width - viewW * scale) / 2 + SCENE_PAD_X * scale;
   const top = height - SCENE_H * scale;
   scene.style.transform = `translate(${left}px, ${top}px) scale(${scale})`;
 
   const horizon = top + GROUND_Y * scale;
-  sceneWrap.style.background = `linear-gradient(var(--sky) ${horizon}px, var(--grass) ${horizon}px)`;
+  const edge = Math.max(1, scale);
+  sceneWrap.style.background = `linear-gradient(var(--sky) ${horizon - edge}px, var(--grass-edge) ${horizon - edge}px, var(--grass-edge) ${horizon + edge}px, var(--grass) ${horizon + edge}px)`;
 }
 
 new ResizeObserver(fitScene).observe(sceneWrap);
@@ -70,7 +74,7 @@ fitScene();
 
 // River centerline in scene coordinates, split at each bend where a house sits.
 const RIVER_SEGMENTS = [
-  "M392 237.5 C470 255 528 300 531.5 349",
+  "M300 180 C330 240 520 250 531.5 349",
   "C540.5 450.5 270.5 418.5 270 504.5",
   "C269 591 707 571 712.5 677",
   "C718.5 782.5 161.5 764.5 312 841",
@@ -78,6 +82,7 @@ const RIVER_SEGMENTS = [
 // How many river segments lead from the start to the bend beside each slot's house.
 const DOCK_SEGMENTS = [2, 1, 4, 3];
 const BOAT_ANCHOR = { x: 66, y: 125 };
+const BOAT_START_Y = 232;
 
 const SVG_NS = "http://www.w3.org/2000/svg";
 const routeSvg = document.getElementById("boat-route");
@@ -99,7 +104,11 @@ const dockLengths = DOCK_SEGMENTS.map((n) => {
   return length;
 });
 
-let boatAt = 0;
+// The river starts above the horizon; the boat's journey begins where it first touches the water.
+let boatStart = 0;
+while (route.getPointAtLength(boatStart).y < BOAT_START_Y) boatStart += 1;
+
+let boatAt = boatStart;
 let boatFrame = 0;
 
 function placeBoat(length) {
@@ -112,11 +121,11 @@ function placeBoat(length) {
 
 function boatTarget() {
   const i = state.projects.findIndex((p) => p.id === state.boat?.projectId);
-  if (i < 0) return 0;
+  if (i < 0) return boatStart;
   const { tasks } = state.projects[i];
-  if (!tasks.length) return 0;
+  if (!tasks.length) return boatStart;
   const done = tasks.filter((t) => t.done).length;
-  return (dockLengths[i] * done) / tasks.length;
+  return boatStart + ((dockLengths[i] - boatStart) * done) / tasks.length;
 }
 
 // Sails toward the given project's house, as far as that project's share of finished tasks.

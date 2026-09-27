@@ -14,11 +14,20 @@
     <div class="scene-wrap" id="scene-wrap">
       <main class="scene" id="scene" aria-label="Projects">
         <img class="asset ground" src="ground.svg" alt="" width="938" height="820" style="left:0;top:204px" />
-        <img class="asset" src="river.svg" alt="" width="616" height="822" style="left:165px;top:203px" />
+        <svg class="river" width="938" height="1024" viewBox="0 0 938 1024" aria-hidden="true">
+          <defs>
+            <clipPath id="below-horizon"><rect y="205" width="938" height="819" /></clipPath>
+            <path id="river-shape" transform="translate(165 203)" d="M306.353 146.316C296.426 45.9432 12.9841 1 12.9841 1H209.134C209.134 1 419.319 42.947 427.535 146.316C435.751 249.686 209.134 235.703 209.134 309.61C209.134 383.516 605.542 338.573 614.785 474.402C624.027 610.23 170.434 577.771 238.214 638.694C305.994 699.617 614.785 789.004 614.785 819.965H427.535C427.315 832.382 290.229 730.798 56.2139 638.694C-177.801 546.59 482.991 549.806 481.279 474.402C479.568 398.997 -0.366345 393.004 1.00292 294.629C2.37219 196.253 316.281 246.689 306.353 146.316Z" />
+          </defs>
+          <g clip-path="url(#below-horizon)">
+            <use href="#river-shape" class="river__bank" />
+            <use href="#river-shape" class="river__water" />
+          </g>
+        </svg>
 
         <img class="asset" src="bush.svg" alt="" width="139" height="112" style="left:423px;top:422px" />
         <img class="asset" src="bush.svg" alt="" width="139" height="112" style="left:33px;top:192px" />
-        <img class="asset" src="bush.svg" alt="" width="139" height="112" style="left:263px;top:904px" />
+        <img class="asset" src="bush.svg" alt="" width="139" height="112" style="left:130px;top:915px" />
 
         <svg class="boat-route" id="boat-route" width="0" height="0" aria-hidden="true"></svg>
         <img class="asset boat" id="boat" src="boat.svg" alt="" width="132" height="140" />
@@ -28,7 +37,7 @@
 
         <div id="projects"></div>
 
-        <img class="asset" src="tree.svg" alt="" width="85" height="147" style="left:817px;top:174px" />
+        <img class="asset" src="tree.svg" alt="" width="85" height="147" style="left:915px;top:174px" />
         <img class="asset" src="tree.svg" alt="" width="85" height="147" style="left:285px;top:569px" />
         <img class="asset" src="tree.svg" alt="" width="85" height="147" style="left:664px;top:760px" />
       </main>

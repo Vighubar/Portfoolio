@@ -1,6 +1,7 @@
 :root {
   --sky: #c5dcf0;
   --grass: #52b788;
+  --grass-edge: #40916c;
   --wood-dark: #80653a;
   --wood: #9b7b46;
   --wall: #d0bdb3;
@@ -63,6 +64,28 @@ input {
 /* The side borders would show as seams where the grass continues past the scene. */
 .ground {
   clip-path: inset(0 2px);
+}
+
+/* The design's river shape, grown outward on every side by --widen using a same-colour stroke. */
+.river {
+  --widen: 28px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  pointer-events: none;
+  stroke-linejoin: round;
+}
+
+.river__bank {
+  fill: #4a6fa5;
+  stroke: #4a6fa5;
+  stroke-width: calc(var(--widen) * 2 + 4px);
+}
+
+.river__water {
+  fill: #8aaee0;
+  stroke: #8aaee0;
+  stroke-width: calc(var(--widen) * 2);
 }
 
 .boat-route {
@@ -498,7 +521,7 @@ input {
   .scene-wrap {
     flex: none;
     width: 100%;
-    aspect-ratio: 938 / 1024;
+    aspect-ratio: 1158 / 1024;
   }
 
   .diary {
