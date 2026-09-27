@@ -1,8 +1,9 @@
 const STORAGE_KEY = "digiprojekt";
-const STAGE_W = 1440;
-const STAGE_H = 1024;
+const SCENE_W = 938;
+const SCENE_H = 1024;
+const GROUND_Y = 205;
 
-// House and sign positions taken from the design frame (px within the 1440x1024 stage).
+// House and sign positions taken from the design frame (px within the 938x1024 scene).
 const SLOTS = [
   { x: 19, y: 410, signX: 20, signY: 87 },
   { x: 635, y: 248, signX: 17, signY: 83 },
@@ -44,23 +45,29 @@ const save = () => localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
 
 const byDate = (a, b) => a.date.localeCompare(b.date);
 
-/* ---------- Stage scaling ---------- */
+/* ---------- Scene scaling ---------- */
 
-const stage = document.getElementById("stage");
+const sceneWrap = document.getElementById("scene-wrap");
+const scene = document.getElementById("scene");
 
-function fitStage() {
-  const scale = Math.min(window.innerWidth / STAGE_W, window.innerHeight / STAGE_H);
-  const left = (window.innerWidth - STAGE_W * scale) / 2;
-  const top = (window.innerHeight - STAGE_H * scale) / 2;
-  stage.style.transform = `translate(${left}px, ${top}px) scale(${scale})`;
+// Fit the whole scene, resting on the bottom edge; leftover space continues the sky and grass.
+function fitScene() {
+  const { width, height } = sceneWrap.getBoundingClientRect();
+  const scale = Math.min(width / SCENE_W, height / SCENE_H);
+  const left = (width - SCENE_W * scale) / 2;
+  const top = height - SCENE_H * scale;
+  scene.style.transform = `translate(${left}px, ${top}px) scale(${scale})`;
+
+  const horizon = top + GROUND_Y * scale;
+  sceneWrap.style.background = `linear-gradient(var(--sky) ${horizon}px, var(--grass) ${horizon}px)`;
 }
 
-window.addEventListener("resize", fitStage);
-fitStage();
+new ResizeObserver(fitScene).observe(sceneWrap);
+fitScene();
 
 /* ---------- Boat ---------- */
 
-// River centerline in stage coordinates, split at each bend where a house sits.
+// River centerline in scene coordinates, split at each bend where a house sits.
 const RIVER_SEGMENTS = [
   "M392 237.5 C470 255 528 300 531.5 349",
   "C540.5 450.5 270.5 418.5 270 504.5",

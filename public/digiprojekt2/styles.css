@@ -1,5 +1,6 @@
 :root {
   --sky: #c5dcf0;
+  --grass: #52b788;
   --wood-dark: #80653a;
   --wood: #9b7b46;
   --wall: #d0bdb3;
@@ -29,26 +30,27 @@ input {
   color: inherit;
 }
 
-/* The design is a fixed 1440x1024 frame; app.js scales it to fit the window. */
-.viewport {
-  position: fixed;
-  inset: 0;
+.app {
+  display: flex;
+  height: 100%;
 }
 
-.stage {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 1440px;
-  height: 1024px;
+/* The scene is drawn at the design's 938x1024 size; app.js scales it into this box. */
+.scene-wrap {
+  position: relative;
+  flex: 1;
+  min-width: 0;
   overflow: hidden;
   background: var(--sky);
-  transform-origin: 0 0;
 }
 
 .scene {
   position: absolute;
-  inset: 0 502px 0 0;
+  top: 0;
+  left: 0;
+  width: 938px;
+  height: 1024px;
+  transform-origin: 0 0;
 }
 
 .asset {
@@ -56,6 +58,11 @@ input {
   display: block;
   pointer-events: none;
   user-select: none;
+}
+
+/* The side borders would show as seams where the grass continues past the scene. */
+.ground {
+  clip-path: inset(0 2px);
 }
 
 .boat-route {
@@ -197,32 +204,27 @@ input {
 /* ---------- Diary ---------- */
 
 .diary {
-  position: absolute;
-  left: 938px;
-  top: 0;
-  width: 502px;
-  height: 1024px;
+  --diary-w: clamp(300px, 35vw, 502px);
+  flex: none;
+  width: var(--diary-w);
+  display: flex;
+  flex-direction: column;
+  padding: 20px calc(var(--diary-w) * 0.068) 32px calc(var(--diary-w) * 0.072);
   background: var(--wood-dark);
   color: #fff;
   font-family: var(--font-display);
 }
 
 .diary__title {
-  position: absolute;
-  left: 36px;
-  top: 20px;
-  margin: 0;
-  font-size: 32px;
+  margin: 0 0 16px;
+  font-size: clamp(26px, 2.25vw, 32px);
   line-height: 40px;
   font-weight: 400;
 }
 
 .diary__page {
-  position: absolute;
-  left: 36px;
-  top: 76px;
-  width: 432px;
-  height: 916px;
+  flex: 1;
+  min-height: 0;
   display: flex;
   flex-direction: column;
   background: var(--wood);
@@ -231,7 +233,7 @@ input {
 .diary__list {
   flex: 1;
   margin: 0;
-  padding: 44px 15px 0;
+  padding: clamp(20px, 3vw, 44px) 15px 0;
   list-style: none;
   overflow-y: auto;
   scrollbar-width: thin;
@@ -243,7 +245,7 @@ input {
   align-items: baseline;
   gap: 8px;
   margin-bottom: 12px;
-  font-size: 24px;
+  font-size: clamp(18px, 1.7vw, 24px);
   line-height: 30px;
   color: rgb(255 255 255 / 0.67);
   word-break: break-word;
@@ -282,6 +284,7 @@ input {
 .diary__form,
 .modal__form {
   display: flex;
+  flex-wrap: wrap;
   gap: 8px;
   padding: 15px;
   border-top: 2px solid var(--wood-dark);
@@ -313,7 +316,7 @@ input {
 
 .diary__input,
 .modal__input {
-  flex: 1;
+  flex: 1 1 140px;
 }
 
 .diary__input::placeholder,
@@ -348,6 +351,12 @@ input {
 
 /* ---------- Project modal ---------- */
 
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+}
+
 .modal[hidden] {
   display: none;
 }
@@ -360,10 +369,10 @@ input {
 
 .modal__panel {
   position: absolute;
-  left: 469px;
-  top: 512px;
-  width: 560px;
-  max-height: 720px;
+  left: 50%;
+  top: 50%;
+  width: min(560px, calc(100vw - 32px));
+  max-height: min(720px, calc(100vh - 32px));
   display: flex;
   flex-direction: column;
   transform: translate(-50%, -50%);
@@ -449,4 +458,32 @@ input {
 .modal__form {
   padding: 14px 4px 4px;
   border-top: 0;
+}
+
+/* ---------- Narrow screens: scene on top, diary below ---------- */
+
+@media (max-width: 760px) {
+  html,
+  body {
+    height: auto;
+    overflow: auto;
+  }
+
+  .app {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .scene-wrap {
+    flex: none;
+    width: 100%;
+    aspect-ratio: 938 / 1024;
+  }
+
+  .diary {
+    --diary-w: 100vw;
+    width: 100%;
+    min-height: 70vh;
+    padding: 20px 16px 24px;
+  }
 }
