@@ -90,8 +90,14 @@ const store = loadStore();
 store.boards.forEach(upgradeBoard);
 let state = store.boards.find((b) => b.id === store.activeId);
 
-const persist = () => localStorage.setItem(STORAGE_KEY, JSON.stringify(store));
+// True while showing someone else's project from a view-only share link; nothing is saved then.
+let readOnly = false;
+
+const persist = () => {
+  if (!readOnly) localStorage.setItem(STORAGE_KEY, JSON.stringify(store));
+};
 function save() {
+  if (readOnly) return;
   state.updated = Date.now();
   persist();
   renderBoards();
@@ -375,6 +381,7 @@ function renderProjects() {
         checkbox.checked = project.tasks.length > 0;
         checkbox.disabled = true;
       }
+      if (readOnly) checkbox.disabled = true;
       return el;
     })
   );
@@ -397,7 +404,9 @@ function openProject(id, { naming = false } = {}) {
   taskForm.date.value = today();
   renderTasks();
   modal.hidden = false;
-  if (naming) modalName.select();
+  modalName.readOnly = readOnly;
+  if (readOnly) modal.querySelector(".modal__close").focus();
+  else if (naming) modalName.select();
   else taskForm.text.focus();
 }
 
@@ -451,6 +460,7 @@ function renderTasks() {
       const check = document.createElement("input");
       check.type = "checkbox";
       check.checked = task.done;
+      check.disabled = readOnly;
       check.setAttribute("aria-label", `Done: ${task.text}`);
       check.addEventListener("change", () => {
         task.done = check.checked;
@@ -503,7 +513,9 @@ taskForm.addEventListener("submit", (e) => {
 
 modal.querySelectorAll("[data-close]").forEach((el) => el.addEventListener("click", closeProject));
 document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape" && !modal.hidden) closeProject();
+  if (e.key !== "Escape") return;
+  if (!modal.hidden) closeProject();
+  if (!shareModal.hidden) closeShare();
 });
 
 /* ---------- Diary ---------- */
@@ -670,6 +682,10 @@ function startRename(id) {
 function showBoard() {
   store.activeId = state.id;
   persist();
+  displayBoard();
+}
+
+function displayBoard() {
   cancelAnimationFrame(boatFrame);
   renderScenery();
   sceneWrap.scrollTop = 0;
@@ -715,6 +731,115 @@ function setCollapsed(collapsed) {
 sidebarToggle.addEventListener("click", () => setCollapsed(!store.sidebarCollapsed));
 setCollapsed(Boolean(store.sidebarCollapsed));
 
+/* ---------- Sharing ---------- */
+
+// A share link carries a compressed snapshot of the board in its #hash, so no server is needed.
+const shareModal = document.getElementById("share-modal");
+const shareUrl = document.getElementById("share-url");
+const shareCopy = document.getElementById("share-copy");
+const shareModes = shareModal.querySelectorAll('input[name="share-mode"]');
+const toast = document.getElementById("toast");
+
+async function packBoard(board) {
+  const { name, tiles, projects, diary, boat } = board;
+  const json = JSON.stringify({ name, tiles, projects, diary, boat });
+  const stream = new Blob([json]).stream().pipeThrough(new CompressionStream("deflate-raw"));
+  const bytes = new Uint8Array(await new Response(stream).arrayBuffer());
+  let binary = "";
+  for (const b of bytes) binary += String.fromCharCode(b);
+  return btoa(binary).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
+}
+
+async function unpackBoard(text) {
+  const binary = atob(text.replace(/-/g, "+").replace(/_/g, "/"));
+  const bytes = Uint8Array.from(binary, (c) => c.charCodeAt(0));
+  const stream = new Blob([bytes]).stream().pipeThrough(new DecompressionStream("deflate-raw"));
+  return JSON.parse(await new Response(stream).text());
+}
+
+const shareMode = () => [...shareModes].find((r) => r.checked).value;
+
+async function updateShareLink() {
+  const mode = shareMode();
+  shareUrl.value = `${location.origin}${location.pathname}#${mode}=${await packBoard(state)}`;
+  shareCopy.textContent = "copy link";
+}
+
+function openShare() {
+  document.getElementById("share-title").textContent = `Share "${state.name}"`;
+  shareModal.hidden = false;
+  updateShareLink();
+  shareCopy.focus();
+}
+
+function closeShare() {
+  shareModal.hidden = true;
+}
+
+document.getElementById("share-open").addEventListener("click", openShare);
+shareModal.querySelectorAll("[data-close]").forEach((el) => el.addEventListener("click", closeShare));
+shareModes.forEach((r) => r.addEventListener("change", updateShareLink));
+shareUrl.addEventListener("focus", () => shareUrl.select());
+shareCopy.addEventListener("click", async () => {
+  try {
+    await navigator.clipboard.writeText(shareUrl.value);
+    shareCopy.textContent = "copied!";
+  } catch {
+    shareUrl.select();
+    shareCopy.textContent = "press Ctrl+C";
+  }
+});
+
+let toastTimer = 0;
+function showToast(message) {
+  toast.textContent = message;
+  toast.hidden = false;
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => (toast.hidden = true), 4000);
+}
+
+async function openSharedLink() {
+  const match = location.hash.match(/^#(view|edit)=(.+)$/);
+  if (!match) return;
+  const [, mode, data] = match;
+
+  let board = null;
+  try {
+    board = await unpackBoard(data);
+  } catch {
+    // A cut-off or edited link can't be decoded.
+  }
+  if (!isBoard(board)) {
+    history.replaceState(null, "", location.pathname);
+    showToast("This share link is broken or incomplete.");
+    return;
+  }
+
+  const now = Date.now();
+  state = upgradeBoard({ ...board, id: uid(), name: String(board.name || "Shared project"), created: now, updated: now });
+
+  if (mode === "edit") {
+    store.boards.push(state);
+    history.replaceState(null, "", location.pathname);
+    showBoard();
+    showToast(`"${state.name}" was added to your projects. Your changes stay on your copy.`);
+    return;
+  }
+
+  readOnly = true;
+  document.body.classList.add("is-readonly");
+  document.getElementById("shared-name").textContent = state.name;
+  document.getElementById("shared-exit").href = location.pathname;
+  document.getElementById("shared-bar").hidden = false;
+  displayBoard();
+}
+
+// Pasting a share link into a tab that already shows the planner only changes the hash.
+addEventListener("hashchange", () => {
+  if (/^#(view|edit)=/.test(location.hash)) location.reload();
+});
+
 renderProjects();
 renderDiary();
 renderBoards();
+openSharedLink();

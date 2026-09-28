@@ -472,6 +472,32 @@ input {
   outline: none;
 }
 
+.sidebar__share {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border: 0;
+  background: none;
+  color: rgb(255 255 255 / 0.8);
+  font-family: var(--font-display);
+  font-size: 18px;
+  text-align: left;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.sidebar__share:hover,
+.sidebar__share:focus-visible {
+  color: #fff;
+  background: rgb(255 255 255 / 0.1);
+  outline: none;
+}
+
+.sidebar__share-icon {
+  flex: none;
+}
+
 /* Collapsed: a thin strip with just the toggle and the new-project button. */
 .is-sidebar-collapsed .sidebar {
   width: 64px;
@@ -484,11 +510,17 @@ input {
 
 .is-sidebar-collapsed .sidebar__title,
 .is-sidebar-collapsed .sidebar__new-label,
-.is-sidebar-collapsed .sidebar__history {
+.is-sidebar-collapsed .sidebar__share-label {
   display: none;
 }
 
-.is-sidebar-collapsed .sidebar__new {
+/* Stays in the layout so the share button keeps to the bottom. */
+.is-sidebar-collapsed .sidebar__history {
+  visibility: hidden;
+}
+
+.is-sidebar-collapsed .sidebar__new,
+.is-sidebar-collapsed .sidebar__share {
   justify-content: center;
   padding-inline: 0;
 }
@@ -771,6 +803,176 @@ input {
   outline: none;
 }
 
+/* ---------- Sharing ---------- */
+
+.share__title {
+  flex: 1;
+  margin: 0;
+  padding: 0 4px;
+  font-size: 26px;
+  font-weight: 400;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.share__body {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 16px;
+  background: var(--wood);
+}
+
+.share__modes {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.share__legend {
+  margin-bottom: 6px;
+  padding: 0;
+  font-size: 18px;
+}
+
+.share__mode {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 10px 12px;
+  background: rgb(0 0 0 / 0.08);
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.4;
+  color: rgb(255 255 255 / 0.75);
+  cursor: pointer;
+}
+
+.share__mode:has(input:checked) {
+  background: var(--wood-dark);
+  color: #fff;
+}
+
+.share__mode input {
+  flex: none;
+  width: 18px;
+  height: 18px;
+  margin: 1px 0 0;
+  accent-color: var(--leaf);
+  cursor: pointer;
+}
+
+.share__mode-name {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 19px;
+  color: #fff;
+}
+
+.share__link {
+  display: flex;
+  gap: 8px;
+}
+
+.share__url {
+  flex: 1;
+  min-width: 0;
+  padding: 8px 10px;
+  border: 0;
+  background: rgb(0 0 0 / 0.15);
+  color: #fff;
+  font-family: var(--font-body);
+  font-size: 13px;
+  outline: none;
+}
+
+.share__url:focus {
+  outline: 2px solid #fff;
+  outline-offset: -2px;
+}
+
+.share__note {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 13px;
+  color: rgb(255 255 255 / 0.65);
+}
+
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: 24px;
+  z-index: 20;
+  max-width: calc(100vw - 32px);
+  transform: translateX(-50%);
+  padding: 12px 18px;
+  border: 4px solid var(--wood-dark);
+  background: var(--wood);
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: 17px;
+  box-shadow: 0 8px 24px rgb(0 0 0 / 0.25);
+}
+
+.toast[hidden] {
+  display: none;
+}
+
+/* View-only share link: the owner's project, with every way to change it removed. */
+.shared-bar {
+  position: absolute;
+  top: 16px;
+  left: 20px;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  max-width: calc(100% - 40px);
+  padding: 8px 14px;
+  border: 4px solid var(--wood-dark);
+  background: var(--wood);
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: 18px;
+  box-shadow: 0 4px 12px rgb(0 0 0 / 0.15);
+}
+
+.shared-bar[hidden] {
+  display: none;
+}
+
+.shared-bar strong {
+  font-weight: 400;
+  text-decoration: underline;
+}
+
+.shared-bar__exit {
+  flex: none;
+  color: rgb(255 255 255 / 0.8);
+}
+
+.shared-bar__exit:hover {
+  color: #fff;
+}
+
+.is-readonly .sidebar,
+.is-readonly .add-house,
+.is-readonly .diary__form,
+.is-readonly .diary__delete,
+.is-readonly .modal__form,
+.is-readonly .modal__delete,
+.is-readonly .modal__remove {
+  display: none;
+}
+
+.is-readonly .modal__name {
+  border-bottom-color: transparent;
+}
+
 /* ---------- Narrow screens: scene on top, diary below ---------- */
 
 @media (max-width: 760px) {
@@ -801,6 +1003,17 @@ input {
 
   .sidebar__history {
     max-height: 40vh;
+  }
+
+  .is-sidebar-collapsed .sidebar__history {
+    display: none;
+  }
+
+  .shared-bar {
+    top: 8px;
+    left: 8px;
+    max-width: calc(100% - 16px);
+    font-size: 15px;
   }
 
   .scene-area {
